@@ -52,6 +52,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_div_format
 extra_css:
   - assets/stylesheets/extra.css
+  - assets/stylesheets/navigation-tree.css
 extra_javascript:
   - assets/vendor/mermaid.min.js
   - assets/javascripts/diagrams.js
