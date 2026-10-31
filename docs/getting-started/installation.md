@@ -1,31 +1,91 @@
-# 安装前先准备什么
+# 从零开始安装 Friday
 
-先运行示例，确认本机服务可打开，再逐项接入自己的家庭。已经完成部署的电脑可直接从[第一次打开](quick-start.md)开始。
+这组教程从一台尚未安装 Python、uv、Docker 或 Home Assistant 的电脑开始。你可以先打开示例，再连接自己的设备，最后按需要准备摄像头与互动。
 
-## 基础示例
+已经能打开 Friday 的读者，可直接进入[第一次打开](quick-start.md)或[连接自己的家](connect-home.md)。
 
-需要受支持的 Python 3.11 以上版本和 [uv](https://docs.astral.sh/uv/getting-started/installation/)。维护人员可从 [Friday 源码仓库](https://github.com/Geeprox/Friday)取得代码，在仓库根目录执行上游提供的入口：
+## 1. 选择你要完成的目标
 
-```sh
-./scripts/install-home.sh
-./bin/home doctor
-./bin/home serve
+| 你的目标 | 需要完成的章节 | 完成标志 |
+| --- | --- | --- |
+| 先体验页面 | 选择 macOS 或 Linux 章节，完成基础安装 | 8740 页面显示“示例家庭” |
+| 查看自己的设备 | 基础安装 → HA 与小米接入 → Friday 连接 | 显示自己的房间、设备和实际状态 |
+| 操作灯、窗帘等 | 设备接入 → 首次配置控制范围 | 目标控件可用，现场确认动作 |
+| 使用摄像头手势 | 上述步骤 → 摄像头与识别准备 → 手势教程 | 画面与关键点可见，规则有响应且设备实际执行 |
+
+**安装路线：**[macOS 从零准备](installation-macos.md) · [Linux 从零准备](installation-linux.md) → [HA 与小米接入](installation-home-assistant.md) → [可选摄像头与识别](installation-camera.md) → [启动、备份与排障](installation-maintenance.md)。
+
+```mermaid
+flowchart TB
+  S[选择安装电脑] --> M[macOS：终端、Git、uv、Python]
+  S --> L[Linux：终端、Git、uv、Python]
+  M --> F[下载 Friday 并打开示例]
+  L --> F
+  F --> H[已有 HA 直接复用；没有则安装]
+  H --> X[在 HA 内安装 Xiaomi Home 并登录]
+  X --> C[Friday 连接 HA 并读取自己的设备]
+  C --> D[配置控制范围并验证目标设备]
+  D -. 按需继续 .-> V[macOS 本地视觉、摄像头与手势]
 ```
 
-打开终端显示的本机地址，默认是 `http://127.0.0.1:8740`。**预期结果：**顶部显示“示例家庭”，可以阅读模拟状态；这一步不要求小米账号、模型或真实硬件。
+## 2. 先看平台差异
 
-这些命令来自上游安装说明。本次手册核对使用已经部署的环境，并未把每种操作系统的全新安装都计作通过。新电脑仍需逐步确认依赖与服务状态。
+| 能力 | macOS | Linux |
+| --- | --- | --- |
+| Friday Web、示例、HA 设备接入 | 本机 Python 环境 | 本机 Python；本文详述 Ubuntu / Debian |
+| 同机运行 HA Container | 先建立 Linux 虚拟机；本文使用 Colima | 直接使用 Linux Docker Engine |
+| 连接其他主机的 HA | 填写 Friday 主机可访问的地址 | 填写 Friday 主机可访问的地址 |
+| Miloco | 按发行包支持的系统与芯片选择 | 按发行包支持的系统与芯片选择 |
+| 当前原生人体、手部识别 | 需要 Apple Vision、兼容 SDK 与编译工具 | 当前这套原生入口不能直接运行，没有等价的 Linux 安装命令 |
+| 保护录像回看 | 另装媒体工具并配置录像来源 | 另装媒体工具并配置录像来源 |
 
-## 接真实家庭前
+不要把 Miloco 的平台支持范围理解为 Friday 的 Apple Vision 程序也支持这些平台。Intel Mac、Apple Silicon、Linux x86_64 和 Linux ARM64 的二进制包不能混用。
 
-准备一个可正常打开的 Home Assistant。优先复用已有服务；macOS 的 HA Container 使用 Linux 虚拟机或独立 HA 主机，具体安装按 [HA 官方指南](https://www.home-assistant.io/installation/)进行。
+## 3. 安装前准备
 
-让维护人员在 HA 内安装 [Xiaomi Home 集成](https://github.com/XiaoMi/ha_xiaomi_home)，再由你在 HA 的官方页面完成小米账号、家庭和设备选择。它不是另一套需要独立启动的服务。
+准备可下载 GitHub 源码、Python 软件包和容器镜像的网络，以及保存项目和数据的磁盘空间。安装系统软件时可能需要自己的管理员密码，它只填写在系统提示中。
 
-## 摄像头与可选能力
+接真实设备需要已正常使用的小米账号和设备；接摄像头前，先确认米家或对应官方应用能正常查看它。只体验示例时可暂不准备账号和硬件。
 
-本地摄像头和识别环境需要另外安装依赖、原生组件、模型和自己的配置，按 [Friday 部署指南](https://github.com/Geeprox/Friday/blob/main/docs/deployment.md)准备。Miloco 若采用插件方案，按其固定版本的官方平台说明部署。
+本文把项目放在 `$HOME/friday-home/Friday`。`$HOME` 会展开为你自己的主目录，不需要替换成作者电脑的路径。`cd` 用来进入目录；以 `#` 开头的行是说明，不用输入命令提示符 `$`。
 
-只接入家庭设备时可以暂不配置摄像头。音频、语音回复、云台、电视、NAS、ARL 与云端模型各自按需求准备，不由基础安装自动开启。
+先完成一组命令，核对“应看到什么”，再进入下一步。报错时保留错误文字，按对应章节处理，再继续。
 
-**完成标准：**示例服务可打开；若使用真实家庭，HA 本身可打开且已出现自己的目标设备。接下来做[家庭连接](connect-home.md)。
+## 4. 各工具分别负责什么
+
+| 名称 | 用途 | 何时需要 |
+| --- | --- | --- |
+| Git | 下载、记录源码版本 | 基础安装 |
+| uv、Python | 准备项目独立运行环境 | 基础安装 |
+| Docker Engine、Compose | 运行 HA 容器和读取容器配置 | 新建 HA |
+| Colima、Lima | 在 Mac 提供 Linux 容器主机 | Mac 单机运行 HA |
+| Xiaomi Home | 安装在 HA 内，接入小米家庭设备 | HA 接入小米设备 |
+| Node.js、OpenClaw 或 Hermes | Miloco 所选插件方案的宿主 | 选择对应方案时 |
+| 摄像头 SDK、Apple Vision、本地模型 | 视频连接、关键点与本地场景处理 | 兼容的本地识别方案 |
+| FFmpeg、ffprobe | 媒体处理与录像信息检查 | 保护回看等媒体能力 |
+| ARL、云端模型 | 可选智能任务 | 对应功能单独配置 |
+
+## 5. 版本与下载来源
+
+基础命令按以下公开入口核对，方便安装后定位差异。系统软件采用各厂商支持当前系统的发行方式，安装时记录实际版本。
+
+| 对象 | 本教程基线 / 来源 |
+| --- | --- |
+| Friday | [公开提交 e1e9c999](https://github.com/Geeprox/Friday/tree/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3)及该提交的 `uv.lock` |
+| Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
+| HA / Xiaomi Home | 项目准备脚本固定为 HA `2026.10.4`、集成 `v0.4.3` |
+| Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
+
+基础安装不会自动下载摄像头 SDK、模型、ARL，或替你配置设备控制范围。摄像头章节分别说明可执行的准备步骤和仍需匹配部署组件的部分；不会把某台电脑的私有启动器当作通用安装包。
+
+## 6. 每一阶段怎样算完成
+
+1. **示例可用**：明确显示“示例家庭”，能够查看模拟设备。
+2. **家庭接入**：HA 和 Friday 都能找到自己的目标设备，按各自统计口径核对数量。
+3. **控制可用**：目标动作已开放，页面有回执，并由你观察设备实际执行。
+4. **识别可用**：真实画面持续更新、关键点可见；仍要单独验证手势触发。
+5. **可以日常使用**：知道如何停止、启动和备份，重启后核对真实来源与暂停状态。
+
+![基础安装后查看明确标记为示例家庭的设备](../assets/screenshots/friday-devices.jpg)
+
+产品截图来自隔离示例，用于说明应核对的界面，不是操作系统安装过程的实机证明。各平台的新机安装、摄像头型号和真实动作按阶段分别验证，详见[验证范围](../TODO.md)。

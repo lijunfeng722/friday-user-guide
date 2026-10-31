@@ -60,7 +60,13 @@ extra_javascript:
 nav:
   - 开始使用:
       - 手册首页: index.md
-      - 安装准备: getting-started/installation.md
+      - 从零安装:
+          - 安装路线与平台范围: getting-started/installation.md
+          - macOS 从零准备: getting-started/installation-macos.md
+          - Linux 从零准备: getting-started/installation-linux.md
+          - HA 与小米接入: getting-started/installation-home-assistant.md
+          - 摄像头与本地识别: getting-started/installation-camera.md
+          - 启动、备份与排障: getting-started/installation-maintenance.md
       - 第一次打开: getting-started/quick-start.md
       - 连接自己的家: getting-started/connect-home.md
       - 第一条手势控制: tutorials/first-gesture.md

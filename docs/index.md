@@ -12,6 +12,7 @@
 
 | 你想做什么 | 阅读入口 |
 | --- | --- |
+| 电脑还没有任何运行环境 | [从零安装：macOS / Linux](getting-started/installation.md) |
 | 第一次打开，分清示例和真实家庭 | [快速上手](getting-started/quick-start.md) |
 | 连接 Home Assistant 与小米设备 | [连接自己的家](getting-started/connect-home.md) |
 | 做一个手势，让指定设备响应 | [完成第一条手势控制](tutorials/first-gesture.md) |

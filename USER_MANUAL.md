@@ -6,65 +6,920 @@
 
 ## 阅读目录
 
-1. [第一次打开 Friday](#guide-getting-started-quick-start)
+1. [从零开始安装 Friday](#guide-getting-started-installation)
 
-2. [安装前先准备什么](#guide-getting-started-installation)
+2. [macOS 从零准备](#guide-getting-started-installation-macos)
 
-3. [连接自己的家](#guide-getting-started-connect-home)
+3. [Linux 从零准备](#guide-getting-started-installation-linux)
 
-4. [查看与操作设备](#guide-guides-devices)
+4. [安装 HA 并接入自己的小米设备](#guide-getting-started-installation-home-assistant)
 
-5. [查看摄像头与识别](#guide-guides-cameras)
+5. [准备摄像头与本地识别（可选）](#guide-getting-started-installation-camera)
 
-6. [完成第一条手势控制](#guide-tutorials-first-gesture)
+6. [启动、备份与安装排障](#guide-getting-started-installation-maintenance)
 
-7. [管理互动控制规则](#guide-guides-interactions)
+7. [第一次打开 Friday](#guide-getting-started-quick-start)
 
-8. [管理场景与自动化](#guide-guides-automations)
+8. [连接自己的家](#guide-getting-started-connect-home)
 
-9. [连接录像并保护回看](#guide-guides-recordings)
+9. [查看与操作设备](#guide-guides-devices)
 
-10. [查看家庭事件的来源](#guide-guides-events)
+10. [查看摄像头与识别](#guide-guides-cameras)
 
-11. [核对人物与待确认分组](#guide-guides-people)
+11. [完成第一条手势控制](#guide-tutorials-first-gesture)
 
-12. [查看智能预警与本机画面复核](#guide-guides-safety)
+12. [管理互动控制规则](#guide-guides-interactions)
 
-13. [使用游戏库](#guide-guides-games)
+13. [管理场景与自动化](#guide-guides-automations)
 
-14. [找到家庭资料预览](#guide-guides-files)
+14. [连接录像并保护回看](#guide-guides-recordings)
 
-15. [用文字预览模拟规则变更](#guide-guides-dialogue)
+15. [查看家庭事件的来源](#guide-guides-events)
 
-16. [新版入口速查](#guide-reference-navigation)
+16. [核对人物与待确认分组](#guide-guides-people)
 
-17. [读懂页面状态](#guide-reference-status)
+17. [查看智能预警与本机画面复核](#guide-guides-safety)
 
-18. [十五个温度质量场景](#guide-reference-temperature-scenarios)
+18. [使用游戏库](#guide-guides-games)
 
-19. [这些程序分别做什么](#guide-explanation-components)
+19. [找到家庭资料预览](#guide-guides-files)
 
-20. [怎样看待 ARL 管理界面](#guide-explanation-arl)
+20. [用文字预览模拟规则变更](#guide-guides-dialogue)
 
-21. [2026-10-31 新版使用变化](#guide-releases-2026-10-31)
+21. [新版入口速查](#guide-reference-navigation)
 
-22. [按现象排查](#guide-troubleshooting-common-errors)
+22. [读懂页面状态](#guide-reference-status)
 
-23. [常见问题](#guide-troubleshooting-faq)
+23. [十五个温度质量场景](#guide-reference-temperature-scenarios)
 
-24. [后续现场验证范围](#guide-)
+24. [这些程序分别做什么](#guide-explanation-components)
+
+25. [怎样看待 ARL 管理界面](#guide-explanation-arl)
+
+26. [2026-10-31 新版使用变化](#guide-releases-2026-10-31)
+
+27. [按现象排查](#guide-troubleshooting-common-errors)
+
+28. [常见问题](#guide-troubleshooting-faq)
+
+29. [后续现场验证范围](#guide-)
+
+<a id="guide-getting-started-installation"></a>
+
+## 1. 从零开始安装 Friday
+
+这组教程从一台尚未安装 Python、uv、Docker 或 Home Assistant 的电脑开始。你可以先打开示例，再连接自己的设备，最后按需要准备摄像头与互动。
+
+已经能打开 Friday 的读者，可直接进入[第一次打开](#guide-getting-started-quick-start)或[连接自己的家](#guide-getting-started-connect-home)。
+
+### 1. 选择你要完成的目标
+
+| 你的目标 | 需要完成的章节 | 完成标志 |
+| --- | --- | --- |
+| 先体验页面 | 选择 macOS 或 Linux 章节，完成基础安装 | 8740 页面显示“示例家庭” |
+| 查看自己的设备 | 基础安装 → HA 与小米接入 → Friday 连接 | 显示自己的房间、设备和实际状态 |
+| 操作灯、窗帘等 | 设备接入 → 首次配置控制范围 | 目标控件可用，现场确认动作 |
+| 使用摄像头手势 | 上述步骤 → 摄像头与识别准备 → 手势教程 | 画面与关键点可见，规则有响应且设备实际执行 |
+
+**安装路线：**[macOS 从零准备](#guide-getting-started-installation-macos) · [Linux 从零准备](#guide-getting-started-installation-linux) → [HA 与小米接入](#guide-getting-started-installation-home-assistant) → [可选摄像头与识别](#guide-getting-started-installation-camera) → [启动、备份与排障](#guide-getting-started-installation-maintenance)。
+
+```mermaid
+flowchart TB
+  S[选择安装电脑] --> M[macOS：终端、Git、uv、Python]
+  S --> L[Linux：终端、Git、uv、Python]
+  M --> F[下载 Friday 并打开示例]
+  L --> F
+  F --> H[已有 HA 直接复用；没有则安装]
+  H --> X[在 HA 内安装 Xiaomi Home 并登录]
+  X --> C[Friday 连接 HA 并读取自己的设备]
+  C --> D[配置控制范围并验证目标设备]
+  D -. 按需继续 .-> V[macOS 本地视觉、摄像头与手势]
+```
+
+### 2. 先看平台差异
+
+| 能力 | macOS | Linux |
+| --- | --- | --- |
+| Friday Web、示例、HA 设备接入 | 本机 Python 环境 | 本机 Python；本文详述 Ubuntu / Debian |
+| 同机运行 HA Container | 先建立 Linux 虚拟机；本文使用 Colima | 直接使用 Linux Docker Engine |
+| 连接其他主机的 HA | 填写 Friday 主机可访问的地址 | 填写 Friday 主机可访问的地址 |
+| Miloco | 按发行包支持的系统与芯片选择 | 按发行包支持的系统与芯片选择 |
+| 当前原生人体、手部识别 | 需要 Apple Vision、兼容 SDK 与编译工具 | 当前这套原生入口不能直接运行，没有等价的 Linux 安装命令 |
+| 保护录像回看 | 另装媒体工具并配置录像来源 | 另装媒体工具并配置录像来源 |
+
+不要把 Miloco 的平台支持范围理解为 Friday 的 Apple Vision 程序也支持这些平台。Intel Mac、Apple Silicon、Linux x86_64 和 Linux ARM64 的二进制包不能混用。
+
+### 3. 安装前准备
+
+准备可下载 GitHub 源码、Python 软件包和容器镜像的网络，以及保存项目和数据的磁盘空间。安装系统软件时可能需要自己的管理员密码，它只填写在系统提示中。
+
+接真实设备需要已正常使用的小米账号和设备；接摄像头前，先确认米家或对应官方应用能正常查看它。只体验示例时可暂不准备账号和硬件。
+
+本文把项目放在 `$HOME/friday-home/Friday`。`$HOME` 会展开为你自己的主目录，不需要替换成作者电脑的路径。`cd` 用来进入目录；以 `#` 开头的行是说明，不用输入命令提示符 `$`。
+
+先完成一组命令，核对“应看到什么”，再进入下一步。报错时保留错误文字，按对应章节处理，再继续。
+
+### 4. 各工具分别负责什么
+
+| 名称 | 用途 | 何时需要 |
+| --- | --- | --- |
+| Git | 下载、记录源码版本 | 基础安装 |
+| uv、Python | 准备项目独立运行环境 | 基础安装 |
+| Docker Engine、Compose | 运行 HA 容器和读取容器配置 | 新建 HA |
+| Colima、Lima | 在 Mac 提供 Linux 容器主机 | Mac 单机运行 HA |
+| Xiaomi Home | 安装在 HA 内，接入小米家庭设备 | HA 接入小米设备 |
+| Node.js、OpenClaw 或 Hermes | Miloco 所选插件方案的宿主 | 选择对应方案时 |
+| 摄像头 SDK、Apple Vision、本地模型 | 视频连接、关键点与本地场景处理 | 兼容的本地识别方案 |
+| FFmpeg、ffprobe | 媒体处理与录像信息检查 | 保护回看等媒体能力 |
+| ARL、云端模型 | 可选智能任务 | 对应功能单独配置 |
+
+### 5. 版本与下载来源
+
+基础命令按以下公开入口核对，方便安装后定位差异。系统软件采用各厂商支持当前系统的发行方式，安装时记录实际版本。
+
+| 对象 | 本教程基线 / 来源 |
+| --- | --- |
+| Friday | [公开提交 e1e9c999](https://github.com/Geeprox/Friday/tree/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3)及该提交的 `uv.lock` |
+| Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
+| HA / Xiaomi Home | 项目准备脚本固定为 HA `2026.10.4`、集成 `v0.4.3` |
+| Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
+
+基础安装不会自动下载摄像头 SDK、模型、ARL，或替你配置设备控制范围。摄像头章节分别说明可执行的准备步骤和仍需匹配部署组件的部分；不会把某台电脑的私有启动器当作通用安装包。
+
+### 6. 每一阶段怎样算完成
+
+1. **示例可用**：明确显示“示例家庭”，能够查看模拟设备。
+2. **家庭接入**：HA 和 Friday 都能找到自己的目标设备，按各自统计口径核对数量。
+3. **控制可用**：目标动作已开放，页面有回执，并由你观察设备实际执行。
+4. **识别可用**：真实画面持续更新、关键点可见；仍要单独验证手势触发。
+5. **可以日常使用**：知道如何停止、启动和备份，重启后核对真实来源与暂停状态。
+
+![基础安装后查看明确标记为示例家庭的设备](docs/assets/screenshots/friday-devices.jpg)
+
+产品截图来自隔离示例，用于说明应核对的界面，不是操作系统安装过程的实机证明。各平台的新机安装、摄像头型号和真实动作按阶段分别验证，详见[验证范围](#guide-)。
+
+<a id="guide-getting-started-installation-macos"></a>
+
+## 2. macOS 从零准备
+
+完成本章后，你能在自己的 Mac 打开 Friday 示例。需要在同一台 Mac 安装 HA 时，再完成后面的容器环境步骤。
+
+### 1. 查看电脑并打开终端
+
+点击苹果菜单 →“关于本机”，记录系统版本和芯片。在“应用程序 → 实用工具”打开“终端”，输入：
+
+```sh
+sw_vers -productVersion
+uname -m
+```
+
+**应看到：**系统版本及 `arm64`（Apple 芯片）或 `x86_64`（Intel）。下载软件时选择对应架构。
+
+### 2. 准备 Git 和命令行工具
+
+```sh
+xcode-select --install
+```
+
+在 Apple 的窗口完成安装。提示已经安装时，继续检查：
+
+```sh
+xcode-select -p
+git --version
+```
+
+**应看到：**开发工具目录和 Git 版本。工具还在下载时，等安装完成再继续。[Apple 开发工具说明](https://developer.apple.com/xcode/resources/)
+
+### 3. 安装 uv，再准备 Python
+
+uv 负责下载 Python 和管理项目环境。先下载官方安装器，再运行：
+
+```sh
+curl -fLsS https://astral.sh/uv/0.13.6/install.sh -o /tmp/friday-install-uv.sh
+sh /tmp/friday-install-uv.sh
+export PATH="$HOME/.local/bin:$PATH"
+uv --version
+uv python install 3.12
+uv python find 3.12
+```
+
+**应看到：**uv 版本和 Python 3.12 的路径。无需先升级系统自带 Python，也不使用 `sudo pip install`。[uv 官方安装说明](https://docs.astral.sh/uv/getting-started/installation/)
+
+若重开终端后找不到 uv，用 `nano ~/.zshrc` 将下一行加入自己的配置；保存按 Control+O、回车，退出按 Control+X，再打开新终端：
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+使用其他 shell 时按安装器显示的对应提示处理。
+
+### 4. 下载 Friday 并安装基础环境
+
+```sh
+mkdir -p "$HOME/friday-home"
+git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
+cd "$HOME/friday-home/Friday"
+git switch --detach e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3
+UV_PYTHON=3.12 ./scripts/install-home.sh
+./bin/home doctor
+```
+
+**应看到：**依赖安装完成，doctor 返回状态信息，基础模式为 `simulator`。ARL、摄像头等可选能力未就绪，不阻止运行示例。`detached HEAD` 表示使用选定提交，不是安装失败。
+
+已有同名目录时不要重复 clone 或删除 `data/`，先看[维护章节](#guide-getting-started-installation-maintenance)。
+
+### 5. 打开示例
+
+```sh
+cd "$HOME/friday-home/Friday"
+./bin/home serve
+```
+
+保持终端运行，在同一台 Mac 打开 [Friday](http://127.0.0.1:8740/)。**应看到：**“示例家庭”和产品菜单。按 Control+C 停止前台服务；停止后网页暂时打不开属于正常现象。
+
+![示例设备页用于核对基础服务已启动](docs/assets/screenshots/friday-devices.jpg)
+
+只体验页面可到这里结束，继续[第一次打开](#guide-getting-started-quick-start)。已有 HA 可直接进入[家庭接入](#guide-getting-started-installation-home-assistant)。
+
+### 6. 没有 HA 时，准备 Linux 容器环境
+
+HA Container 使用 Linux Docker Engine。Mac 通过 Colima / Lima 提供 Linux 虚拟机，Docker 客户端负责向里面发送命令。[Colima 官方说明](https://github.com/abiosoft/colima/tree/v0.10.3)
+
+先执行 `command -v brew`。没有结果时，按 [Homebrew 官网](https://brew.sh/)安装，也可下载官方脚本后运行：
+
+```sh
+curl -fLsS https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o /tmp/friday-install-brew.sh
+/bin/bash /tmp/friday-install-brew.sh
+```
+
+按安装器末尾的 **Next steps** 设置环境，再打开新终端执行 `brew --version`。官网当前支持 macOS 15 及更新版本；较旧系统可按 [Colima 的其他安装方式](https://github.com/abiosoft/colima/blob/v0.10.3/docs/INSTALL.md)选择匹配发行包，或复用已有 / [Linux HA 主机](#guide-getting-started-installation-linux)。基础 Friday 不依赖 Homebrew。
+
+在 Homebrew 支持的系统上执行：
+
+```sh
+brew install colima docker docker-compose
+colima version
+docker --version
+docker-compose version
+```
+
+**应看到：**三个工具的版本。这一步尚未安装 HA 或完成账号接入。
+
+### 7. 让 Docker 找到 Compose
+
+若 `docker compose version` 已有结果，跳过本步；否则注册已安装的插件：
+
+```sh
+mkdir -p "$HOME/.docker/cli-plugins"
+if [ ! -e "$HOME/.docker/cli-plugins/docker-compose" ]; then
+  ln -s "$(command -v docker-compose)" "$HOME/.docker/cli-plugins/docker-compose"
+fi
+docker compose version
+```
+
+**应看到：**Compose 版本。若设置过 `DOCKER_CONFIG`，插件应放到该目录下的 `cli-plugins`，保留已有插件。[Homebrew Compose 说明](https://formulae.brew.sh/formula/docker-compose)
+
+### 8. 创建专用虚拟机并检查 Docker
+
+```sh
+colima start --profile friday-home --runtime docker --cpus 2 --memory 4 --disk 32 --mount "$HOME/friday-home:w"
+colima status --profile friday-home
+docker context show
+docker info
+```
+
+**应看到：**虚拟机运行，Docker 返回服务端信息。2 核、4 GiB 内存、32 GiB 虚拟磁盘是示例分配，可按负载调整，不是整机最低配置。可写挂载用于保存 HA 数据。
+
+有其他 Docker / Colima 实例时，核对当前 context 对应本教程的 `friday-home` 再操作。保持虚拟机运行，继续[安装 HA 与小米接入](#guide-getting-started-installation-home-assistant)。
+
+### 9. 常见安装问题
+
+| 现象 | 下一步 |
+| --- | --- |
+| 找不到 uv | 核对安装器输出、`$HOME/.local/bin` 和当前终端的 PATH |
+| 下载中断或证书错误 | 检查系统时间、网络和代理，重试官方源或固定发行包；保留证书校验 |
+| Homebrew 不支持当前系统 | 采用 Colima 官方发行方式或已有 / Linux HA；基础 Friday 不依赖 Homebrew |
+| `docker info` 失败 | 先启动 Colima，检查 context，再看虚拟机日志和网络 |
+| HA 容器已启动，Mac 的 8123 仍打不开 | 按 [Mac 端口转发](#guide-getting-started-installation-home-assistant)处理 |
+| 8740 已占用 | 先确认是否已有 Friday；并行示例可用 `./bin/home serve --port 8741`，正式连接另核对回调地址 |
+
+**完成标准：**Friday 示例可打开；新建 HA 时，Colima 与 Docker 服务端也可用。摄像头另按[可选章节](#guide-getting-started-installation-camera)准备。
+
+<a id="guide-getting-started-installation-linux"></a>
+
+## 3. Linux 从零准备
+
+本章在 Linux 本机安装 Friday。命令示例适用于 Ubuntu 22.04 / 24.04 / 26.04 和 Debian 12 / 13 的 64 位系统；其他发行版按其包管理器和 Docker 官方平台说明准备同等工具，不直接执行下面的 apt 命令。
+
+### 1. 打开终端，确认系统
+
+桌面 Linux 打开“终端”；无桌面的服务器使用已经配置好的 SSH 或主机控制台。输入：
+
+```sh
+cat /etc/os-release
+uname -m
+```
+
+**应看到：**发行版名称、版本和架构。`x86_64` 对应 amd64，`aarch64` 对应 ARM64。需要能使用 sudo 的个人账号。
+
+### 2. 安装下载和编辑工具
+
+```sh
+sudo apt-get update
+sudo apt-get install -y git curl ca-certificates nano unzip xz-utils
+```
+
+**应看到：**安装完成，没有软件源或证书错误。后续从自己的账号运行 Friday，不用 root 运行项目或安装 Python 包。
+
+### 3. 安装 uv 和 Python
+
+```sh
+curl -fLsS https://astral.sh/uv/0.13.6/install.sh -o /tmp/friday-install-uv.sh
+sh /tmp/friday-install-uv.sh
+export PATH="$HOME/.local/bin:$PATH"
+uv --version
+uv python install 3.12
+uv python find 3.12
+```
+
+**应看到：**uv 版本与 Python 3.12 的路径。无需依赖发行版自带 Python 的版本。[uv 安装](https://docs.astral.sh/uv/getting-started/installation/)与[管理 Python](https://docs.astral.sh/uv/guides/install-python/)
+
+若新终端找不到 uv，使用 `nano ~/.bashrc` 加入下面一行并重新打开终端；zsh 用户改用自己的 `~/.zshrc`：
+
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+nano 保存按 Control+O、回车，退出按 Control+X。
+
+### 4. 下载 Friday 并安装
+
+```sh
+mkdir -p "$HOME/friday-home"
+git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
+cd "$HOME/friday-home/Friday"
+git switch --detach e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3
+UV_PYTHON=3.12 ./scripts/install-home.sh
+./bin/home doctor
+```
+
+**应看到：**基础依赖安装成功，doctor 的基础模式为 `simulator`。选定提交产生的 `detached HEAD` 是版本定位提示。已有目录时先看[维护章节](#guide-getting-started-installation-maintenance)，不覆盖原数据。
+
+启动：
+
+```sh
+./bin/home serve
+```
+
+保持终端运行，在这台 Linux 的浏览器打开 [Friday](http://127.0.0.1:8740/)。看到“示例家庭”即完成基础安装，Control+C 用于停止前台服务。
+
+### 5. 在另一台电脑查看 Linux 服务
+
+Friday 默认只监听 Linux 主机自己的 `127.0.0.1`。已有 SSH 连接时，可在你的浏览器电脑另开终端建立转发：
+
+```sh
+ssh -N -L 8740:127.0.0.1:8740 -L 8123:127.0.0.1:8123 user@192.0.2.10
+```
+
+将 `user@192.0.2.10` 换成自己的 SSH 用户和 Linux 主机地址；这是文档示例地址。保持转发终端运行，再在浏览器电脑打开 `http://127.0.0.1:8740/`。8123 的转发供稍后的 HA 使用。
+
+**应看到：**与 Linux 本机相同的 Friday 页面。正式账号连接使用默认端口，以便和当前版本的本机回调一致。直接把 Linux 的内网 IP 拼到 8740 后面，不能替代这个转发。
+
+### 6. 需要新 HA 时，安装 Docker Engine
+
+已有可用 HA 可跳过本节，直接进入[HA 与小米接入](#guide-getting-started-installation-home-assistant)。已有 Docker 时先运行 `sudo docker info` 和 `sudo docker compose version`，两项成功即可复用。
+
+全新 Ubuntu / Debian 按下面步骤添加 Docker 官方软件源。先准备保存签名密钥的目录：
+
+```sh
+sudo install -d -m 0755 /etc/apt/keyrings
+```
+
+#### Ubuntu：执行这一组
+
+```sh
+curl -fLsS https://download.docker.com/linux/ubuntu/gpg -o /tmp/friday-docker.asc
+sudo install -m 0644 /tmp/friday-docker.asc /etc/apt/keyrings/docker.asc
+friday_codename="$(. /etc/os-release; printf '%s' "$VERSION_CODENAME")"
+friday_arch="$(dpkg --print-architecture)"
+printf 'deb [arch=%s signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu %s stable\n' "$friday_arch" "$friday_codename" | sudo tee /etc/apt/sources.list.d/friday-docker.list >/dev/null
+```
+
+#### Debian：执行这一组
+
+```sh
+curl -fLsS https://download.docker.com/linux/debian/gpg -o /tmp/friday-docker.asc
+sudo install -m 0644 /tmp/friday-docker.asc /etc/apt/keyrings/docker.asc
+friday_codename="$(. /etc/os-release; printf '%s' "$VERSION_CODENAME")"
+friday_arch="$(dpkg --print-architecture)"
+printf 'deb [arch=%s signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian %s stable\n' "$friday_arch" "$friday_codename" | sudo tee /etc/apt/sources.list.d/friday-docker.list >/dev/null
+```
+
+两组只选匹配发行版的一组。接着安装并检查：
+
+```sh
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo docker info
+sudo docker compose version
+```
+
+**应看到：**Docker 服务端信息及 Compose 版本。`enable` 同时让 Docker 随系统启动；Friday Web 仍按自己的启动方式管理。本教程给需要 Docker 权限的 Linux 命令显式加 sudo，无需先修改用户组。
+
+若机器已有其他容器软件、软件源或 Docker 数据，按 [Docker Ubuntu 官方安装](https://docs.docker.com/engine/install/ubuntu/)或 [Debian 官方安装](https://docs.docker.com/engine/install/debian/)处理兼容问题，不套用清空数据命令。其他发行版从 [Docker Engine 平台列表](https://docs.docker.com/engine/install/)选择。
+
+### 7. 常见安装问题
+
+| 现象 | 检查位置 |
+| --- | --- |
+| apt 找不到 Docker 包 | 发行版和代号是否匹配官方源，`apt-get update` 是否成功 |
+| Docker socket 权限不足 | 使用本章带 sudo 的 Docker 命令；不改 socket 为任意用户可写 |
+| Docker 服务没启动 | `sudo systemctl status docker`，再看服务日志 |
+| 服务器运行但自己浏览器打不开 | 先核对 SSH 转发，区分浏览器电脑和 Linux 主机的 127.0.0.1 |
+| 依赖下载失败 | 检查网络、时间、证书与包源；保留报错，不把软件源错误当成账号错误 |
+| 想在 Linux 执行原生手势编译 | 当前 Apple Vision 入口不适用，见[摄像头平台范围](#guide-getting-started-installation-camera) |
+
+**完成标准：**示例页面可打开；需要新 HA 时 Docker Engine、Compose 也已就绪。继续[安装 HA 与小米接入](#guide-getting-started-installation-home-assistant)。
+
+<a id="guide-getting-started-installation-home-assistant"></a>
+
+## 4. 安装 HA 并接入自己的小米设备
+
+完成后，你能在 HA 和 Friday 分别找到自己的设备。已有 HA 的读者复用原实例，从第 5 步检查 Xiaomi Home；不要再创建一套空 HA。
+
+**开始前：**已经完成 [macOS](#guide-getting-started-installation-macos)或 [Linux](#guide-getting-started-installation-linux)基础安装。新建 HA 时，Docker 服务端及 Compose 检查成功。
+
+### 1. 准备持久化配置
+
+在 Friday 安装电脑的终端执行：
+
+```sh
+cd "$HOME/friday-home/Friday"
+.venv/bin/python scripts/setup-dependencies.py plan
+.venv/bin/python scripts/setup-dependencies.py prepare
+```
+
+**应看到：**plan 列出当前工具，prepare 返回 `prepared: true`、`services_started: false`。它创建 `data/deployment/compose.yaml`、`.env` 和所需私有目录，还没有启动 HA。
+
+已有这些文件时不要重复 prepare；先检查是否属于已有部署。HA 数据以后保存在 `data/deployment/homeassistant`，容器里对应 `/config`，重建容器不会替你重新创建账号。
+
+### 2. 设置自己的时区
+
+```sh
+nano data/deployment/.env
+```
+
+将 `TZ=UTC` 改为自己的 IANA 时区，例如 `TZ=Asia/Shanghai`、`TZ=Europe/Berlin`。保存按 Control+O、回车，退出按 Control+X。
+
+**应看到：**文件只保留所选时区配置。错误时区会影响时间显示和自动化时间判断。
+
+### 3. 把 Xiaomi Home 安装到 HA 内
+
+```sh
+.venv/bin/python scripts/setup-dependencies.py xiaomi-home
+```
+
+**应看到：**集成安装成功，并提示需要 HA 重启和账号登录。固定版本集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
+
+已有该集成或上游下载目录时，脚本会拒绝覆盖；先核对原安装。对已有 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.4.3)
+
+### 4. 启动 HA 并检查页面
+
+#### macOS
+
+确认 Colima 的专用实例运行后执行：
+
+```sh
+docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env up -d
+docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps
+```
+
+#### Linux
+
+```sh
+sudo docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env up -d
+sudo docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps
+```
+
+**应看到：**homeassistant 服务运行。首次拉取镜像和初始化需要等待。该 Compose 使用固定 HA 镜像和 Linux host network；没有自动配置 USB、蓝牙或 Zigbee 适配器。[HA Container 官方说明](https://www.home-assistant.io/installation/linux/)
+
+在 HA 所在主机，或已经建立对应端口转发的浏览器电脑，打开 [HA 本机入口](http://127.0.0.1:8123/)。按页面创建自己的管理员、设置家庭位置与时区，直到进入 HA 主界面。密码和验证码只填在页面。
+
+#### Mac 的 8123 打不开时
+
+先检查容器仍在运行。Colima 自动转发没有生效、而虚拟机内 HA 可用时，可以在 Mac 新开终端建立仅本机转发：
+
+```sh
+umask 077
+colima ssh-config --profile friday-home > "$HOME/friday-home/ha-ssh.config"
+friday_ssh_host="$(awk '$1 == "Host" {print $2; exit}' "$HOME/friday-home/ha-ssh.config")"
+ssh -F "$HOME/friday-home/ha-ssh.config" -o ExitOnForwardFailure=yes -N -L 127.0.0.1:8123:127.0.0.1:8123 "$friday_ssh_host"
+```
+
+保持这个终端运行，再打开 8123。端口已经被占用时先核对现有转发，不反复启动。此配置文件由你自己的 Colima 生成，不需要填写作者电脑的 SSH 路径。
+
+Linux 远程主机使用 [Linux 章节的 SSH 转发](#guide-getting-started-installation-linux)。HA 地址需同时能被 Friday 所在主机访问；不在同一主机时，使用该 HA 的实际可达地址。
+
+### 5. 在 HA 完成小米登录与设备选择
+
+1. 在 HA 打开“设置 → 设备与服务 → 添加集成”。
+2. 搜索 Xiaomi Home，阅读集成提示，选择自己的区域。
+3. 打开其小米官方授权页，登录自己的账号并确认授权。
+4. 回到 HA，选择需要接入的家庭和设备，完成后续页面。
+5. 在 HA 集成页查找目标设备，查看房间和状态。
+
+新增集成文件后搜索不到 Xiaomi Home，先重启本教程的 homeassistant 服务，再刷新浏览器。不要把 Miloco 登录当作这一步已经完成。
+
+#### 小米确认授权后返回失败
+
+检查授权回调使用的主机名，当前固定集成通常使用 `homeassistant.local:8123`。先在**进行登录的浏览器电脑**打开 `http://homeassistant.local:8123/`；它也应能打开同一台 HA。
+
+如果这个名字不能解析或指向另一台机器，先修复本地域名 / mDNS，再重新发起授权。不要修改授权链接里的 state 或把含授权码的完整回调地址发给别人。
+
+对于 HA 就在本机 8123、或通过上述 SSH 转发访问本机 8123 的情况，可由这台浏览器电脑的管理员在 hosts 文件中将该名称指向本机：
+
+```sh
+sudo nano /etc/hosts
+```
+
+在确认没有另一台同名 HA 后，添加单独一行并保存：
+
+```text
+127.0.0.1 homeassistant.local
+```
+
+再次访问该名称，能打开正确 HA 后才重试授权。若 HA 通过其他主机地址访问，应由自己的网络配置将这个名字指向那台 HA 的可达地址；不要照抄 loopback 映射。以后撤销本机映射时，只移除自己新增的这一行。
+
+### 6. 让 Friday 读取自己的家庭
+
+保持 HA 运行，重新打开 Friday 的“连接”：
+
+1. 点击“查找并连接”；多个结果时选自己的 HA。
+2. 没发现时点击“填写地址”，输入完整可达地址。
+3. 在 HA 官方登录页面完成 Friday 的授权。
+4. 返回 Friday，点击“连接并读取设备”。
+
+![Friday 家庭连接向导，摄像头被单独列为可选项](docs/assets/screenshots/friday-settings.jpg)
+
+**应看到：**“家庭已连接”，设备页出现自己的设备。设备数量按当前家庭决定，不以示例截图的数量为标准。一个设备的多个实体也不是多台设备。详细操作见[连接自己的家](#guide-getting-started-connect-home)。
+
+基础源码入口重启后可能仍从示例模式启动；已有授权与当前来源分别判断。重新进入连接页读取家庭，或使用部署版本提供的已配置来源启动器，再确认顶部状态；不需要因此反复删除账号授权。
+
+### 7. 首次开放设备控制范围
+
+读取设备完成后，可以先只查看状态。首次控制需要本机操作员根据自己的 HA 实例、实体标识和设备能力配置允许范围；这是一项部署设置，不是每次使用都要逐台重新登录。
+
+当前界面可以暂停 / 恢复已有范围，但没有替代首次范围文件配置。源码 Web 默认使用 `data/homeplane/action-authority.json`；桌面部署的私有目录不同，应按其构建说明确认。
+
+配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
+
+先用一个选定设备验证：检查目标和动作 → 明确执行 → 看页面回执 → 观察设备实际变化。有记录并不替代现场确认。之后可继续[设备操作](#guide-guides-devices)或[摄像头与识别准备](#guide-getting-started-installation-camera)。
+
+**完成标准：**HA、Friday 都能找到自己的目标，来源明确；需要控制时，相应动作范围已配置并由你确认实际效果。
+
+<a id="guide-getting-started-installation-camera"></a>
+
+## 5. 准备摄像头与本地识别（可选）
+
+本章把 Miloco 视频服务、Friday 视觉运行环境和设备控制分开准备。只查看 HA 设备时可以跳过；已经接通的用户直接看[摄像头使用指南](#guide-guides-cameras)。
+
+### 先确认平台与目标
+
+| 目标 | macOS | Linux |
+| --- | --- | --- |
+| 安装 Miloco、绑定账号、查看支持的摄像头 | 选择官方支持的系统与芯片包 | 选择官方支持的架构包 |
+| Friday 原生人体、手部识别 | 需要 Apple Vision、匹配 SDK、模型与后台装配 | 当前原生程序依赖 Apple Vision，不能照搬 macOS 编译步骤 |
+| 普通 HA 设备控制 | 完成家庭接入和控制范围配置即可 | 完成家庭接入和控制范围配置即可 |
+
+摄像头画面正常，不表示 Friday 已具备识别环境；识别可见，也不表示规则已允许执行。Intel Mac 如没有匹配的 SDK 发行包，同样不能使用 arm64 包替代。
+
+### 1. 先检查摄像头与账号
+
+在米家或摄像头官方应用确认：目标属于自己的账号、设备在线、镜头已由你主动打开、画面能播放。记下目标名称供本机选择，不将设备标识或家庭画面放进公开仓库。
+
+HA 的 Xiaomi Home 登录与 Miloco 的小米绑定各自保存授权，一边完成不能代替另一边。普通本地手势不要求先购买云端模型服务。
+
+### 2. 准备 Miloco 的插件宿主
+
+Miloco v2026.10.16 的安装入口提供 OpenClaw、Hermes 平台指南。这里以 OpenClaw 为例；已有兼容宿主可以复用，先确认原配置，不新建覆盖原账号。
+
+从 [Node.js 官方发行目录](https://nodejs.org/dist/v24.22.1/)选择 Node 24.22.1 对应系统、架构的安装包，并按同目录的校验清单核对。Mac 可下载 `.pkg` 安装器，按系统窗口完成安装后重开终端。
+
+Linux 先按 `uname -m` 的结果二选一：
+
+```sh
+# x86_64 使用这一行
+friday_node_archive=node-v24.22.1-linux-x64.tar.xz
+```
+
+```sh
+# aarch64 / arm64 使用这一行
+friday_node_archive=node-v24.22.1-linux-arm64.tar.xz
+```
+
+接着在同一个终端下载、校验和解压：
+
+```sh
+mkdir -p "$HOME/friday-home/downloads" "$HOME/friday-home/tools"
+cd "$HOME/friday-home/downloads"
+curl -fLO "https://nodejs.org/dist/v24.22.1/$friday_node_archive"
+curl -fLsS https://nodejs.org/dist/v24.22.1/SHASUMS256.txt -o node-SHASUMS256.txt
+sha256sum --check --ignore-missing node-SHASUMS256.txt
+tar -xf "$friday_node_archive" -C "$HOME/friday-home/tools"
+friday_node_folder="${friday_node_archive%.tar.xz}"
+export PATH="$HOME/friday-home/tools/$friday_node_folder/bin:$PATH"
+```
+
+**应看到：**下载文件的校验结果为 `OK`。需要新终端继续使用时，把实际解压目录的 `bin` 路径加入自己的 shell 配置，例如 x64 对应 `$HOME/friday-home/tools/node-v24.22.1-linux-x64/bin`。随后确认：
+
+```sh
+node --version
+npm --version
+```
+
+**应看到：**Node `v24.22.1` 和 npm 版本。需要详细平台操作时见 [Node 官方下载入口](https://nodejs.org/en/download)。不要用系统里一个过旧的 Node 继续安装。
+
+在个人目录安装选定宿主版本：
+
+```sh
+mkdir -p "$HOME/friday-home/tools/openclaw"
+npm install --prefix "$HOME/friday-home/tools/openclaw" openclaw@2026.10.9
+export PATH="$HOME/friday-home/tools/openclaw/node_modules/.bin:$PATH"
+openclaw --version
+openclaw configure --section gateway
+```
+
+按本机向导配置本地网关及其认证，再安装、检查服务：
+
+```sh
+openclaw gateway install
+openclaw gateway status
+```
+
+**应看到：**网关可用。需要后续终端继续找到 openclaw 时，把同一条 PATH 配置加入自己的 shell 配置。网关认证信息保存在自己的本机配置；本阶段不必配置 IM，也不把网关启动当作模型任务已经可用。[OpenClaw 官方入门](https://docs.openclaw.ai/start/getting-started)
+
+### 3. 安装固定版本 Miloco
+
+先阅读[固定版本平台选择入口](https://github.com/XiaoMi/xiaomi-miloco/blob/v2026.10.16/scripts/install-guide.md)，确认选择 OpenClaw 路线。下载该版本官方安装器：
+
+```sh
+curl -fLsS https://github.com/XiaoMi/xiaomi-miloco/releases/download/v2026.10.16/install.sh -o /tmp/friday-install-miloco.sh
+bash /tmp/friday-install-miloco.sh --agent-prepare
+```
+
+**应看到：**环境准备、核心包和服务状态结果，或明确的失败步骤。安装器可能准备自己的 Python 和依赖，这不需要把 Friday 的 Python 3.12 替换掉。系统出现本地网络权限提示时，按自己要使用的本地设备功能选择。
+
+按输出打开本机 Miloco 页面，默认入口为 `http://127.0.0.1:1810/`。自己完成小米登录与绑定；授权结果只填回对应页面，不放进聊天、命令历史或文档。
+
+账号绑定后，按同版本平台指南完成剩余安装：
+
+```sh
+bash /tmp/friday-install-miloco.sh --agent-finish
+openclaw gateway restart
+miloco-cli service status
+miloco-cli device list
+```
+
+**应看到：**服务运行，设备清单中能找到自己的摄像头。若终端找不到 miloco-cli，核对安装器输出及 `$HOME/.local/bin`。没有模型 Key 时，服务与账号、摄像头接入分别验收；不把未配置的多模态智能功能计为完成。
+
+### 4. 在 Friday 记录摄像头连接
+
+在“连接 → 摄像头与互动”按页面选择安装或已有服务入口。兼容服务地址必须是本机入口；填写自己的摄像头并检查服务和绑定状态。
+
+![连接页把摄像头与互动列为可选阶段](docs/assets/screenshots/friday-settings.jpg)
+
+服务检查成功只说明连接和账号条件，接下来还需 Friday 自己的视觉环境。
+
+### 5. macOS：准备独立视觉环境
+
+以下是源码部署的进阶准备。使用统一的默认目录 `data/embodied`，不要把另一台机器的私有目录、会话或绝对路径复制进来。
+
+```sh
+cd "$HOME/friday-home/Friday"
+mkdir -p data/embodied
+uv venv --python 3.12 data/embodied/runtime
+uv export --locked --no-dev --extra vision --extra camera-media --no-emit-project --format requirements.txt --output-file data/embodied/requirements-vision.txt
+uv pip install --python data/embodied/runtime/bin/python --require-hashes -r data/embodied/requirements-vision.txt
+```
+
+**应看到：**锁定依赖安装到独立的 `runtime`，与 Web 的 `.venv` 分开。不要对已有且正在使用的视觉环境重复创建。
+
+SDK 不随 Friday 分发。从 [Miloco 固定发行版](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)及其官方说明取得与系统、芯片、Python 匹配的 SDK wheel，在本机指定实际下载路径：
+
+```sh
+printf '请输入匹配 SDK wheel 的完整本机路径：'
+read -r friday_sdk_wheel
+uv pip install --python data/embodied/runtime/bin/python "$friday_sdk_wheel"
+data/embodied/runtime/bin/python -c 'import av, cv2, onnxruntime, miot.camera; print("视觉依赖与摄像头 SDK 可导入")'
+```
+
+**应看到：**依赖和 SDK 可导入。下载了 Miloco 服务或在 Web 环境装了 PyAV，不能替代这个检查。
+
+### 6. macOS：编译原生程序并准备模型
+
+先检查编译器，再编译当前源码：
+
+```sh
+xcrun --find swiftc
+xcrun --find clang
+.venv/bin/python scripts/embodied/runtime.py --build-native
+```
+
+**应看到：**`data/embodied/bin` 下生成 `friday-vision` 与 `camera-sockets.dylib`，命令返回文件摘要。它不会下载模型、注册账号或启动摄像头。
+
+另外准备 `data/embodied/models/yolov8n.onnx`。可使用对应部署版本提供、来源和摘要明确的模型；自行导出时，使用 [Ultralytics 官方权重](https://github.com/ultralytics/assets/releases/tag/v8.3.0)和[官方 ONNX 导出方式](https://docs.ultralytics.com/integrations/onnx/)，在独立导出环境生成，不在生产视觉环境临时升级依赖。
+
+交给部署者核对的参数包括：所用权重及许可、导出器版本、ONNX opset、输入尺寸、是否动态尺寸和实际 SHA-256。一个采用 opset 17、640×640、静态输入的导出产物，也必须核对当前程序兼容性；不能直接把它标成参考清单中另一个文件的摘要。
+
+### 7. 初始化自己的摄像头与后台入口
+
+这一阶段仍需要对应版本的部署组件或部署维护者完成注册。当前公开基础命令 `./bin/home serve` 默认不启动识别后台；安装上面的包并不自动补齐这一阶段。
+
+| 必须准备 | 要核对的内容 |
+| --- | --- |
+| 摄像头私有配置 | 来自自己账号的设备、匹配设备描述、稳定 camera ID、默认镜头 |
+| 当前登录会话 | 有效的访问会话和过期时间；由原登录服务持有刷新职责 |
+| 本机查看和控制配置 | 私有密钥、页面 origin、查看地址和端口，文件权限受限 |
+| 一致的运行目录 | 安装、构建、模型、私有配置、主进程与 worker 读取同一目录 |
+| 后台启动 | 所选入口启用 supervisor、真实家庭来源和识别策略，并恢复已保存的暂停状态 |
+| 设备控制范围 | 与自己的 HA 实例和选定设备绑定；不因打开摄像头自动扩大 |
+
+使用部署版本提供的正式注册、启动入口。没有这些入口或匹配组件时，先停在准备阶段，把缺项交给部署维护者；不要复制别人的私有 JSON 或猜测设备属性。基础 CLI 没有一个“安装全部识别环境”的通用开关，手册也不会把某台电脑的私有修复脚本当作公开安装器。
+
+可先运行不会打开硬件的缺项检查：
+
+```sh
+.venv/bin/python scripts/embodied/runtime.py --check
+```
+
+本文公开基线的检查包含额外语音 / 决策资源，只检查预期文件，不等于实际连接、推理或物理动作成功。它没有 `--profile gestures` 参数；不要照抄其他本机修复版本才有的参数。普通手势的准备范围应按所用部署版本说明逐项核对。
+
+### 8. 分层验收
+
+1. 先保持手势触发暂停，确认自己的摄像头画面持续更新。
+2. 在 Friday“摄像头 → 人物与手势检查 → 查看识别”查看骨架或手部提示。
+3. 核对镜头、房间、设备控制范围，再保存规则。
+4. 明确这条规则的实际效果后恢复手势控制。
+5. 同时查看“最近响应”和目标设备的实际变化。
+
+![识别入口与镜头状态需要分别核对，截图为隔离示例](docs/assets/screenshots/friday-cameras.jpg)
+
+按[第一条手势控制](#guide-tutorials-first-gesture)完成现场验证。“电视未连接”不妨碍电脑预览；语音、云台、电视、人脸登记和房间标定按自己的需求分别准备。
+
+**完成标准：**安装、登录、画面、识别、规则响应与物理效果分别有依据。Linux 完成 Miloco 接入后仍不因此具备当前 Apple Vision 手势链路。
+
+<a id="guide-getting-started-installation-maintenance"></a>
+
+## 6. 启动、备份与安装排障
+
+本章帮助你在首次安装后重新启动、保留自己的数据，并定位安装停在哪一层。先确认自己正在管理哪台电脑、哪套服务。
+
+### 1. 日常启动与停止
+
+基础 Web 在自己的安装目录启动：
+
+```sh
+cd "$HOME/friday-home/Friday"
+./bin/home serve
+```
+
+终端持续运行时打开 [Friday](http://127.0.0.1:8740/)，Control+C 停止。电脑睡眠、关闭终端和停止前台进程都会影响访问；安装依赖不等于配置了开机自启动。
+
+Mac 新建 HA 时先启动其虚拟机：
+
+```sh
+colima start --profile friday-home
+```
+
+然后按 [HA 章节](#guide-getting-started-installation-home-assistant)启动 / 查看 Compose。需要停止 HA 时，使用同一组 project-name、file、env-file 参数，把末尾 `up -d` 换为 `stop`；Linux 的 Docker 命令仍带 sudo。停止保留数据，不使用删除卷的参数。
+
+Miloco / OpenClaw 可能使用各自的后台服务。检查：
+
+```sh
+miloco-cli service status
+openclaw gateway status
+```
+
+它们启动成功不代表 Friday 也已经启动。完整识别部署另使用自己的正式启动入口，保留已配置的环境与暂停策略。
+
+### 2. 记住几个入口
+
+| 地址 / 位置 | 含义 |
+| --- | --- |
+| `http://127.0.0.1:8740/` | 当前电脑上的 Friday，或已建立转发的 Linux 服务 |
+| `http://127.0.0.1:8123/` | 当前电脑可访问的 HA 入口 |
+| `http://127.0.0.1:1810/` | Miloco 默认本机页面，以实际安装输出为准 |
+| Friday 的“查看识别” | 通过已配置入口查看视觉预览，不需要公开查看密钥 |
+
+手机、浏览器电脑、Linux 服务器和虚拟机各自有自己的 127.0.0.1。更换电脑访问时先配置相应入口或转发，不把同一地址当成自动共享。
+
+### 3. 重启后检查什么
+
+1. 依次确认容器主机、HA、需要的 Miloco 和 Friday 是否运行。
+2. 看 Friday 顶部是“示例家庭”还是自己的真实来源。
+3. 基础源码入口可能从示例启动，已有授权时重新读取家庭；不要因为来源未激活就删除账号。
+4. 核对目标设备状态、控制范围、摄像头感知与手势总开关。
+5. 验证部署版本提供的恢复机制后，再安排自启动。
+
+用户手册里的截图或一次历史动作成功，不代表当前重启后的全部设备已经验收。
+
+### 4. 备份自己的配置与数据
+
+备份前先停止对应写入服务：Friday 正常退出，HA 使用 Compose `stop`；Miloco、OpenClaw 按各自官方维护方式停止或做一致性备份。不要把运行中的数据库直接当作可靠备份。
+
+在个人备份目录保存 Friday 的 `data/`：
+
+```sh
+mkdir -p "$HOME/friday-home/backups"
+friday_backup="$HOME/friday-home/backups/friday-data-$(date +%Y%m%d-%H%M%S).tgz"
+umask 077
+```
+
+macOS：
+
+```sh
+tar -czf "$friday_backup" -C "$HOME/friday-home/Friday" data
+chmod 600 "$friday_backup"
+```
+
+Linux：HA 配置可能由容器账号拥有，需要权限读取时使用：
+
+```sh
+sudo tar -czf "$friday_backup" -C "$HOME/friday-home/Friday" data
+sudo chown "$(id -u):$(id -g)" "$friday_backup"
+chmod 600 "$friday_backup"
+```
+
+**应看到：**备份文件成功生成，没有读取失败。`data/` 可能包含账号授权、HA 配置、规则、模型和视觉运行环境，文件可能较大，保存在自己的私有备份位置，不上传到文档仓库。Miloco / OpenClaw 安装器使用的外部状态目录另按其官方说明备份。
+
+还需记录源码提交、依赖锁文件、所用 extras、模型来源与摘要、启动入口及路径。恢复时先保留当前数据，在停止状态下核对备份和版本，再恢复；不把覆盖正在运行的目录当作恢复步骤。
+
+### 5. 更新时保留哪些环境
+
+| 环境 | 日常确认方式 | 更新时注意 |
+| --- | --- | --- |
+| Web `.venv` | `.venv/bin/python --version` | 使用对应 `uv.lock` 和原先选择的 extras |
+| 视觉 `data/embodied/runtime` | 使用该目录自己的 Python | SDK、模型和原生程序单独核对 |
+| Miloco 安装环境 | 安装器及 `miloco-cli service status` | 不用 Friday 的 uv sync 替它升级 |
+| 可选 ARL | 按自己的 ARL 部署说明检查 | 本地额外安装的 SDK 不一定在 Friday 锁文件中 |
+
+更新前运行 `git status --short` 和 `git rev-parse HEAD`，备份后选择目标版本再切换。不要用清理源码目录的命令清掉私有数据。`uv sync` 会按选择的依赖集合同步环境；重新安装时保留所需 extras，并重新核对另外安装的 SDK。
+
+### 6. 可选：准备保护回看的媒体工具
+
+macOS 在 Homebrew 支持的系统上执行 `brew install ffmpeg`；Ubuntu / Debian 执行 `sudo apt-get install ffmpeg`。然后检查：
+
+```sh
+ffmpeg -version
+ffprobe -version
+```
+
+**应看到：**两项都有版本输出。只有 PyAV 不代表所有录像检查工具都已齐全。后台或桌面进程需要能定位受信的媒体程序；终端的 PATH 与桌面启动环境可能不同，应在所用部署入口配置工具路径。
+
+再安装所需依赖，并保留此前已经使用的 extras：
+
+```sh
+cd "$HOME/friday-home/Friday"
+uv sync --locked --python 3.12 --no-dev --extra nas-connection --extra privacy-playback --extra privacy-model
+```
+
+上面的命令展示回看所需集合；若同一 Web 环境还需要其他 extras，一并写在这次同步命令中。之后配置自己的 NAS 或录像来源，按[保护录像回看](#guide-guides-recordings)验证。模型权重和真实录像来源不由此命令自动生成。
+
+### 7. 按症状排查安装
+
+| 现象 | 先检查 |
+| --- | --- |
+| 命令找不到 | 当前终端 PATH、工具是否安装、是否进入正确目录 |
+| Python 版本不符 | 使用 `.venv/bin/python` 或指定的 uv Python，不看另一个环境的版本 |
+| 下载 / 镜像拉取失败 | 包源、证书、系统时间；Mac 还需检查虚拟机内的 DNS 和代理 |
+| HA 容器运行但网页打不开 | 8123、端口转发、容器日志及正确 Docker context |
+| 小米确认授权后出错 | 浏览器电脑能否通过回调主机名访问正确 HA，见[回调处理](#guide-getting-started-installation-home-assistant) |
+| HA 有设备，Friday 仍是示例 | Friday 当前来源是否已连接并读取；HA 登录与来源激活分别检查 |
+| 设备可见但无可选动作 | 首次控制范围、目标实体能力和已有范围是否暂停 |
+| Miloco 有视频，Friday 尚未配置 | 独立视觉 Python、SDK、原生程序、模型、私有注册和后台入口 |
+| 查看识别点不开 | 查看地址、服务监听、私有查看配置与部署版本是否匹配 |
+| 画面或骨架可见但规则不触发 | 保存卡片、目标、使用范围、总开关、操作者与识别条件 |
+| 重启后又未配置 | 运行目录是否一致，是否用了不同的 Python 或启动入口 |
+| ffprobe 在终端可用但回看报错 | Friday 实际进程的工具定位和文件权限 |
+
+### 8. 给维护者提供什么
+
+提供系统与芯片、源码提交、工具版本、出错阶段、错误码，以及不含私人信息的界面状态。诊断导出使用产品提供的脱敏入口，并先在本机检查内容。
+
+密码、Token、授权码、完整查看链接、家庭导出和原始视频不放进聊天或公开 issue。可继续查[常见问题](#guide-troubleshooting-faq)或[按现象排查](#guide-troubleshooting-common-errors)。
 
 <a id="guide-getting-started-quick-start"></a>
 
-## 1. 第一次打开 Friday
+## 7. 第一次打开 Friday
 
 完成后，你能确认自己打开了正确的服务、看懂设备来源，并找到日常操作入口。
 
-**开始前：**部署人员已经在这台电脑安装并启动 Friday。全新电脑的安装可交由维护人员按[上游部署指南](https://github.com/Geeprox/Friday/blob/main/docs/deployment.md)准备；本手册从使用界面开始。
+**开始前：**Friday 已经安装并启动。全新电脑先按[从零安装](#guide-getting-started-installation)选择 macOS 或 Linux 路线，再回到本节。
 
 ### 1. 打开本机页面
 
-在部署 Friday 的电脑上打开 [Friday 本地控制台](http://127.0.0.1:8740/)。网页打不开时，先运行本次交付的启动入口，再刷新页面。不同部署可能使用自己的地址，以维护人员提供的入口为准。
+在部署 Friday 的电脑上打开 [Friday 本地控制台](http://127.0.0.1:8740/)。网页打不开时，先按[启动与维护](#guide-getting-started-installation-maintenance)运行服务，再刷新页面。Linux 远程部署先建立对应的 SSH 转发。
 
 `127.0.0.1` 表示“当前这台电脑”。把它复制到手机上，不会自动访问电脑上的 Friday。
 
@@ -88,47 +943,13 @@
 
 **如果卡住：**网页打不开，先查[启动与连接问题](#guide-troubleshooting-common-errors)，不用先删除账号或重装。
 
-<a id="guide-getting-started-installation"></a>
-
-## 2. 安装前先准备什么
-
-先运行示例，确认本机服务可打开，再逐项接入自己的家庭。已经完成部署的电脑可直接从[第一次打开](#guide-getting-started-quick-start)开始。
-
-### 基础示例
-
-需要受支持的 Python 3.11 以上版本和 [uv](https://docs.astral.sh/uv/getting-started/installation/)。维护人员可从 [Friday 源码仓库](https://github.com/Geeprox/Friday)取得代码，在仓库根目录执行上游提供的入口：
-
-```sh
-./scripts/install-home.sh
-./bin/home doctor
-./bin/home serve
-```
-
-打开终端显示的本机地址，默认是 `http://127.0.0.1:8740`。**预期结果：**顶部显示“示例家庭”，可以阅读模拟状态；这一步不要求小米账号、模型或真实硬件。
-
-这些命令来自上游安装说明。本次手册核对使用已经部署的环境，并未把每种操作系统的全新安装都计作通过。新电脑仍需逐步确认依赖与服务状态。
-
-### 接真实家庭前
-
-准备一个可正常打开的 Home Assistant。优先复用已有服务；macOS 的 HA Container 使用 Linux 虚拟机或独立 HA 主机，具体安装按 [HA 官方指南](https://www.home-assistant.io/installation/)进行。
-
-让维护人员在 HA 内安装 [Xiaomi Home 集成](https://github.com/XiaoMi/ha_xiaomi_home)，再由你在 HA 的官方页面完成小米账号、家庭和设备选择。它不是另一套需要独立启动的服务。
-
-### 摄像头与可选能力
-
-本地摄像头和识别环境需要另外安装依赖、原生组件、模型和自己的配置，按 [Friday 部署指南](https://github.com/Geeprox/Friday/blob/main/docs/deployment.md)准备。Miloco 若采用插件方案，按其固定版本的官方平台说明部署。
-
-只接入家庭设备时可以暂不配置摄像头。音频、语音回复、云台、电视、NAS、ARL 与云端模型各自按需求准备，不由基础安装自动开启。
-
-**完成标准：**示例服务可打开；若使用真实家庭，HA 本身可打开且已出现自己的目标设备。接下来做[家庭连接](#guide-getting-started-connect-home)。
-
 <a id="guide-getting-started-connect-home"></a>
 
-## 3. 连接自己的家
+## 8. 连接自己的家
 
 把已经接入 Home Assistant 的家庭设备显示到 Friday。连接过程先读取房间和设备，不会替你执行开关动作。
 
-**开始前：**你已有可打开的 Home Assistant，并已在里面添加所需设备。没有服务时，请先让维护人员完成安装。
+**开始前：**你已有可打开的 Home Assistant，并已在里面添加所需设备。没有服务时，先按[安装 HA 与小米接入](#guide-getting-started-installation-home-assistant)准备；Mac 和 Linux 的容器环境分别在安装章节说明。
 
 ### 先分清三个位置
 
@@ -168,7 +989,7 @@
 
 <a id="guide-guides-devices"></a>
 
-## 4. 查看与操作设备
+## 9. 查看与操作设备
 
 按房间找到设备，分清当前状态与可用操作，再使用设备专属控件。
 
@@ -202,7 +1023,7 @@
 
 <a id="guide-guides-cameras"></a>
 
-## 5. 查看摄像头与识别
+## 10. 查看摄像头与识别
 
 先确认镜头状态，再按需要查看普通画面或人体、手部识别结果。
 
@@ -232,13 +1053,13 @@
 
 麦克风、语音回复和云台接管有独立配置。接通视频不表示这些功能也已开启。
 
-**如果 Miloco 有画面而 Friday 未配置：**还需准备 Friday 自己的本地识别环境，请交由维护人员按上游部署指南完成。Miloco 播放成功不能替代这一步。
+**如果 Miloco 有画面而 Friday 未配置：**按[摄像头与本地识别准备](#guide-getting-started-installation-camera)分别核对 SDK、独立环境、原生程序、模型、私有注册和后台入口。当前原生识别依赖 macOS Apple Vision；Linux 的 Miloco 视频成功不表示同一套手势链路已可运行。
 
 完成后可继续[第一条手势控制](#guide-tutorials-first-gesture)。
 
 <a id="guide-tutorials-first-gesture"></a>
 
-## 6. 完成第一条手势控制
+## 11. 完成第一条手势控制
 
 把一个身体动作绑定到一台已授权设备，并分别核对识别、响应记录和设备实际效果。
 
@@ -282,7 +1103,7 @@
 
 <a id="guide-guides-interactions"></a>
 
-## 7. 管理互动控制规则
+## 12. 管理互动控制规则
 
 在同一页选择语音、手势或指向方式，修改已有规则，而不必删除后重建。
 
@@ -319,7 +1140,7 @@
 
 <a id="guide-guides-automations"></a>
 
-## 8. 管理场景与自动化
+## 13. 管理场景与自动化
 
 先确认规则来源，再决定运行一次、修改 Friday 自有规则，还是回到原平台管理。
 
@@ -354,7 +1175,7 @@
 
 <a id="guide-guides-recordings"></a>
 
-## 9. 连接录像并保护回看
+## 14. 连接录像并保护回看
 
 从你已配置的录像目录查找片段，播放本机生成的保护预览，并核对时间范围。
 
@@ -388,7 +1209,7 @@
 
 <a id="guide-guides-events"></a>
 
-## 10. 查看家庭事件的来源
+## 15. 查看家庭事件的来源
 
 从设备状态变化查看已有记录、相关操作和录像引用，并分清“时间接近”与“原因已知”。
 
@@ -416,7 +1237,7 @@
 
 <a id="guide-guides-people"></a>
 
-## 11. 核对人物与待确认分组
+## 16. 核对人物与待确认分组
 
 把相似的匿名观察整理成可核对的候选组，再由你确认是否同一人、是否登记名字。
 
@@ -434,7 +1255,7 @@
 
 <a id="guide-guides-safety"></a>
 
-## 12. 查看智能预警与本机画面复核
+## 17. 查看智能预警与本机画面复核
 
 分别检查监测、提醒和记录，不把一个开关当成整套能力已经准备好。
 
@@ -456,7 +1277,7 @@
 
 <a id="guide-guides-games"></a>
 
-## 13. 使用游戏库
+## 18. 使用游戏库
 
 先检查识别与显示条件，再选择游戏和玩家。
 
@@ -474,7 +1295,7 @@
 
 <a id="guide-guides-files"></a>
 
-## 14. 找到家庭资料预览
+## 19. 找到家庭资料预览
 
 新版将家庭资料放到实验功能中，用于搜索已索引的 NAS 资料和核对整理建议。
 
@@ -495,7 +1316,7 @@
 
 <a id="guide-guides-dialogue"></a>
 
-## 15. 用文字预览模拟规则变更
+## 20. 用文字预览模拟规则变更
 
 在独立示例环境练习“先看差异、再批准、必要时恢复”，理解文字操作的范围。
 
@@ -529,7 +1350,7 @@
 
 <a id="guide-reference-navigation"></a>
 
-## 16. 新版入口速查
+## 21. 新版入口速查
 
 按你要完成的任务找页面，避免沿用旧截图中的菜单名称。
 
@@ -557,7 +1378,7 @@
 
 <a id="guide-reference-status"></a>
 
-## 17. 读懂页面状态
+## 22. 读懂页面状态
 
 同一设备可能同时有“读取正常”和“控制不可用”。先看状态描述的是哪件事。
 
@@ -587,7 +1408,7 @@
 
 <a id="guide-reference-temperature-scenarios"></a>
 
-## 18. 十五个温度质量场景
+## 23. 十五个温度质量场景
 
 这些图来自独立、明确标为“示例家庭”的运行环境，用于学习读数含义。日常真实家庭无需切换来源或加载模拟场景。
 
@@ -691,7 +1512,7 @@
 
 <a id="guide-explanation-components"></a>
 
-## 19. 这些程序分别做什么
+## 24. 这些程序分别做什么
 
 Friday 是你日常打开的家庭界面。其他程序提供设备接入、摄像头或智能服务，各自需要自己的准备。
 
@@ -726,7 +1547,7 @@ Miloco、HA 和 Friday 读取或展示的范围可能不同；一个设备还有
 
 <a id="guide-explanation-arl"></a>
 
-## 20. 怎样看待 ARL 管理界面
+## 25. 怎样看待 ARL 管理界面
 
 ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday 开始，不需要把 ARL 的所有页面都配置好，才使用本地手势。
 
@@ -752,7 +1573,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 <a id="guide-releases-2026-10-31"></a>
 
-## 21. 2026-10-31 新版使用变化
+## 26. 2026-10-31 新版使用变化
 
 本页说明这版用户手册覆盖的重要界面与使用方式。功能可用性仍取决于你的部署、设备能力和已配置权限。
 
@@ -781,7 +1602,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 <a id="guide-troubleshooting-common-errors"></a>
 
-## 22. 按现象排查
+## 27. 按现象排查
 
 先定位卡住的环节，再处理对应设置；不要一次重装所有服务。
 
@@ -830,7 +1651,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 <a id="guide-troubleshooting-faq"></a>
 
-## 23. 常见问题
+## 28. 常见问题
 
 从使用者角度回答日常问题。需要按步骤定位时，先看[按现象排查](#guide-troubleshooting-common-errors)。
 
@@ -968,7 +1789,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 <a id="guide-"></a>
 
-## 24. 后续现场验证范围
+## 29. 后续现场验证范围
 
 本文把已做的软件核对与需要各家庭自行完成的现场验证分开，便于维护手册。
 
@@ -980,6 +1801,18 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 - [x] 15 个温度质量场景重新截图。
 - [x] 45 秒纯合成视频的整帧保护、静音与分段时间线演示。
 - [x] 合成状态事件的来源和未知原因展示。
+- [x] 从公开 Friday 基线的隔离源码副本安装基础依赖，核对安装入口。
+
+### 安装教程的验证范围
+
+macOS / Linux 章节按公开源码入口、固定版本参数和官方平台安装方式整理。软件命令、页面链接与图表分别检查，不把某台已准备好环境的电脑视为所有平台全新安装均已通过。
+
+- [ ] 在全新 macOS 系统完成工具、容器和账号全流程复测。
+- [ ] 在全新 Ubuntu / Debian 主机完成系统安装命令与 HA 全流程复测。
+- [ ] 按 SDK 实际发行范围分别核对芯片、Python 与摄像头型号。
+- [ ] 通用摄像头注册、会话更新与识别后台装配需要所选部署版本提供相应组件；基础 CLI 不自动完成。
+
+当前 Apple Vision 原生识别入口不适用于 Linux；没有把 Linux 本地手势端到端验收列为已通过。
 
 ### 使用各家庭时继续确认
 

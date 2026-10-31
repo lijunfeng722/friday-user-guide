@@ -28,6 +28,6 @@
 
 麦克风、语音回复和云台接管有独立配置。接通视频不表示这些功能也已开启。
 
-**如果 Miloco 有画面而 Friday 未配置：**还需准备 Friday 自己的本地识别环境，请交由维护人员按上游部署指南完成。Miloco 播放成功不能替代这一步。
+**如果 Miloco 有画面而 Friday 未配置：**按[摄像头与本地识别准备](../getting-started/installation-camera.md)分别核对 SDK、独立环境、原生程序、模型、私有注册和后台入口。当前原生识别依赖 macOS Apple Vision；Linux 的 Miloco 视频成功不表示同一套手势链路已可运行。
 
 完成后可继续[第一条手势控制](../tutorials/first-gesture.md)。

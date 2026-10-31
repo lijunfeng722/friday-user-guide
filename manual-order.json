@@ -1,6 +1,11 @@
 [
-  "getting-started/quick-start.md",
   "getting-started/installation.md",
+  "getting-started/installation-macos.md",
+  "getting-started/installation-linux.md",
+  "getting-started/installation-home-assistant.md",
+  "getting-started/installation-camera.md",
+  "getting-started/installation-maintenance.md",
+  "getting-started/quick-start.md",
   "getting-started/connect-home.md",
   "guides/devices.md",
   "guides/cameras.md",

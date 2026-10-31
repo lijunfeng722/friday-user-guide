@@ -2,7 +2,7 @@
 
 把已经接入 Home Assistant 的家庭设备显示到 Friday。连接过程先读取房间和设备，不会替你执行开关动作。
 
-**开始前：**你已有可打开的 Home Assistant，并已在里面添加所需设备。没有服务时，请先让维护人员完成安装。
+**开始前：**你已有可打开的 Home Assistant，并已在里面添加所需设备。没有服务时，先按[安装 HA 与小米接入](installation-home-assistant.md)准备；Mac 和 Linux 的容器环境分别在安装章节说明。
 
 ## 先分清三个位置
 
