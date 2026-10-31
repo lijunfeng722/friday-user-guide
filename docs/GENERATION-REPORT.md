@@ -12,8 +12,6 @@
 
 `python scripts/check_docs.py` 检查链接、图片与发布输入；`mkdocs build --strict` 检查构建；`python scripts/check_docs.py --built site` 检查生成页面、语言与锚点。浏览器核对中文检索、产品图、关系图与桌面可读性；手机实机效果另行确认。
 
-## 发布方式
-
 ## 本次安装章节检查
 
 - 从公开基线导出独立源码，安装基础依赖、运行 doctor 和示例服务，确认 simulator、真实写入关闭。
