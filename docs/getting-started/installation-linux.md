@@ -1,6 +1,21 @@
 # Linux 从零准备
 
-本章在 Linux 本机安装 Friday。命令示例适用于 Ubuntu 22.04 / 24.04 / 26.04 和 Debian 12 / 13 的 64 位系统；其他发行版按其包管理器和 Docker 官方平台说明准备同等工具，不直接执行下面的 apt 命令。
+**本章目的：**在 Linux 桌面或服务器上安装并启动 Friday。需要在这台 Linux 新建 HA 时，再安装 Docker Engine 和 Compose，为下一章提供容器主机。
+
+## 为什么需要这些工具
+
+| 组件 | 本章用它做什么 | 你为什么需要 |
+| --- | --- | --- |
+| Git、下载工具 | 获取源码、安装器和依赖 | 从空环境取得需要的软件 |
+| uv、Python | 创建 Friday 的独立运行环境 | 按项目要求运行 Web，不依赖系统 Python 恰好符合版本 |
+| Docker Engine、Compose | 直接在 Linux 运行 HA 容器 | 仅在这台主机新建 HA 时使用 |
+| SSH 转发 | 在另一台电脑的浏览器访问本机监听的服务 | 无桌面或远程部署时，打开 Friday 和 HA 的页面 |
+
+Linux 可以直接运行 Docker Engine，无需再为 HA 额外创建一层 Mac 式虚拟机。**完成标志：**本机浏览器或 SSH 转发后的浏览器能打开 Friday 示例；选择新建 HA 时，Docker 服务端也可用。
+
+**适用范围：**命令示例针对 Ubuntu 22.04 / 24.04 / 26.04、Debian 12 / 13 的 64 位系统。其他发行版按其包管理器和 Docker 官方平台说明准备同等工具。当前 Apple Vision 原生识别不属于 Linux 安装路线，详见[摄像头平台范围](installation-camera.md#先确认平台与目标)。
+
+**可以跳过什么：**已有可用 HA 时，跳过 Docker 安装；已有 Friday 时直接进入[家庭接入](installation-home-assistant.md)或[日常使用](quick-start.md)。
 
 ## 1. 打开终端，确认系统
 

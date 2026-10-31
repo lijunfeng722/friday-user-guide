@@ -1,6 +1,21 @@
 # macOS 从零准备
 
-完成本章后，你能在自己的 Mac 打开 Friday 示例。需要在同一台 Mac 安装 HA 时，再完成后面的容器环境步骤。
+**本章目的：**在自己的 Mac 准备 Friday 的运行环境，下载程序并打开第一个示例页面。需要在同一台 Mac 新建 HA 时，再准备后半章的 Linux 容器环境。
+
+## 为什么需要这些工具
+
+Friday 的源码需要 Python 和依赖包才能运行。HA Container 则需要 Linux 容器主机，所以 Mac 的基础 Web 与 HA 容器环境分两段准备。
+
+| 组件 | 本章用它做什么 | 你为什么需要 |
+| --- | --- | --- |
+| Command Line Tools、Git | 提供源码下载工具；后续原生构建也会使用编译工具 | 取得指定版本的 Friday |
+| uv、Python | 为 Friday 创建独立运行环境并安装依赖 | 让 Web 服务能在自己的 Mac 启动 |
+| Colima、Lima | 在 Mac 运行 Linux 虚拟机 | 仅在这台 Mac 新建 HA Container 时使用 |
+| Docker 客户端、Compose | 管理虚拟机中的 HA 容器及其配置 | 创建并维护这套 HA 服务 |
+
+**完成标志：**浏览器可打开 Friday，并看到明确标记的“示例家庭”；选择本机新建 HA 时，Docker 服务端也应可用。
+
+**可以跳过什么：**已有可用 HA 的读者只需完成基础 Web，跳过本章的容器安装，转到[HA 与小米接入](installation-home-assistant.md)。已有 Friday 服务可直接看[第一次打开](quick-start.md)。
 
 ## 1. 查看电脑并打开终端
 

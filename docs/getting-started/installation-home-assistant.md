@@ -1,8 +1,38 @@
 # 安装 HA 并接入自己的小米设备
 
-完成后，你能在 HA 和 Friday 分别找到自己的设备。已有 HA 的读者复用原实例，从第 5 步检查 Xiaomi Home；不要再创建一套空 HA。
+**本章目的：**把自己在米家中使用的设备接入 Friday，让 Friday 能显示真实房间、设备和状态。你将新建或复用 Home Assistant，在其中接入小米设备，再授权 Friday 读取这份家庭清单。
+
+## 为什么需要 HA 和 Xiaomi Home
+
+本教程使用 HA 作为 Friday 的设备接入平台。米家手机应用已经能控制设备，并不表示 Friday 已经获得这些设备和状态；需要先建立下面这条接入链路。
+
+| 组件 | 它是什么 | 本章为什么需要 |
+| --- | --- | --- |
+| Friday | 你日常打开的家庭界面 | 从 HA 读取房间、设备和状态，并提供使用入口 |
+| Home Assistant（HA） | 独立运行的家庭设备平台 | 汇集设备和房间，向 Friday 提供统一的状态与服务 |
+| Xiaomi Home（ha_xiaomi_home） | 安装在 HA 内的小米设备集成 | 让 HA 登录你的小米账号，接入所选家庭中受支持的设备 |
+
+```mermaid
+flowchart LR
+  F[Friday 家庭界面] --> H[Home Assistant 设备平台]
+  H --> X[Xiaomi Home 小米集成]
+  X --> D[自己的小米设备]
+```
+
+你会分别完成两项授权：**Xiaomi Home 登录小米账号，把设备接入 HA；Friday 登录 HA，读取已接入的家庭。** 它们有各自的页面和保存记录。
+
+这条设备接入路线无需先安装 Miloco。Miloco 是独立项目，选择其摄像头或智能功能时，再按[可选摄像头章节](installation-camera.md)准备。
+
+**适用与跳过：**
+
+- 还没有 HA：从第 1 步开始。
+- 已有 HA，但尚未接入小米设备：按第 3 步说明在原实例安装集成，再完成第 5 步。
+- HA 已能看到目标设备：直接进入第 6 步。其他品牌设备通过各自的 HA 集成接入后，也从这里继续。
+- 只体验示例：可跳过本章。
 
 **开始前：**已经完成 [macOS](installation-macos.md)或 [Linux](installation-linux.md)基础安装。新建 HA 时，Docker 服务端及 Compose 检查成功。
+
+**完成标志：**HA 和 Friday 都能找到自己的目标设备，且 Friday 显示真实家庭来源。需要发送设备动作时，再按第 7 步配置控制范围并现场验证。
 
 ## 1. 准备持久化配置
 

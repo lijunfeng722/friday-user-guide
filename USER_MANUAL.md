@@ -68,9 +68,13 @@
 
 ## 1. 从零开始安装 Friday
 
-这组教程从一台尚未安装 Python、uv、Docker 或 Home Assistant 的电脑开始。你可以先打开示例，再连接自己的设备，最后按需要准备摄像头与互动。
+**本章目的：**帮你选好安装路线，知道接下来要准备哪些软件，以及每一步完成后能做什么。即使电脑还没有 Python、uv、Docker 或 Home Assistant，也可以从这里开始。
 
-已经能打开 Friday 的读者，可直接进入[第一次打开](#guide-getting-started-quick-start)或[连接自己的家](#guide-getting-started-connect-home)。
+**为什么先看安装路线：**Friday 提供日常使用的家庭界面，真实设备由接入服务提供，摄像头与识别还需要另一组组件。先按自己的目标选择，才能分阶段得到可用结果：先打开示例，再连接设备，最后按需要增加摄像头和互动。
+
+**读完后：**你应能选定 macOS 或 Linux 路线，分清基础安装、真实家庭接入和可选功能，并知道各阶段的验收标准。
+
+已经能打开 Friday 的读者，可直接进入[第一次打开](#guide-getting-started-quick-start)；已有运行环境且准备接设备的读者，可进入[连接自己的家](#guide-getting-started-connect-home)。
 
 ### 1. 选择你要完成的目标
 
@@ -169,7 +173,22 @@ flowchart TB
 
 ## 2. macOS 从零准备
 
-完成本章后，你能在自己的 Mac 打开 Friday 示例。需要在同一台 Mac 安装 HA 时，再完成后面的容器环境步骤。
+**本章目的：**在自己的 Mac 准备 Friday 的运行环境，下载程序并打开第一个示例页面。需要在同一台 Mac 新建 HA 时，再准备后半章的 Linux 容器环境。
+
+### 为什么需要这些工具
+
+Friday 的源码需要 Python 和依赖包才能运行。HA Container 则需要 Linux 容器主机，所以 Mac 的基础 Web 与 HA 容器环境分两段准备。
+
+| 组件 | 本章用它做什么 | 你为什么需要 |
+| --- | --- | --- |
+| Command Line Tools、Git | 提供源码下载工具；后续原生构建也会使用编译工具 | 取得指定版本的 Friday |
+| uv、Python | 为 Friday 创建独立运行环境并安装依赖 | 让 Web 服务能在自己的 Mac 启动 |
+| Colima、Lima | 在 Mac 运行 Linux 虚拟机 | 仅在这台 Mac 新建 HA Container 时使用 |
+| Docker 客户端、Compose | 管理虚拟机中的 HA 容器及其配置 | 创建并维护这套 HA 服务 |
+
+**完成标志：**浏览器可打开 Friday，并看到明确标记的“示例家庭”；选择本机新建 HA 时，Docker 服务端也应可用。
+
+**可以跳过什么：**已有可用 HA 的读者只需完成基础 Web，跳过本章的容器安装，转到[HA 与小米接入](#guide-getting-started-installation-home-assistant)。已有 Friday 服务可直接看[第一次打开](#guide-getting-started-quick-start)。
 
 ### 1. 查看电脑并打开终端
 
@@ -316,7 +335,22 @@ docker info
 
 ## 3. Linux 从零准备
 
-本章在 Linux 本机安装 Friday。命令示例适用于 Ubuntu 22.04 / 24.04 / 26.04 和 Debian 12 / 13 的 64 位系统；其他发行版按其包管理器和 Docker 官方平台说明准备同等工具，不直接执行下面的 apt 命令。
+**本章目的：**在 Linux 桌面或服务器上安装并启动 Friday。需要在这台 Linux 新建 HA 时，再安装 Docker Engine 和 Compose，为下一章提供容器主机。
+
+### 为什么需要这些工具
+
+| 组件 | 本章用它做什么 | 你为什么需要 |
+| --- | --- | --- |
+| Git、下载工具 | 获取源码、安装器和依赖 | 从空环境取得需要的软件 |
+| uv、Python | 创建 Friday 的独立运行环境 | 按项目要求运行 Web，不依赖系统 Python 恰好符合版本 |
+| Docker Engine、Compose | 直接在 Linux 运行 HA 容器 | 仅在这台主机新建 HA 时使用 |
+| SSH 转发 | 在另一台电脑的浏览器访问本机监听的服务 | 无桌面或远程部署时，打开 Friday 和 HA 的页面 |
+
+Linux 可以直接运行 Docker Engine，无需再为 HA 额外创建一层 Mac 式虚拟机。**完成标志：**本机浏览器或 SSH 转发后的浏览器能打开 Friday 示例；选择新建 HA 时，Docker 服务端也可用。
+
+**适用范围：**命令示例针对 Ubuntu 22.04 / 24.04 / 26.04、Debian 12 / 13 的 64 位系统。其他发行版按其包管理器和 Docker 官方平台说明准备同等工具。当前 Apple Vision 原生识别不属于 Linux 安装路线，详见[摄像头平台范围](#guide-getting-started-installation-camera)。
+
+**可以跳过什么：**已有可用 HA 时，跳过 Docker 安装；已有 Friday 时直接进入[家庭接入](#guide-getting-started-installation-home-assistant)或[日常使用](#guide-getting-started-quick-start)。
 
 ### 1. 打开终端，确认系统
 
@@ -453,9 +487,39 @@ sudo docker compose version
 
 ## 4. 安装 HA 并接入自己的小米设备
 
-完成后，你能在 HA 和 Friday 分别找到自己的设备。已有 HA 的读者复用原实例，从第 5 步检查 Xiaomi Home；不要再创建一套空 HA。
+**本章目的：**把自己在米家中使用的设备接入 Friday，让 Friday 能显示真实房间、设备和状态。你将新建或复用 Home Assistant，在其中接入小米设备，再授权 Friday 读取这份家庭清单。
+
+### 为什么需要 HA 和 Xiaomi Home
+
+本教程使用 HA 作为 Friday 的设备接入平台。米家手机应用已经能控制设备，并不表示 Friday 已经获得这些设备和状态；需要先建立下面这条接入链路。
+
+| 组件 | 它是什么 | 本章为什么需要 |
+| --- | --- | --- |
+| Friday | 你日常打开的家庭界面 | 从 HA 读取房间、设备和状态，并提供使用入口 |
+| Home Assistant（HA） | 独立运行的家庭设备平台 | 汇集设备和房间，向 Friday 提供统一的状态与服务 |
+| Xiaomi Home（ha_xiaomi_home） | 安装在 HA 内的小米设备集成 | 让 HA 登录你的小米账号，接入所选家庭中受支持的设备 |
+
+```mermaid
+flowchart LR
+  F[Friday 家庭界面] --> H[Home Assistant 设备平台]
+  H --> X[Xiaomi Home 小米集成]
+  X --> D[自己的小米设备]
+```
+
+你会分别完成两项授权：**Xiaomi Home 登录小米账号，把设备接入 HA；Friday 登录 HA，读取已接入的家庭。** 它们有各自的页面和保存记录。
+
+这条设备接入路线无需先安装 Miloco。Miloco 是独立项目，选择其摄像头或智能功能时，再按[可选摄像头章节](#guide-getting-started-installation-camera)准备。
+
+**适用与跳过：**
+
+- 还没有 HA：从第 1 步开始。
+- 已有 HA，但尚未接入小米设备：按第 3 步说明在原实例安装集成，再完成第 5 步。
+- HA 已能看到目标设备：直接进入第 6 步。其他品牌设备通过各自的 HA 集成接入后，也从这里继续。
+- 只体验示例：可跳过本章。
 
 **开始前：**已经完成 [macOS](#guide-getting-started-installation-macos)或 [Linux](#guide-getting-started-installation-linux)基础安装。新建 HA 时，Docker 服务端及 Compose 检查成功。
+
+**完成标志：**HA 和 Friday 都能找到自己的目标设备，且 Friday 显示真实家庭来源。需要发送设备动作时，再按第 7 步配置控制范围并现场验证。
 
 ### 1. 准备持久化配置
 
@@ -589,7 +653,21 @@ sudo nano /etc/hosts
 
 ## 5. 准备摄像头与本地识别（可选）
 
-本章把 Miloco 视频服务、Friday 视觉运行环境和设备控制分开准备。只查看 HA 设备时可以跳过；已经接通的用户直接看[摄像头使用指南](#guide-guides-cameras)。
+**本章目的：**准备摄像头连接和 Friday 本地识别所需的组件，逐步验证画面、人体与手部识别，再为手势控制提供输入。
+
+### 为什么要分开准备视频、识别和控制
+
+| 部分 | 负责什么 | 你为什么需要 |
+| --- | --- | --- |
+| Miloco 及所选插件宿主 | 本方案中的小米账号绑定、摄像头与相关服务 | 建立所选摄像头方案的账号和服务条件 |
+| Friday 视觉环境 | SDK、视频解码、Apple Vision 与本地模型等组件 | 连接画面，得到人体、手部关键点及场景信息 |
+| 手势规则与设备控制范围 | 把识别到的动作关联到允许控制的目标 | 让你选定的动作能触发正确设备 |
+
+三部分分别配置和验收：先确认画面，再看识别结果，最后验证规则和真实设备效果。Miloco 能播放视频后，仍需准备 Friday 的识别环境；看到骨架后，也要核对规则和控制范围。
+
+**适用与跳过：**需要摄像头或手势的读者继续；只查看或操作 HA 设备时可跳过。已经接通的用户直接看[摄像头使用指南](#guide-guides-cameras)。
+
+**开始前与完成标志：**先让摄像头在官方应用中正常工作；本章按阶段核对安装、登录、画面、识别和动作效果。完整识别还需要所选部署版本提供摄像头注册与后台启动组件，具体见第 7 步。
 
 ### 先确认平台与目标
 
@@ -780,7 +858,17 @@ xcrun --find clang
 
 ## 6. 启动、备份与安装排障
 
-本章帮助你在首次安装后重新启动、保留自己的数据，并定位安装停在哪一层。先确认自己正在管理哪台电脑、哪套服务。
+**本章目的：**让首次安装好的环境能够持续使用：你会知道怎样启动、正常停止、重新检查、备份，并在出错时找到对应环节。
+
+### 为什么安装后还需要维护步骤
+
+Friday、HA、Miloco 等组件分别运行，也分别保存账号连接、家庭配置和规则。关闭终端、电脑重启或升级软件后，需要逐项确认服务和状态；提前保存配置与版本信息，才能恢复自己的设置。
+
+本章把日常操作和安装排障放在一起，帮助你判断当前应启动哪个服务、保留哪些数据，以及应向维护者提供什么信息。
+
+**适用与跳过：**所有已完成安装的读者都应了解启动与备份。没有安装 Miloco、OpenClaw、摄像头或回看功能时，跳过对应小节。Friday 尚未安装成功时，先返回自己的 [macOS](#guide-getting-started-installation-macos)或 [Linux](#guide-getting-started-installation-linux)章节。
+
+**完成标志：**你能重新打开正确的服务、确认真实家庭来源和暂停状态，知道备份位置，并能按症状定位下一步。操作前先确认正在管理自己的哪台电脑、哪套服务。
 
 ### 1. 日常启动与停止
 
