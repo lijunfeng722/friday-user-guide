@@ -1,0 +1,93 @@
+site_name: Friday 用户手册
+site_description: 面向家庭使用者的 Friday 图文手册：连接设备、配置手势、核对响应与保护回看。
+site_url: https://lijunfeng722.github.io/friday-user-guide/
+repo_url: https://github.com/lijunfeng722/friday-user-guide
+repo_name: lijunfeng722/friday-user-guide
+edit_uri: edit/main/docs/
+use_directory_urls: true
+theme:
+  name: material
+  language: zh
+  font: false
+  icon:
+    logo: material/home-outline
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: custom
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+plugins:
+  - search:
+      lang: zh
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      slugify: !!python/name:markdown.extensions.toc.slugify_unicode
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: friday-diagram
+          format: !!python/name:pymdownx.superfences.fence_div_format
+extra_css:
+  - assets/stylesheets/extra.css
+extra_javascript:
+  - assets/vendor/mermaid.min.js
+  - assets/javascripts/diagrams.js
+  - assets/javascripts/images.js
+nav:
+  - 开始使用:
+      - 手册首页: index.md
+      - 安装准备: getting-started/installation.md
+      - 第一次打开: getting-started/quick-start.md
+      - 连接自己的家: getting-started/connect-home.md
+      - 第一条手势控制: tutorials/first-gesture.md
+  - 日常操作:
+      - 查看与操作设备: guides/devices.md
+      - 摄像头与识别: guides/cameras.md
+      - 管理互动控制: guides/interactions.md
+      - 场景与自动化: guides/automations.md
+      - 保护录像回看: guides/recordings.md
+      - 家庭事件与来源: guides/events.md
+      - 人物与候选分组: guides/people.md
+      - 智能预警: guides/safety.md
+      - 游戏库: guides/games.md
+      - 家庭资料预览: guides/files.md
+      - 文字规则练习: guides/dialogue.md
+  - 查阅与理解:
+      - 新版入口速查: reference/navigation.md
+      - 页面状态: reference/status.md
+      - 十五个温度场景: reference/temperature-scenarios.md
+      - 程序分工: explanation/components.md
+      - ARL 管理界面: explanation/arl.md
+      - 验证范围: TODO.md
+      - 本次新版变化: releases/2026-10-31.md
+  - 遇到问题:
+      - 按现象排查: troubleshooting/common-errors.md
+      - 常见问题: troubleshooting/faq.md
+
+exclude_docs: |
+  GENERATION-REPORT.md

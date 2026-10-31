@@ -1,0 +1,10 @@
+:root { --md-primary-fg-color:#355a45; --md-primary-fg-color--light:#668c72; --md-primary-fg-color--dark:#24412f; --md-text-font:"PingFang SC","Microsoft YaHei",system-ui,sans-serif; --md-code-font:"SFMono-Regular",Consolas,monospace; }
+.md-grid {max-width:78rem;} .md-typeset {font-size:.82rem;line-height:1.85;}
+.md-typeset h1 {font-weight:750;color:var(--md-default-fg-color);letter-spacing:-.02em;}
+.md-typeset h2 {font-weight:680;} .md-typeset img {display:block;max-width:100%;height:auto;margin:1.2em auto;border:1px solid #dce5dd;border-radius:12px;box-shadow:0 5px 18px #16321b08;}
+.md-typeset table:not([class]) th {background:#eaf0e9;color:#233b2c;} [data-md-color-scheme=slate] .md-typeset table:not([class]) th {background:#26382e;color:#e9f0e9;}
+.friday-diagram {overflow:auto;padding:1rem;border:1px solid #dce5dd;border-radius:12px;} .friday-diagram svg {max-width:100%;height:auto;}
+:focus-visible {outline:3px solid #00796b;outline-offset:3px;}
+@media(max-width:700px){.md-typeset{font-size:.84rem}.md-typeset img{border-radius:7px;}.md-typeset table:not([class]){font-size:.7rem;}}
+
+.screenshot-link {display:block;cursor:zoom-in;}

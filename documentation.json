@@ -1,0 +1,18 @@
+{
+  "language": "zh-CN",
+  "application": "Friday Web Console with optional local services",
+  "audience": "非技术家庭使用者",
+  "depth": "完整任务指南、参考、说明、33 项常见问题",
+  "framework": "MkDocs Material",
+  "deployment": "GitHub Pages",
+  "repository": "lijunfeng722/friday-user-guide",
+  "source_revision": "e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3",
+  "screenshots": "Friday 2026-10-31, isolated simulated instance; ARL 2026-10-30 retained development demo; no household frames",
+  "skill": "user-manual-generator 2.0.0",
+  "content_basis": [
+    "observed product UI",
+    "Friday source routes and controls",
+    "isolated synthetic regression scenarios"
+  ],
+  "private_hardware_acceptance": "not distributed in public repository"
+}
