@@ -27,8 +27,6 @@ theme:
         icon: material/weather-sunny
         name: 切换到浅色模式
   features:
-    - navigation.sections
-    - navigation.expand
     - navigation.top
     - navigation.footer
     - search.suggest
