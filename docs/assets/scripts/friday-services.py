@@ -7,6 +7,7 @@ device actions, data deletion, or automatic SIGKILL. Config stays on your comput
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import fcntl
 import hashlib
 import json
@@ -19,6 +20,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from urllib.parse import urlsplit
 
 
 class LifecycleError(Exception):
@@ -106,6 +108,40 @@ def port_open(endpoint):
         return False
 
 
+def gesture_targets_ready(config, policy, snapshot, now):
+    """Check the same canonical-state gate used before a gesture can be planned.
+
+    Paused controls and installations without enabled bindings need no live target.
+    Inventory presence or HTTP reachability alone never qualifies an active rule.
+    """
+    if not isinstance(config.get("enabled"), bool) or not isinstance(config.get("bindings"), list):
+        return False
+    if not config["enabled"]:
+        return True
+    targets = {binding.get("target") for binding in config["bindings"] if binding.get("enabled") is True}
+    if not targets:
+        return True
+    flags = [policy.get(key) for key in ("enabled", "recognition", "interaction")]
+    if not all(type(flag) is bool for flag in flags):
+        return False
+    if not all(flags):
+        return True
+    if snapshot.get("mode") != "ha-read-only" or not targets <= set(snapshot.get("action_targets", [])):
+        return False
+    def fresh(target):
+        for state in snapshot.get("states", []):
+            if not isinstance(target, str) or not state.get("id", "").startswith(target + ":") or state.get("quality") != "healthy":
+                continue
+            try:
+                deadline = datetime.fromisoformat(state["valid_until"].replace("Z", "+00:00"))
+                if deadline.tzinfo is not None and now < deadline:
+                    return True
+            except (KeyError, TypeError, AttributeError, ValueError):
+                pass
+        return False
+    return all(fresh(target) for target in targets)
+
+
 class Runner:
     def __init__(self, config):
         self.config = config
@@ -190,13 +226,23 @@ class Runner:
             with opener.open(spec["url"], timeout=2) as response:
                 if response.status not in spec.get("codes", [200]):
                     return False
-                if not spec.get("json_equals"):
-                    return True
-                value = json.load(response)
-                return all(value.get(k) == v for k, v in spec["json_equals"].items())
+                if spec.get("json_equals"):
+                    value = json.load(response)
+                    if not all(value.get(k) == v for k, v in spec["json_equals"].items()):
+                        return False
+            if spec.get("verify_saved_gestures"):
+                parsed = urlsplit(spec["url"])
+                origin = parsed.scheme + "://" + parsed.netloc
+                def get(path):
+                    with opener.open(origin + path, timeout=3) as response:
+                        return json.load(response)
+                return gesture_targets_ready(get("/api/home/interactions")["config"],
+                                             get("/api/embodied/infrastructure")["policy"],
+                                             get("/api/snapshot"), datetime.now(timezone.utc))
+            return True
         except urllib.error.HTTPError as error:
             return not spec.get("json_equals") and error.code in spec.get("codes", [200])
-        except (OSError, ValueError):
+        except (OSError, ValueError, KeyError, TypeError):
             return False
 
     def wait(self, service, condition, timeout, error):
@@ -382,7 +428,7 @@ def initialize(args):
                      "command_contains": [str(python), "-m homeplane.cli serve --port " + str(args.port)],
                      "pid_file": str(state / "friday.pid"), "log_file": str(state / "friday.log"),
                      "listen": {"host": "127.0.0.1", "port": args.port},
-                     "ready": {"url": f"http://127.0.0.1:{args.port}/api/doctor"}, "stop_timeout": 180})
+                     "ready": {"url": f"http://127.0.0.1:{args.port}/api/doctor", "verify_saved_gestures": True}, "stop_timeout": 180})
     save(config_path, {"version": 1, "state_dir": str(state), "services": services})
     emit("configuration", "created_no_service_started")
 

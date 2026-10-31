@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exercise lifecycle failure cases with disposable processes, never hardware."""
 import contextlib
+from datetime import datetime, timedelta, timezone
 import fcntl
 import importlib.util
 import json
@@ -39,7 +40,9 @@ def stop(*_):
 signal.signal(signal.SIGTERM,stop)
 class Handler(BaseHTTPRequestHandler):
  def do_GET(self):
-  self.send_response(200); self.end_headers(); self.wfile.write(b'{"ready":true}')
+  payload=d/'responses.json'
+  value=json.loads(payload.read_text()).get(self.path,{}) if payload.exists() else {'ready':True}
+  self.send_response(200); self.end_headers(); self.wfile.write(json.dumps(value).encode())
  def log_message(self,*_): pass
 server=HTTPServer(('127.0.0.1',a.port),Handler); server.timeout=.1
 while not stopping: server.handle_request()
@@ -222,6 +225,61 @@ class LifecycleTests(unittest.TestCase):
         self.assertTrue(host.exists() and app.exists())
         self.call("stop")
         self.assertTrue(host.exists()); self.assertFalse(app.exists())
+
+    def test_http_ready_rejects_unavailable_binding_then_accepts_healthy_state(self):
+        self.call("start")
+        self.service["ready"]["verify_saved_gestures"] = True
+        data = readiness_data()
+        responses = {"/":{"ready":True}, "/api/home/interactions":{"config":data[0]},
+                     "/api/embodied/infrastructure":{"policy":data[1]}, "/api/snapshot":data[2]}
+        responses["/api/snapshot"]["states"][0]["quality"] = "unknown"
+        responses["/api/snapshot"]["states"][0]["value"] = "unavailable"
+        response_file = self.root / "responses.json"
+        response_file.write_text(json.dumps(responses))
+        runner = lifecycle.Runner(json.loads(self.config.read_text()))
+        self.assertFalse(runner.ready(self.service))
+        responses["/api/snapshot"]["states"][0]["quality"] = "healthy"
+        responses["/api/snapshot"]["states"][0]["value"] = "closed"
+        response_file.write_text(json.dumps(responses))
+        self.assertTrue(runner.ready(self.service))
+        self.call("stop")
+
+
+def readiness_data():
+    now = datetime.now(timezone.utc)
+    return ({"enabled":True,"bindings":[{"target":"simulated-cover","enabled":True}]},
+            {"enabled":True,"recognition":True,"interaction":True},
+            {"mode":"ha-read-only","action_targets":["simulated-cover"],
+             "states":[{"id":"simulated-cover:cover.state","value":"closed","quality":"healthy",
+                        "valid_until":(now+timedelta(seconds=60)).isoformat()}]}, now)
+
+
+class GestureReadinessTests(unittest.TestCase):
+    def test_target_presence_does_not_qualify_unknown_or_unavailable_state(self):
+        config, policy, snapshot, now = readiness_data()
+        self.assertTrue(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
+        snapshot["states"][0].update(value="unavailable",quality="unknown")
+        self.assertFalse(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
+
+    def test_expired_state_and_missing_control_scope_are_rejected(self):
+        config, policy, snapshot, now = readiness_data()
+        self.assertFalse(lifecycle.gesture_targets_ready(config,policy,snapshot,now+timedelta(seconds=61)))
+        snapshot["action_targets"] = []
+        self.assertFalse(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
+
+    def test_paused_controls_and_no_enabled_bindings_do_not_require_live_targets(self):
+        config, policy, snapshot, now = readiness_data()
+        snapshot["states"] = []
+        policy["interaction"] = False
+        self.assertTrue(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
+        config["bindings"][0]["enabled"] = False
+        self.assertTrue(lifecycle.gesture_targets_ready(config,{}, {},now))
+
+    def test_real_rules_cannot_qualify_from_simulator_or_malformed_policy(self):
+        config, policy, snapshot, now = readiness_data()
+        snapshot["mode"] = "simulator"
+        self.assertFalse(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
+        self.assertFalse(lifecycle.gesture_targets_ready(config,{},snapshot,now))
 
 
 if __name__ == "__main__":
