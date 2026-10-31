@@ -127,11 +127,18 @@ flowchart TB
 | uv、Python | 准备项目独立运行环境 | 基础安装 |
 | Docker Engine、Compose | 运行 HA 容器和读取容器配置 | 新建 HA |
 | Colima、Lima | 在 Mac 提供 Linux 容器主机 | Mac 单机运行 HA |
-| Xiaomi Home | 安装在 HA 内，接入小米家庭设备 | HA 接入小米设备 |
-| Node.js、OpenClaw 或 Hermes | Miloco 所选插件方案的宿主 | 选择对应方案时 |
+| Home Assistant（HA） | 独立的家庭设备接入平台，管理房间、设备、状态和服务，供 Friday 连接 | 接入自己的家庭；已有 HA 可以复用 |
+| [Xiaomi Home 集成（ha_xiaomi_home）](https://github.com/XiaoMi/ha_xiaomi_home) | 安装在 HA 内，让 HA 登录小米账号并接入受支持的小米设备 | 通过 HA 接入小米设备 |
+| [Miloco（xiaomi-miloco）](https://github.com/XiaoMi/xiaomi-miloco) | 独立的小米智能家庭项目；本安装方案使用其账号绑定、摄像头与相关智能服务 | 选择 Miloco 摄像头或智能功能方案时 |
+| Node.js | OpenClaw 使用的 JavaScript 运行环境 | 选择 OpenClaw 宿主方案时 |
+| OpenClaw 或 Hermes | Miloco 插件的宿主平台，按官方指南选择其中一种 | 选择对应 Miloco 插件方案时 |
 | 摄像头 SDK、Apple Vision、本地模型 | 视频连接、关键点与本地场景处理 | 兼容的本地识别方案 |
 | FFmpeg、ffprobe | 媒体处理与录像信息检查 | 保护回看等媒体能力 |
 | ARL、云端模型 | 可选智能任务 | 对应功能单独配置 |
+
+**本手册中的 Xiaomi Home 指 HA 内的 `ha_xiaomi_home` 集成，和 Miloco 是两个不同项目。** 查看家庭设备的接入链路是 **Friday → Home Assistant → Xiaomi Home 集成 → 小米设备**；这条链路无需先安装 Miloco。选择 Miloco 方案时，需要另外安装并在其页面完成账号绑定。HA 中的小米授权与 Miloco 的账号绑定分别保存，一边完成不代表另一边也已完成。
+
+更多分工见[这些程序分别做什么](#guide-explanation-components)。
 
 ### 5. 版本与下载来源
 
