@@ -14,22 +14,168 @@ Friday、HA、Miloco 等组件分别运行，也分别保存账号连接、家�
 
 ## 1. 日常启动与停止
 
-基础 Web 在自己的安装目录启动：
+你可以选择部署时已经配好的整套入口，或为基础源码安装准备通用脚本。**先确认脚本管理哪些服务，再执行。** 停止服务会让网页暂时不可用，但会保留账号连接、规则、模型和家庭数据。
+
+重启会恢复原部署中已启用的后台和规则。暂时不希望手势触发设备时，先在 Friday“互动控制”暂停互动，再停止服务；脚本会保留这个暂停设置。
+
+### 已有整套部署脚本：直接使用
+
+如果部署人员已经为你的电脑准备了脚本及 `services.local.json`，在这份交付目录中操作。需要停止时执行：
 
 ```sh
-cd "$HOME/friday-home/Friday"
-./bin/home serve
+./stop-friday.sh
 ```
 
-终端持续运行时打开 [Friday](http://127.0.0.1:8740/)，Control+C 停止。电脑睡眠、关闭终端和停止前台进程都会影响访问；安装依赖不等于配置了开机自启动。
-
-Mac 新建 HA 时先启动其虚拟机：
+需要重新启动时执行：
 
 ```sh
-colima start --profile friday-home
+./restart-friday.sh
 ```
 
-然后按 [HA 章节](installation-home-assistant.md#4-启动-ha-并检查页面)启动 / 查看 Compose。需要停止 HA 时，使用同一组 project-name、file、env-file 参数，把末尾 `up -d` 换为 `stop`；Linux 的 Docker 命令仍带 sudo。停止保留数据，不使用删除卷的参数。
+macOS 交付包也可提供“优雅停止.command”“重新启动.command”：在 Finder 双击对应文件即可。保留同目录的管理程序、辅助程序和配置文件；这些入口使用的是同一份配置。
+
+**不需要重新初始化、重新安装依赖或逐台设备登录。** 已配置的视觉、ARL、Miloco、插件宿主等组件，只有被登记在这份部署配置里，才会由脚本管理。换电脑、移动运行环境或重建 HA 容器后，先核对配置中的路径和服务归属。
+
+### 基础源码安装：先准备通用脚本
+
+适用于已按本手册安装好 Friday 的 macOS / Linux 用户。下载版默认管理基础 Web；初始化时可以加上**本教程创建的 HA 容器**。它不自动装配摄像头、ARL 或 Miloco；完整部署应使用上一节对应的专属配置。
+
+下载文件：[管理程序](../assets/scripts/friday-services.py)、[停止脚本](../assets/scripts/stop-friday.sh)、[重启脚本](../assets/scripts/restart-friday.sh)、[文件校验清单](../assets/scripts/SHA256SUMS)。也可在终端下载到自己的目录：
+
+```sh
+mkdir -p "$HOME/friday-home/service-tools"
+cd "$HOME/friday-home/service-tools"
+friday_script_url="https://lijunfeng722.github.io/friday-user-guide/assets/scripts"
+for friday_script_file in friday-services.py stop-friday.sh restart-friday.sh SHA256SUMS; do
+  curl -fL "$friday_script_url/$friday_script_file" -o "$friday_script_file"
+done
+```
+
+核对下载是否完整。macOS 执行：
+
+```sh
+shasum -a 256 -c SHA256SUMS
+```
+
+Linux 执行：
+
+```sh
+sha256sum -c SHA256SUMS
+```
+
+**应看到：**三个脚本均为 `OK`。校验失败时先重新下载，不继续执行。然后赋予执行权限：
+
+```sh
+chmod +x stop-friday.sh restart-friday.sh
+```
+
+接下来**选择一种**初始化方式。此步只保存本机服务清单，不启动或停止服务；已有 `services.local.json` 时拒绝覆盖。
+
+只管理 Friday Web：
+
+```sh
+"$HOME/friday-home/Friday/.venv/bin/python" friday-services.py init \
+  --project "$HOME/friday-home/Friday" --config "$PWD/services.local.json"
+```
+
+同时管理本教程创建且已经运行过的 HA 容器，macOS 或不需要 sudo 的 Docker 用户执行：
+
+```sh
+"$HOME/friday-home/Friday/.venv/bin/python" friday-services.py init \
+  --project "$HOME/friday-home/Friday" --with-ha --config "$PWD/services.local.json"
+```
+
+Linux 按本手册使用 sudo 管理 Docker 时，改用：
+
+```sh
+sudo -v
+"$HOME/friday-home/Friday/.venv/bin/python" friday-services.py init \
+  --project "$HOME/friday-home/Friday" --with-ha --docker-sudo --config "$PWD/services.local.json"
+```
+
+`--with-ha` 通过本教程的 Compose 配置查找唯一的既有 HA 容器，记录其标识；不会新建 HA，也不管理其他家庭的 HA。使用其他安装方式或远程 HA 时，选只管理 Web，并按原服务的维护方式管理 HA。
+
+**应看到：**`configuration / created_no_service_started`，本目录生成仅自己可读的 `services.local.json`。这份配置属于你的电脑，不上传公开仓库。初始化失败时，先确认 Friday 的 `.venv` 存在、Docker 服务端可用，以及自己的 HA 已经按前章启动。
+
+### 每天怎样停止和重新启动
+
+在脚本目录执行。若使用 `--docker-sudo`，先运行 `sudo -v`；macOS 的 HA 位于 Colima 时，先确认专用实例运行、当前 Docker 连接仍指向该实例，必要时执行 `colima start --profile friday-home`。
+
+先预览将管理的服务，不实际停止：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" ./restart-friday.sh --dry-run
+```
+
+需要停止时：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" ./stop-friday.sh
+```
+
+需要重新启动时：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" ./restart-friday.sh
+```
+
+完整部署的专属入口也遵循同样的顺序：按配置顺序启动，倒序停止。例如：
+
+```mermaid
+flowchart TD
+  A[停止 Friday] --> B[等待视觉与后台子进程收尾]
+  B --> C[停止已登记的 ARL、插件宿主、Miloco]
+  C --> D[停止这套 HA，保留数据与容器主机]
+  D --> E[重新启动时先准备 HA 和所需依赖]
+  E --> F[启动 Friday 并等待服务就绪]
+  F --> G[打开页面核对来源与开关]
+```
+
+| 输出 | 你应怎样理解 |
+| --- | --- |
+| `would_stop` / `would_start` | 预览计划，没有改变服务 |
+| `would_prepare` | 重新启动前会先确认已登记的容器主机可用 |
+| `stopping` / `waiting` | 正在等待正常退出或启动，保持终端运行 |
+| `stopped` | 这一项已完成停止检查 |
+| `ready` / `already_running` | 这一项的进程或服务及配置的就绪检查已通过 |
+| `kept_running` | 明确保留的容器主机等依赖继续运行 |
+| `deployment / stop_complete` | 本次配置中需要停止的服务均已完成检查 |
+| `deployment / restart_complete` | 本次配置中的启动顺序与就绪检查已完成 |
+| `deployment / failed:…` | 没有完成；按后面的错误说明处理 |
+
+管理程序向归属核对通过的 Friday 进程请求正常退出，等待已记录的子进程收尾；HA 使用不自动升级为强制结束的停止请求。退出超时或摄像头恢复检查未通过时，脚本报错，保留尚未关闭的依赖，也不会继续启动下一轮。Miloco 等外部服务仍由对应官方维护命令执行停止，遵循其自身的退出策略。[Docker 停止行为说明](https://docs.docker.com/reference/cli/docker/container/stop/)
+
+**完成标志：**先看最终的 `stop_complete` 或 `restart_complete`。重启后再打开 [Friday](http://127.0.0.1:8740/)，按第 3 节检查自己的家庭来源、开关和画面。`ready` 表示配置的服务检查通过，不等于手势准确率、设备实际动作或摄像头画面已经完成现场验收。
+
+基础源码默认入口仍可能打开“示例家庭”。这时到“连接”读取已授权家庭；脚本保留数据，但不会把基础示例入口替换为完整视觉部署入口。
+
+![重启后可进入连接页核对家庭来源及可选摄像头接入；示例截图不代表自己的账号状态](../assets/screenshots/friday-settings.jpg)
+
+### 脚本报错时怎么办
+
+| 错误片段 | 处理方法 |
+| --- | --- |
+| `config_already_exists` | 已有配置不会被覆盖；直接使用原配置，不反复初始化 |
+| `pid_identity_mismatch` / `service_pid_identity_mismatch` | PID 记录与预期服务不符；先查看状态，请维护者核对，不随意结束进程 |
+| `port_in_use` / `port_still_in_use` | 同一端口还有服务；若原来在另一个终端前台启动，回到原终端按 Control+C，再使用本套入口 |
+| `descendants_still_running` / `cleanup_pending` | 收尾或恢复尚未完成；保留依赖，等待后重试停止；不要跳到重新启动 |
+| `status_unavailable` / `command_timeout` | 检查 Docker 连接、sudo 有效期、对应服务和本机私有日志，不把状态未知当作已停止 |
+| `executable_missing` / `cwd_missing` | 原运行环境被移动或缺失；核对路径和所用 Python，不重建一套空环境替代 |
+| `another_lifecycle_command_is_running` | 另一条启停命令仍在执行；等待结束，不同时双击多份脚本 |
+
+查看当前服务状态：
+
+```sh
+"$HOME/friday-home/Friday/.venv/bin/python" friday-services.py status --config "$PWD/services.local.json"
+```
+
+完整部署的 macOS 交付包可直接使用“查看服务状态.command”。状态页可能显示某些项目已停、某些仍运行；失败后的实际状态以逐项输出为准。
+
+### 尚未使用管理脚本时
+
+基础 Web 仍可在安装目录前台启动 `./bin/home serve`，回到该终端按 Control+C 停止。第一次改用管理脚本前，先停止原前台服务；脚本不会凭端口接管已有进程。
+
+HA 仍可使用原 Compose 参数执行 `stop`，并保留数据。Docker / Colima 宿主默认不由通用停止脚本关闭；若它还承载其他容器，按那些服务自己的维护要求处理。安装依赖不等于配置了开机自启动。
 
 Miloco / OpenClaw 可能使用各自的后台服务。检查：
 
@@ -38,7 +184,7 @@ miloco-cli service status
 openclaw gateway status
 ```
 
-它们启动成功不代表 Friday 也已经启动。完整识别部署另使用自己的正式启动入口，保留已配置的环境与暂停策略。
+它们启动成功不代表 Friday 也已经启动。未登记到服务清单的组件继续使用自己的正式维护入口。
 
 ## 2. 记住几个入口
 
@@ -60,6 +206,12 @@ openclaw gateway status
 5. 验证部署版本提供的恢复机制后，再安排自启动。
 
 用户手册里的截图或一次历史动作成功，不代表当前重启后的全部设备已经验收。
+
+### 脚本已验证的范围
+
+2026-10-31 已核对：macOS 实际完整部署的正常停止、重复停止、重新启动和配置保留；通用基础源码入口的初始化、运行中重启及停止；macOS 与隔离 Linux 环境各 10 项进程和错误路径检查。隔离检查包括端口冲突、PID 不符、退出超时、子进程收尾、并发执行和容器主机未运行时的准备顺序。
+
+Linux 检查使用临时容器与合成服务，不代表全新 Linux 系统、所有 HA 安装方式或 Linux 本地视觉已经验收。通用脚本也不替你创建、迁移或重新授权外部服务。
 
 ## 4. 备份自己的配置与数据
 
