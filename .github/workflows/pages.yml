@@ -27,6 +27,8 @@ jobs:
           sh -n docs/assets/scripts/stop-friday.sh
           sh -n docs/assets/scripts/restart-friday.sh
           (cd docs/assets/scripts && sha256sum --check SHA256SUMS)
+          (cd docs/assets/scripts && sha256sum --check SETUP-SHA256SUMS)
+          python docs/assets/scripts/setup-dependencies.py --help
       - run: mkdocs build --strict
       - run: python scripts/check_docs.py --built site
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5

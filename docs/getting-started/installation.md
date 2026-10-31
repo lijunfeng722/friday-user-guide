@@ -84,7 +84,7 @@ flowchart TB
 | --- | --- |
 | Friday | [公开提交 e1e9c999](https://github.com/Geeprox/Friday/tree/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3)及该提交的 `uv.lock` |
 | Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
-| HA / Xiaomi Home | 项目准备脚本固定为 HA `2026.10.4`、集成 `v0.4.3` |
+| HA / Xiaomi Home | HA `2026.10.4`；[HA 章节的更新安装工具](installation-home-assistant.md#3-把-xiaomi-home-安装到-ha-内)固定 Xiaomi Home `v0.5.0` 及官方提交；旧公开源码自带工具仍固定旧版 |
 | Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
 
 基础安装不会自动下载摄像头 SDK、模型、ARL，或替你配置设备控制范围。摄像头章节分别说明可执行的准备步骤和仍需匹配部署组件的部分；不会把某台电脑的私有启动器当作通用安装包。

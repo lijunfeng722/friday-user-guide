@@ -221,11 +221,117 @@ openclaw gateway status
 
 重新加载后仍不可用，继续检查 HA 所在主机访问小米服务的网络，以及集成是否明确提示重新认证。保留现有规则和授权，不把反复重建家庭当作排障方法。
 
+### 已有 Xiaomi Home 怎样升级
+
+这是一次依赖维护，日常重启不用重复执行。旧版 v0.4.3 在云设备刷新遇到网络异常后，可能停止重试；官方在 [v0.4.6](https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v0.4.6)修复了这条异常路径，本手册现在固定的 [v0.5.0](https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v0.5.0)包含该修复。升级能补上恢复逻辑，仍需确认自己的网络及目标设备可用。
+
+下面适用于**本教程目录中的 HA Container**；其他 HA 安装方式使用各自的更新与备份入口。先在 Friday 暂停互动，按 [HA 章节下载安装工具](installation-home-assistant.md#下载安装工具)下载并校验更新工具，已有集成不要执行“首次安装集成”命令。
+
+**第 1 步：在 HA 仍运行时记录原容器，并提前下载集成。** 在同一个终端继续操作，保留变量。macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+cd "$HOME/friday-home/Friday"
+friday_ha_container="$(docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps --quiet homeassistant)"
+test -n "$friday_ha_container"
+```
+
+Linux 按本手册使用 sudo 时，改用：
+
+```sh
+cd "$HOME/friday-home/Friday"
+sudo -v
+friday_ha_container="$(sudo docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps --quiet homeassistant)"
+test -n "$friday_ha_container"
+```
+
+两种方式接着执行：
+
+```sh
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-source --project "$PWD"
+```
+
+**应看到：**`downloaded: true`、`version: v0.5.0`、`installed: false`。此步没有替换运行中的集成。变量为空或出现错误时，先核对自己的 Docker 连接和原容器，不新建另一台 HA。
+
+**第 2 步：正常停止同一套服务。** 使用本章已经配置的停止入口；完整部署使用自己交付包中的入口，基础部署可执行：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" "$HOME/friday-home/service-tools/stop-friday.sh"
+```
+
+**应看到：**最终 `stop_complete`，包括这台 HA 已停止。只停 Friday 没有停 HA 时，升级工具会拒绝继续。
+
+如果服务清单只登记了 Friday，仍需停止第 1 步记录的原 HA 容器。macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+docker stop --timeout -1 "$friday_ha_container"
+```
+
+Linux 需要 sudo 时执行：
+
+```sh
+sudo docker stop --timeout -1 "$friday_ha_container"
+```
+
+等待命令正常返回；这里不删除容器或数据。稍后也需用原启动入口先启动这台 HA，再启动 Friday。
+
+**第 3 步：保存完整 HA 备份。** 回到 Friday 目录，先创建只有自己可访问的备份目录：
+
+```sh
+cd "$HOME/friday-home/Friday"
+umask 077
+friday_backup_dir="$HOME/friday-home/backups/xiaomi-home-$(date -u +%Y%m%dT%H%M%SZ)"
+mkdir -m 700 -p "$friday_backup_dir"
+```
+
+macOS / 当前账号可读取配置的用户执行：
+
+```sh
+tar -czf "$friday_backup_dir/ha-config.tgz" -C data/deployment homeassistant
+```
+
+Linux 配置由容器 root 持有时执行：
+
+```sh
+sudo tar -czf "$friday_backup_dir/ha-config.tgz" -C data/deployment homeassistant
+sudo chmod 600 "$friday_backup_dir/ha-config.tgz"
+```
+
+**应看到：**命令成功退出，目录中生成 `ha-config.tgz`；任何读取失败都先解决再继续。备份包含 `.storage` 中的账号及注册表，也包含凭据，只保存在自己的私有存储。另按原部署备份 Friday 私有配置目录中的规则、控制范围及来源记录，保留当前暂停设置。
+
+**第 4 步：替换已停止实例的集成。** macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-upgrade \
+  --project "$PWD" --ha-container "$friday_ha_container"
+```
+
+Linux 需要 sudo 管理 Docker 时执行：
+
+```sh
+sudo -v
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-upgrade \
+  --project "$PWD" --ha-container "$friday_ha_container" --docker-sudo
+```
+
+**应看到：**`installed: true`、`version: v0.5.0`、`configuration_retained: true`、`services_started: false`。工具核对固定提交、原容器停止状态及其 `/config` 目录，仅替换集成文件，旧组件保存在 `data/deployment/integration-backups/`，沿用原账号连接和设备选择。检查不通过会拒绝更新；不要跳过检查强行覆盖。
+
+**第 5 步：上线并核对，再恢复互动。** 使用自己的重新启动入口。基础部署可执行：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" "$HOME/friday-home/service-tools/restart-friday.sh"
+```
+
+确认 HA 中 Xiaomi Home 已加载、原目标设备状态正常，Friday 的家庭来源、原规则和允许控制范围一致；需要摄像头的部署还要确认实时识别恢复。保持暂停的规则不会被脚本自动打开，完成检查后自行恢复互动，并观察一次页面回执与实物动作。无需重新给每台设备登录授权。
+
+升级后若需回滚，由维护者先停同一套服务，再恢复第 3 步的**完整 HA 备份**和相应 Friday 配置。新版可能迁移注册表，仅换回旧集成文件不能代替完整恢复。安装工具能撤回文件替换失败，不能替你判断上线后的全部设备效果。
+
 ### 脚本已验证的范围
 
 2026-10-31 已核对：macOS 实际完整部署的正常停止、重复停止、重新启动和配置保留；通用基础源码入口的初始化、运行中重启及停止；macOS 与隔离 Linux 环境各 15 项进程和错误路径检查。隔离检查包括端口冲突、PID 不符、退出超时、子进程收尾、并发执行、容器主机准备顺序，以及绑定设备不可用、状态过期或控制范围缺失时不能被判为就绪。
 
 现场曾出现“HA 页面可访问、设备列表存在，但小米设备状态不可用”的情况；重新加载原 Xiaomi Home 集成后恢复，由使用者再次完成手势与窗帘实体验收。因此新增了绑定设备状态检查，进程检查与配置保留不再作为互动可用的全部依据。
+
+2026-10-31 又完成 v0.4.3 → v0.5.0 的隔离迁移预演及 macOS 实际停机、备份、升级和上线。原实体标识与设备关联、手势规则、控制范围和摄像头配置保持一致，升级前正常的目标状态已恢复；新版上线后的实物动作由使用者另行确认。安装器的离线替换、运行中拒绝升级、来源核对和失败恢复测试，以及相关发布输入测试共 28 项通过。
 
 Linux 检查使用临时容器与合成服务，不代表全新 Linux 系统、所有 HA 安装方式或 Linux 本地视觉已经验收。通用脚本也不替你创建、迁移或重新授权外部服务。
 

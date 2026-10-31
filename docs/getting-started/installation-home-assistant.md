@@ -60,13 +60,43 @@ nano data/deployment/.env
 
 ## 3. 把 Xiaomi Home 安装到 HA 内
 
+本教程现在使用 **Xiaomi Home v0.5.0**。早期公开 Friday 源码中的准备脚本仍固定旧版，因此这里单独下载已更新的安装工具，不依赖旧脚本的版本选择。工具只安装集成；小米登录仍在 HA 官方页面完成。
+
+### 下载安装工具
+
 ```sh
-.venv/bin/python scripts/setup-dependencies.py xiaomi-home
+mkdir -p "$HOME/friday-home/service-tools"
+cd "$HOME/friday-home/service-tools"
+friday_setup_url="https://lijunfeng722.github.io/friday-user-guide/assets/scripts"
+for friday_setup_file in setup-dependencies.py FRIDAY-SCRIPT-LICENSE.txt SETUP-SHA256SUMS; do
+  curl -fL "$friday_setup_url/$friday_setup_file" -o "$friday_setup_file"
+done
 ```
 
-**应看到：**集成安装成功，并提示需要 HA 重启和账号登录。固定版本集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
+macOS 校验下载内容：
 
-已有该集成或上游下载目录时，脚本会拒绝覆盖；先核对原安装。对已有 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.4.3)
+```sh
+shasum -a 256 -c SETUP-SHA256SUMS
+```
+
+Linux 校验下载内容：
+
+```sh
+sha256sum -c SETUP-SHA256SUMS
+```
+
+**应看到：**安装工具和许可证均显示 `OK`。也可分别下载[安装工具](../assets/scripts/setup-dependencies.py)、[许可证](../assets/scripts/FRIDAY-SCRIPT-LICENSE.txt)和[校验清单](../assets/scripts/SETUP-SHA256SUMS)。
+
+### 首次安装集成
+
+```sh
+cd "$HOME/friday-home/Friday"
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home --project "$PWD"
+```
+
+**应看到：**`installed: true`、`version: v0.5.0`，并提示需要 HA 重启和账号登录。工具校验官方固定提交 `75b3acb6325a3a8d295688b13904737d6738a6a5`；集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
+
+已有集成时，脚本会拒绝覆盖；按[已有集成升级步骤](installation-maintenance.md#已有-xiaomi-home-怎样升级)维护。对其他方式安装的 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.5.0)
 
 ## 4. 启动 HA 并检查页面
 

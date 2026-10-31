@@ -152,7 +152,7 @@ flowchart TB
 | --- | --- |
 | Friday | [公开提交 e1e9c999](https://github.com/Geeprox/Friday/tree/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3)及该提交的 `uv.lock` |
 | Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
-| HA / Xiaomi Home | 项目准备脚本固定为 HA `2026.10.4`、集成 `v0.4.3` |
+| HA / Xiaomi Home | HA `2026.10.4`；[HA 章节的更新安装工具](#guide-getting-started-installation-home-assistant)固定 Xiaomi Home `v0.5.0` 及官方提交；旧公开源码自带工具仍固定旧版 |
 | Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
 
 基础安装不会自动下载摄像头 SDK、模型、ARL，或替你配置设备控制范围。摄像头章节分别说明可执行的准备步骤和仍需匹配部署组件的部分；不会把某台电脑的私有启动器当作通用安装包。
@@ -547,13 +547,43 @@ nano data/deployment/.env
 
 ### 3. 把 Xiaomi Home 安装到 HA 内
 
+本教程现在使用 **Xiaomi Home v0.5.0**。早期公开 Friday 源码中的准备脚本仍固定旧版，因此这里单独下载已更新的安装工具，不依赖旧脚本的版本选择。工具只安装集成；小米登录仍在 HA 官方页面完成。
+
+#### 下载安装工具
+
 ```sh
-.venv/bin/python scripts/setup-dependencies.py xiaomi-home
+mkdir -p "$HOME/friday-home/service-tools"
+cd "$HOME/friday-home/service-tools"
+friday_setup_url="https://lijunfeng722.github.io/friday-user-guide/assets/scripts"
+for friday_setup_file in setup-dependencies.py FRIDAY-SCRIPT-LICENSE.txt SETUP-SHA256SUMS; do
+  curl -fL "$friday_setup_url/$friday_setup_file" -o "$friday_setup_file"
+done
 ```
 
-**应看到：**集成安装成功，并提示需要 HA 重启和账号登录。固定版本集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
+macOS 校验下载内容：
 
-已有该集成或上游下载目录时，脚本会拒绝覆盖；先核对原安装。对已有 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.4.3)
+```sh
+shasum -a 256 -c SETUP-SHA256SUMS
+```
+
+Linux 校验下载内容：
+
+```sh
+sha256sum -c SETUP-SHA256SUMS
+```
+
+**应看到：**安装工具和许可证均显示 `OK`。也可分别下载[安装工具](docs/assets/scripts/setup-dependencies.py)、[许可证](docs/assets/scripts/FRIDAY-SCRIPT-LICENSE.txt)和[校验清单](docs/assets/scripts/SETUP-SHA256SUMS)。
+
+#### 首次安装集成
+
+```sh
+cd "$HOME/friday-home/Friday"
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home --project "$PWD"
+```
+
+**应看到：**`installed: true`、`version: v0.5.0`，并提示需要 HA 重启和账号登录。工具校验官方固定提交 `75b3acb6325a3a8d295688b13904737d6738a6a5`；集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
+
+已有集成时，脚本会拒绝覆盖；按[已有集成升级步骤](#guide-getting-started-installation-maintenance)维护。对其他方式安装的 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.5.0)
 
 ### 4. 启动 HA 并检查页面
 
@@ -1079,11 +1109,117 @@ openclaw gateway status
 
 重新加载后仍不可用，继续检查 HA 所在主机访问小米服务的网络，以及集成是否明确提示重新认证。保留现有规则和授权，不把反复重建家庭当作排障方法。
 
+#### 已有 Xiaomi Home 怎样升级
+
+这是一次依赖维护，日常重启不用重复执行。旧版 v0.4.3 在云设备刷新遇到网络异常后，可能停止重试；官方在 [v0.4.6](https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v0.4.6)修复了这条异常路径，本手册现在固定的 [v0.5.0](https://github.com/XiaoMi/ha_xiaomi_home/releases/tag/v0.5.0)包含该修复。升级能补上恢复逻辑，仍需确认自己的网络及目标设备可用。
+
+下面适用于**本教程目录中的 HA Container**；其他 HA 安装方式使用各自的更新与备份入口。先在 Friday 暂停互动，按 [HA 章节下载安装工具](#guide-getting-started-installation-home-assistant)下载并校验更新工具，已有集成不要执行“首次安装集成”命令。
+
+**第 1 步：在 HA 仍运行时记录原容器，并提前下载集成。** 在同一个终端继续操作，保留变量。macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+cd "$HOME/friday-home/Friday"
+friday_ha_container="$(docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps --quiet homeassistant)"
+test -n "$friday_ha_container"
+```
+
+Linux 按本手册使用 sudo 时，改用：
+
+```sh
+cd "$HOME/friday-home/Friday"
+sudo -v
+friday_ha_container="$(sudo docker compose --project-name friday-home --file data/deployment/compose.yaml --env-file data/deployment/.env ps --quiet homeassistant)"
+test -n "$friday_ha_container"
+```
+
+两种方式接着执行：
+
+```sh
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-source --project "$PWD"
+```
+
+**应看到：**`downloaded: true`、`version: v0.5.0`、`installed: false`。此步没有替换运行中的集成。变量为空或出现错误时，先核对自己的 Docker 连接和原容器，不新建另一台 HA。
+
+**第 2 步：正常停止同一套服务。** 使用本章已经配置的停止入口；完整部署使用自己交付包中的入口，基础部署可执行：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" "$HOME/friday-home/service-tools/stop-friday.sh"
+```
+
+**应看到：**最终 `stop_complete`，包括这台 HA 已停止。只停 Friday 没有停 HA 时，升级工具会拒绝继续。
+
+如果服务清单只登记了 Friday，仍需停止第 1 步记录的原 HA 容器。macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+docker stop --timeout -1 "$friday_ha_container"
+```
+
+Linux 需要 sudo 时执行：
+
+```sh
+sudo docker stop --timeout -1 "$friday_ha_container"
+```
+
+等待命令正常返回；这里不删除容器或数据。稍后也需用原启动入口先启动这台 HA，再启动 Friday。
+
+**第 3 步：保存完整 HA 备份。** 回到 Friday 目录，先创建只有自己可访问的备份目录：
+
+```sh
+cd "$HOME/friday-home/Friday"
+umask 077
+friday_backup_dir="$HOME/friday-home/backups/xiaomi-home-$(date -u +%Y%m%dT%H%M%SZ)"
+mkdir -m 700 -p "$friday_backup_dir"
+```
+
+macOS / 当前账号可读取配置的用户执行：
+
+```sh
+tar -czf "$friday_backup_dir/ha-config.tgz" -C data/deployment homeassistant
+```
+
+Linux 配置由容器 root 持有时执行：
+
+```sh
+sudo tar -czf "$friday_backup_dir/ha-config.tgz" -C data/deployment homeassistant
+sudo chmod 600 "$friday_backup_dir/ha-config.tgz"
+```
+
+**应看到：**命令成功退出，目录中生成 `ha-config.tgz`；任何读取失败都先解决再继续。备份包含 `.storage` 中的账号及注册表，也包含凭据，只保存在自己的私有存储。另按原部署备份 Friday 私有配置目录中的规则、控制范围及来源记录，保留当前暂停设置。
+
+**第 4 步：替换已停止实例的集成。** macOS / 无需 sudo 的 Docker 执行：
+
+```sh
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-upgrade \
+  --project "$PWD" --ha-container "$friday_ha_container"
+```
+
+Linux 需要 sudo 管理 Docker 时执行：
+
+```sh
+sudo -v
+.venv/bin/python "$HOME/friday-home/service-tools/setup-dependencies.py" xiaomi-home-upgrade \
+  --project "$PWD" --ha-container "$friday_ha_container" --docker-sudo
+```
+
+**应看到：**`installed: true`、`version: v0.5.0`、`configuration_retained: true`、`services_started: false`。工具核对固定提交、原容器停止状态及其 `/config` 目录，仅替换集成文件，旧组件保存在 `data/deployment/integration-backups/`，沿用原账号连接和设备选择。检查不通过会拒绝更新；不要跳过检查强行覆盖。
+
+**第 5 步：上线并核对，再恢复互动。** 使用自己的重新启动入口。基础部署可执行：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" "$HOME/friday-home/service-tools/restart-friday.sh"
+```
+
+确认 HA 中 Xiaomi Home 已加载、原目标设备状态正常，Friday 的家庭来源、原规则和允许控制范围一致；需要摄像头的部署还要确认实时识别恢复。保持暂停的规则不会被脚本自动打开，完成检查后自行恢复互动，并观察一次页面回执与实物动作。无需重新给每台设备登录授权。
+
+升级后若需回滚，由维护者先停同一套服务，再恢复第 3 步的**完整 HA 备份**和相应 Friday 配置。新版可能迁移注册表，仅换回旧集成文件不能代替完整恢复。安装工具能撤回文件替换失败，不能替你判断上线后的全部设备效果。
+
 #### 脚本已验证的范围
 
 2026-10-31 已核对：macOS 实际完整部署的正常停止、重复停止、重新启动和配置保留；通用基础源码入口的初始化、运行中重启及停止；macOS 与隔离 Linux 环境各 15 项进程和错误路径检查。隔离检查包括端口冲突、PID 不符、退出超时、子进程收尾、并发执行、容器主机准备顺序，以及绑定设备不可用、状态过期或控制范围缺失时不能被判为就绪。
 
 现场曾出现“HA 页面可访问、设备列表存在，但小米设备状态不可用”的情况；重新加载原 Xiaomi Home 集成后恢复，由使用者再次完成手势与窗帘实体验收。因此新增了绑定设备状态检查，进程检查与配置保留不再作为互动可用的全部依据。
+
+2026-10-31 又完成 v0.4.3 → v0.5.0 的隔离迁移预演及 macOS 实际停机、备份、升级和上线。原实体标识与设备关联、手势规则、控制范围和摄像头配置保持一致，升级前正常的目标状态已恢复；新版上线后的实物动作由使用者另行确认。安装器的离线替换、运行中拒绝升级、来源核对和失败恢复测试，以及相关发布输入测试共 28 项通过。
 
 Linux 检查使用临时容器与合成服务，不代表全新 Linux 系统、所有 HA 安装方式或 Linux 本地视觉已经验收。通用脚本也不替你创建、迁移或重新授权外部服务。
 
@@ -2032,6 +2168,8 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 如果手势已有响应记录却操作未完成，检查绑定设备在 HA 中是否为“不可用”。小米集成可能尚未恢复设备连接；按[重启后的设备连接排查](#guide-getting-started-installation-maintenance)处理，不需要重新添加同一条规则。
 
+仍在使用 Xiaomi Home v0.4.3 的部署，可按[已有集成升级步骤](#guide-getting-started-installation-maintenance)补上断网后的刷新重试修复。日常重启不需要重新安装集成，也不需要逐台设备重新授权。
+
 ### Q29. 手势一定需要云端模型或语音吗？
 
 已经准备好的本地身体和手部手势不要求先开启麦克风，也不要求先购买云端模型。语音、画面理解和智能任务是另外的能力。
@@ -2070,6 +2208,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 - [x] 生命周期脚本在 macOS 实际部署验证停止、重复停止、重新启动与规则、来源及暂停设置保留。
 - [x] 通用基础入口验证初始化、运行中重启、停止；macOS / 隔离 Linux 各 15 项进程、绑定设备状态及错误路径检查通过。
 - [x] HA 小米集成设备状态不可用的现场恢复，使用者重新确认手势触发及窗帘实际动作；不扩展为所有设备均完成实体验收。
+- [x] Xiaomi Home v0.5.0 隔离迁移及 macOS 实际停机备份、升级上线；既有实体标识、规则和允许控制范围保持一致。升级后实物动作单独等待使用者验收。
 
 ### 安装教程的验证范围
 
