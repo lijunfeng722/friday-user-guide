@@ -150,7 +150,7 @@ flowchart TB
 
 | 对象 | 本教程基线 / 来源 |
 | --- | --- |
-| Friday | [公开提交 e1e9c999](https://github.com/Geeprox/Friday/tree/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3)及该提交的 `uv.lock` |
+| Friday | [公开提交 5961567](https://github.com/Geeprox/Friday/tree/5961567d3ed897eed20fb161be6dfa49d522df3d)及该提交的 `uv.lock` |
 | Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
 | HA / Xiaomi Home | HA `2026.10.4`；[HA 章节的更新安装工具](#guide-getting-started-installation-home-assistant)固定 Xiaomi Home `v0.5.0` 及官方提交；旧公开源码自带工具仍固定旧版 |
 | Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
@@ -245,7 +245,7 @@ export PATH="$HOME/.local/bin:$PATH"
 mkdir -p "$HOME/friday-home"
 git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
 cd "$HOME/friday-home/Friday"
-git switch --detach e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3
+git switch --detach 5961567d3ed897eed20fb161be6dfa49d522df3d
 UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```
@@ -399,7 +399,7 @@ nano 保存按 Control+O、回车，退出按 Control+X。
 mkdir -p "$HOME/friday-home"
 git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
 cd "$HOME/friday-home/Friday"
-git switch --detach e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3
+git switch --detach 5961567d3ed897eed20fb161be6dfa49d522df3d
 UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```
@@ -547,7 +547,7 @@ nano data/deployment/.env
 
 ### 3. 把 Xiaomi Home 安装到 HA 内
 
-本教程现在使用 **Xiaomi Home v0.5.0**。早期公开 Friday 源码中的准备脚本仍固定旧版，因此这里单独下载已更新的安装工具，不依赖旧脚本的版本选择。工具只安装集成；小米登录仍在 HA 官方页面完成。
+本教程现在使用 **Xiaomi Home v0.5.0**。当前 Friday 安装基线已包含更新的安装器；下方同时提供同内容的独立下载工具，便于沿用较早 Friday 版本的用户升级集成。工具只安装集成；小米登录仍在 HA 官方页面完成。
 
 #### 下载安装工具
 
@@ -673,7 +673,7 @@ sudo nano /etc/hosts
 
 当前界面可以暂停 / 恢复已有范围，但没有替代首次范围文件配置。源码 Web 默认使用 `data/homeplane/action-authority.json`；桌面部署的私有目录不同，应按其构建说明确认。
 
-配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/e1e9c9997d0ad45ec75d1c81f3ffa602eac8f5b3/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
+配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/5961567d3ed897eed20fb161be6dfa49d522df3d/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/5961567d3ed897eed20fb161be6dfa49d522df3d/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
 
 先用一个选定设备验证：检查目标和动作 → 明确执行 → 看页面回执 → 观察设备实际变化。有记录并不替代现场确认。之后可继续[设备操作](#guide-guides-devices)或[摄像头与识别准备](#guide-getting-started-installation-camera)。
 
@@ -1106,6 +1106,12 @@ openclaw gateway status
 
 用户手册里的截图或一次历史动作成功，不代表当前重启后的全部设备已经验收。
 
+#### 重启后能看见人，但没有手势记录
+
+重启会重新建立临时人物追踪和操作者选择。镜头里先出现的人可能被自动选中；多人在场时，由准备控制的人比 OK 保持约 2 秒，再放下手做动作。规则和设备授权无需重建。
+
+旧版已有操作者时不能接管的问题已在 Friday [5961567](https://github.com/Geeprox/Friday/commit/5961567d3ed897eed20fb161be6dfa49d522df3d)修复。更新并重新启动识别服务后使用；同时确认动作需要的身体部位无遮挡。服务健康、人物检测、操作者选择与最终设备执行分别核对。
+
 #### 重启后有手势记录，设备却没动
 
 如果“最近的手势响应”已有记录，却显示“操作未完成”，先检查该设备在 HA 中是否为“不可用”。这时规则可能已经识别到动作，但设备状态不满足执行条件，Friday 会拒绝发送指令；重新添加规则不能恢复上游设备连接。
@@ -1498,7 +1504,7 @@ uv sync --locked --python 3.12 --no-dev --extra nas-connection --extra privacy-p
 
 确认该规则的开关已启用，再点击“启用手势控制”。按钮显示“暂停手势控制”表示总开关正在运行。
 
-站在镜头能清楚识别身体的位置，先保持稳定，再按所选动作说明完成连续变化。例如双臂合上应先张开，再向胸前合拢并短暂停留；一直保持合拢不等于新的动作。多人入镜时，先比 OK 选定操作者，再放下手开始。
+站在镜头能清楚识别身体的位置，先保持稳定，再按所选动作说明完成连续变化。例如双臂合上应先张开，再向胸前合拢并短暂停留；一直保持合拢不等于新的动作。多人入镜时，由准备控制的人比 OK 保持约 2 秒选定自己，再放下手开始；已选中另一人时也可这样接管，详见[操作者切换](#guide-guides-interactions)。
 
 ### 5. 看记录，再看设备
 
@@ -1538,6 +1544,14 @@ uv sync --locked --python 3.12 --no-dev --extra nas-connection --extra privacy-p
 ![新版手势控制表单](docs/assets/screenshots/friday-interaction.jpg)
 
 移除规则后，页面提供撤销入口时可立即撤销。编辑草稿、设备失效提示和修复入口用于减少误改；最终以已保存卡片为准。重新发现同名设备不等于自动替换原来的目标。
+
+### 多人时选择或切换操作者
+
+镜头里只有一人持续可见时，系统可自动选择；之后有人进入画面，需要控制设备的人面向镜头比 OK，保持约 2 秒，放下手后再做绑定动作。即使已经选中了另一人，也可以用这个方式接管。两人同时比 OK 时，不会据此切换。
+
+用于选择操作者的这次 OK 不执行设备动作。需要用 OK 触发已配置的控制时，先放下手，再重新做一次。重启识别服务或追踪丢失后，临时操作者需要重新确认；设备规则和允许控制范围仍会保留。
+
+已有操作者时允许接管的修复包含在 Friday 提交 [5961567](https://github.com/Geeprox/Friday/commit/5961567d3ed897eed20fb161be6dfa49d522df3d)。旧版可能一直保留最先选中的人；更新 Friday 后重启识别服务，再按上述步骤验证。
 
 ### 指向设备前先核对点位
 
@@ -2037,7 +2051,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 1. 识别画面和时间持续更新。
 2. 所需身体部位无遮挡，动作提示能跟随你。
-3. 多人时已选定操作者。
+3. 多人时，由准备控制的人持续比 OK 约 2 秒选择自己，放下手后再做动作；避免系统一直保留最先入镜的人。旧版接管问题见[操作者切换](#guide-guides-interactions)。
 4. 目标规则确实出现在“已设置的控制”，目标与设备动作正确。
 5. 单条规则和手势总开关都已开启。
 6. 完成连续动作，再看“最近的手势响应”，最后核对实际设备。
@@ -2132,13 +2146,17 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 骨架只表示检测结果。还需满足动作变化、操作者选择、规则启用、总开关运行与设备可用等条件，按排查页逐层检查。
 
+镜头里有其他人时，系统可能先选中了对方。由准备控制的人比 OK 保持约 2 秒，放下手，再做绑定动作。身体动作还需要对应肩、腕、腰胯等关键点清晰，单独识别到手或人形不等于已形成动作事件。
+
 ### Q18. 一直保持双臂合上为什么没有反应？
 
 它判断连续变化，先张开再合拢并短暂停留。一直保持同一姿势，不一定会产生新的动作事件。
 
 ### Q19. 旁边有人时怎样选操作者？
 
-按镜头提示先比 OK 选择自己，放下手后再做动作。离开画面或追踪丢失后，可能需要重新选择。
+准备控制的人面向镜头比 OK 保持约 2 秒，放下手后再做动作；已有另一位操作者时，也可这样接管。两人同时比 OK 不会触发切换。离开画面、追踪丢失或识别服务重启后，可能需要重新选择。
+
+旧版不能从已有操作者切换时，更新到包含 [5961567 修复](https://github.com/Geeprox/Friday/commit/5961567d3ed897eed20fb161be6dfa49d522df3d)的 Friday。此过程选择的是本次动作的发起人，不需要重新给设备授权。
 
 ### Q20. 必须先登记人脸吗？
 
@@ -2220,6 +2238,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 - [x] 生命周期脚本在 macOS 实际部署验证停止、重复停止、重新启动与规则、来源及暂停设置保留。
 - [x] 通用基础入口验证初始化、运行中重启、停止；macOS / 隔离 Linux 各 15 项进程、绑定设备状态及错误路径检查通过。
 - [x] 整机重启后的旧进程编号复用处理与 macOS 实际恢复；macOS / 隔离 Linux 各 18 项检查通过，原规则、控制范围、摄像头及暂停设置保留。
+- [x] 已有操作者时的明确 OK 接管修复及相关 107 项回归；识别服务已加载，现场手势与设备动作另行验收。
 - [x] HA 小米集成设备状态不可用的现场恢复，使用者重新确认手势触发及窗帘实际动作；不扩展为所有设备均完成实体验收。
 - [x] Xiaomi Home v0.5.0 隔离迁移及 macOS 实际停机备份、升级上线；既有实体标识、规则和允许控制范围保持一致。升级后实物动作单独等待使用者验收。
 
