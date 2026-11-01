@@ -367,8 +367,14 @@ class Runner:
         else:
             result = self.command(service, service["start"], service.get("start_timeout", 120))
             if result.returncode:
-                raise LifecycleError(service["id"] + ":start_command_failed")
-            self.wait(service, lambda: self.running(service) and self.ready(service), service.get("start_timeout", 120), "start_not_ready")
+                # 启动客户端可能先超时，后台仍在初始化；只有配置了独立就绪检查
+                # 才继续有限等待，进程状态与就绪检查同时通过后才能启动后续服务。
+                if not service.get("ready"):
+                    raise LifecycleError(service["id"] + ":start_command_failed")
+                emit(service["id"], "checking_after_start_error")
+            self.wait(service, lambda: self.running(service) and self.ready(service),
+                      service.get("start_timeout", 120),
+                      "start_command_failed" if result.returncode else "start_not_ready")
         emit(service["id"], "ready")
 
     def preflight(self):

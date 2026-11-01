@@ -52,7 +52,7 @@ server.server_close(); child.send_signal(signal.SIGTERM)
 '''
 
 SERVICE = r'''
-import json, os, signal, sys
+import json, os, signal, subprocess, sys
 from pathlib import Path
 p=Path(sys.argv[2])
 if sys.argv[1]=='status': print(json.dumps(p.exists()))
@@ -61,6 +61,13 @@ elif sys.argv[1]=='status-needs-host':
  if not Path(sys.argv[3]).exists(): sys.exit(2)
  print(json.dumps(p.exists()))
 elif sys.argv[1]=='start': p.touch()
+elif sys.argv[1]=='start-error-late-ready':
+ count=p.with_suffix('.starts'); count.write_text(str(int(count.read_text())+1) if count.exists() else '1')
+ code="import sys,time; from pathlib import Path; p=Path(sys.argv[1]); p.touch(); time.sleep(.6); p.with_suffix('.ready').touch()"
+ subprocess.Popen([sys.executable,'-c',code,str(p)],stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,start_new_session=True)
+ sys.exit(1)
+elif sys.argv[1]=='start-error-not-ready': p.touch(); sys.exit(1)
+elif sys.argv[1]=='ready': sys.exit(0 if p.with_suffix('.ready').exists() else 1)
 elif sys.argv[1]=='stop': p.unlink(missing_ok=True)
 elif sys.argv[1]=='term':
  os.kill(int(Path(sys.argv[3]).read_text()),signal.SIGTERM); p.unlink(missing_ok=True)
@@ -125,6 +132,52 @@ class LifecycleTests(unittest.TestCase):
         self.assertGreater(time.monotonic() - started, .8)
         self.assertTrue((self.root / "child-cleanup").exists())
         self.call("stop")
+
+    def test_start_client_error_can_wait_for_independent_readiness(self):
+        """客户端失败后后台稍晚就绪，健康检查通过才继续，启动命令只执行一次。"""
+        marker = self.root / "delayed-service"
+        external = {"id": "external", "kind": "service", "cwd": str(self.root),
+                    "start": [sys.executable, str(self.helper), "start-error-late-ready", str(marker)],
+                    "stop": [sys.executable, str(self.helper), "stop", str(marker)],
+                    "probe": {"argv": [sys.executable, str(self.helper), "status", str(marker)]},
+                    "ready": {"argv": [sys.executable, str(self.helper), "ready", str(marker)]},
+                    "start_timeout": 3}
+        self.write_config([external, self.service])
+        result = self.call("start")
+        self.assertIn("checking_after_start_error", result.stdout)
+        self.assertTrue(marker.with_suffix('.ready').exists())
+        self.assertEqual(marker.with_suffix('.starts').read_text(), '1')
+        self.assertTrue((self.root / "friday.pid").exists())
+        self.assertLess(result.stdout.index('"service": "external", "state": "ready"'),
+                        result.stdout.index('"service": "friday", "state": "starting"'))
+        self.call("stop")
+
+    def test_start_client_error_without_health_never_starts_dependents(self):
+        """进程存在但健康检查未通过时仍失败，后续服务保持停止。"""
+        marker = self.root / "unready-service"
+        external = {"id": "external", "kind": "service", "cwd": str(self.root),
+                    "start": [sys.executable, str(self.helper), "start-error-not-ready", str(marker)],
+                    "stop": [sys.executable, str(self.helper), "stop", str(marker)],
+                    "probe": {"argv": [sys.executable, str(self.helper), "status", str(marker)]},
+                    "ready": {"argv": [sys.executable, str(self.helper), "ready", str(marker)]},
+                    "start_timeout": .5}
+        self.write_config([external, self.service])
+        result = self.call("start", success=False)
+        self.assertIn("external:start_command_failed", result.stdout)
+        self.assertFalse((self.root / "friday.pid").exists())
+
+    def test_start_client_error_requires_explicit_readiness_check(self):
+        """未配置独立就绪检查时，不允许用进程存在覆盖启动失败。"""
+        marker = self.root / "unchecked-service"
+        external = {"id": "external", "kind": "service", "cwd": str(self.root),
+                    "start": [sys.executable, str(self.helper), "start-error-not-ready", str(marker)],
+                    "stop": [sys.executable, str(self.helper), "stop", str(marker)],
+                    "probe": {"argv": [sys.executable, str(self.helper), "status", str(marker)]}}
+        self.write_config([external, self.service])
+        result = self.call("start", success=False)
+        self.assertIn("external:start_command_failed", result.stdout)
+        self.assertNotIn("checking_after_start_error", result.stdout)
+        self.assertFalse((self.root / "friday.pid").exists())
 
     def test_unrelated_pid_is_never_signalled(self):
         unrelated = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])
