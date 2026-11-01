@@ -64,7 +64,7 @@ nano 保存按 Control+O、回车，退出按 Control+X。
 mkdir -p "$HOME/friday-home"
 git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
 cd "$HOME/friday-home/Friday"
-git switch --detach 9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1
+git switch --detach b069e20584e4d68f4a7fb9b3731a2f35fc87d29e
 UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```

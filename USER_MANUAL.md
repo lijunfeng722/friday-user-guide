@@ -150,7 +150,7 @@ flowchart TB
 
 | 对象 | 本教程基线 / 来源 |
 | --- | --- |
-| Friday | [公开提交 9a45a82](https://github.com/Geeprox/Friday/tree/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1)及该提交的 `uv.lock` |
+| Friday | [公开提交 b069e20](https://github.com/Geeprox/Friday/tree/b069e20584e4d68f4a7fb9b3731a2f35fc87d29e)及该提交的 `uv.lock` |
 | Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
 | HA / Xiaomi Home | HA `2026.10.4`；[HA 章节的更新安装工具](#guide-getting-started-installation-home-assistant)固定 Xiaomi Home `v0.5.0` 及官方提交；旧公开源码自带工具仍固定旧版 |
 | Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
@@ -245,7 +245,7 @@ export PATH="$HOME/.local/bin:$PATH"
 mkdir -p "$HOME/friday-home"
 git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
 cd "$HOME/friday-home/Friday"
-git switch --detach 9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1
+git switch --detach b069e20584e4d68f4a7fb9b3731a2f35fc87d29e
 UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```
@@ -399,7 +399,7 @@ nano 保存按 Control+O、回车，退出按 Control+X。
 mkdir -p "$HOME/friday-home"
 git clone https://github.com/Geeprox/Friday.git "$HOME/friday-home/Friday"
 cd "$HOME/friday-home/Friday"
-git switch --detach 9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1
+git switch --detach b069e20584e4d68f4a7fb9b3731a2f35fc87d29e
 UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```
@@ -673,7 +673,7 @@ sudo nano /etc/hosts
 
 当前界面可以暂停 / 恢复已有范围，但没有替代首次范围文件配置。源码 Web 默认使用 `data/homeplane/action-authority.json`；桌面部署的私有目录不同，应按其构建说明确认。
 
-配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
+配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/b069e20584e4d68f4a7fb9b3731a2f35fc87d29e/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/b069e20584e4d68f4a7fb9b3731a2f35fc87d29e/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
 
 先用一个选定设备验证：检查目标和动作 → 明确执行 → 看页面回执 → 观察设备实际变化。有记录并不替代现场确认。之后可继续[设备操作](#guide-guides-devices)或[摄像头与识别准备](#guide-getting-started-installation-camera)。
 
@@ -1560,6 +1560,8 @@ uv sync --locked --python 3.12 --no-dev --extra nas-connection --extra privacy-p
 “指令已发送”表示设备服务已接受请求，窗帘可能仍在运动；“状态已更新”表示回报符合目标。窗帘回报停留在“正在打开”或“正在关闭”时，仍需现场确认是否到位。
 
 旧版等待上一条指令的设备回报时，可能挡住紧接着的手势，使它失效。遇到“张开有记录、合上未完成”时，更新到包含[连续手势修复](https://github.com/Geeprox/Friday/commit/7c0c6d6f4096654eb873852f43013f3c8c26f874)的版本并重启 Friday，原规则和设备授权继续使用。修复后，等待回报与后续手势发送分开处理；真实发送仍按顺序检查和执行。
+
+本手册的安装基线 [b069e20](https://github.com/Geeprox/Friday/tree/b069e20584e4d68f4a7fb9b3731a2f35fc87d29e)同时包含上述修复、中文代码注释及设备来源检查。
 
 ### 指向设备前先核对点位
 

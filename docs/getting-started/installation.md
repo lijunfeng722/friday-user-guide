@@ -82,7 +82,7 @@ flowchart TB
 
 | 对象 | 本教程基线 / 来源 |
 | --- | --- |
-| Friday | [公开提交 9a45a82](https://github.com/Geeprox/Friday/tree/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1)及该提交的 `uv.lock` |
+| Friday | [公开提交 b069e20](https://github.com/Geeprox/Friday/tree/b069e20584e4d68f4a7fb9b3731a2f35fc87d29e)及该提交的 `uv.lock` |
 | Python / uv | Python 3.12；示例使用 uv 0.13.6 的[官方安装器](https://docs.astral.sh/uv/getting-started/installation/) |
 | HA / Xiaomi Home | HA `2026.10.4`；[HA 章节的更新安装工具](installation-home-assistant.md#3-把-xiaomi-home-安装到-ha-内)固定 Xiaomi Home `v0.5.0` 及官方提交；旧公开源码自带工具仍固定旧版 |
 | Miloco | [固定发行版 v2026.10.16](https://github.com/XiaoMi/xiaomi-miloco/releases/tag/v2026.10.16)，按平台完整指南安装 |
