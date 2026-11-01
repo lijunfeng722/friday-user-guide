@@ -186,7 +186,7 @@ sudo nano /etc/hosts
 
 当前界面可以暂停 / 恢复已有范围，但没有替代首次范围文件配置。源码 Web 默认使用 `data/homeplane/action-authority.json`；桌面部署的私有目录不同，应按其构建说明确认。
 
-配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/5961567d3ed897eed20fb161be6dfa49d522df3d/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/5961567d3ed897eed20fb161be6dfa49d522df3d/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
+配置时核对：HA 地址与实例标识、允许的操作、明确的实体列表、是否启用及有效期。只开放准备使用的设备，不复制其他家庭的标识。文件格式以所选版本的 [HomeDeviceAuthority 契约](https://github.com/Geeprox/Friday/blob/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1/homeplane/action_contracts.py)及[控制授权说明](https://github.com/Geeprox/Friday/blob/9a45a82cbfac0c1820c8fa100ad6cb77b9c904c1/docs/deployment.md#6-设备控制权限)为准；配置完成后重新连接并核对候选目标。
 
 先用一个选定设备验证：检查目标和动作 → 明确执行 → 看页面回执 → 观察设备实际变化。有记录并不替代现场确认。之后可继续[设备操作](../guides/devices.md)或[摄像头与识别准备](installation-camera.md)。
 
