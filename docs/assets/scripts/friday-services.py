@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import socket
 import subprocess
@@ -40,6 +41,24 @@ def save(path, value):
         stream.flush()
         os.fsync(stream.fileno())
     temporary.replace(path)
+
+
+def boot_time():
+    """Read the kernel's boot timestamp; an unknown result keeps PID checks strict."""
+    try:
+        if sys.platform.startswith("linux"):
+            for line in Path("/proc/stat").read_text().splitlines():
+                if line.startswith("btime "):
+                    return float(line.split()[1])
+        elif sys.platform == "darwin":
+            result = subprocess.run(["/usr/sbin/sysctl", "-n", "kern.boottime"],
+                                    text=True, capture_output=True, check=True, timeout=5)
+            match = re.search(r"\bsec\s*=\s*(\d+),\s*usec\s*=\s*(\d+)", result.stdout)
+            if match:
+                return int(match[1]) + int(match[2]) / 1_000_000
+    except (OSError, ValueError, IndexError, subprocess.SubprocessError):
+        pass
+    return None
 
 
 def identity(pid):
@@ -147,6 +166,7 @@ class Runner:
         self.config = config
         self.state = Path(config["state_dir"]).expanduser().resolve()
         self.services = config["services"]
+        self.booted_at = boot_time()
         ids = [s["id"] for s in self.services]
         if not ids or len(set(ids)) != len(ids) or any(not x.replace("-", "").isalnum() for x in ids):
             raise LifecycleError("invalid_service_ids")
@@ -181,6 +201,11 @@ class Runner:
             raise LifecycleError(service["id"] + ":invalid_pid_file") from None
         if pid <= 1:
             raise LifecycleError(service["id"] + ":invalid_pid_file")
+        # A process cannot survive an OS reboot. An older PID file may now point
+        # to an unrelated process; leave it alone and use normal port/start gates.
+        # Same-boot mismatches and unknown boot times still fail closed below.
+        if self.booted_at is not None and path.stat().st_mtime < self.booted_at:
+            return None
         entry = identity(pid)
         if entry is None:
             return None

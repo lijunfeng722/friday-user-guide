@@ -14,6 +14,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 RUNNER = Path(__file__).resolve().parents[1] / "docs/assets/scripts/friday-services.py"
 spec = importlib.util.spec_from_file_location("lifecycle", RUNNER)
@@ -131,6 +132,34 @@ class LifecycleTests(unittest.TestCase):
             (self.root / "friday.pid").write_text(str(unrelated.pid))
             result = self.call("stop", success=False)
             self.assertIn("pid_identity_mismatch", result.stdout)
+            self.assertIsNone(unrelated.poll())
+        finally:
+            unrelated.terminate(); unrelated.wait(timeout=5)
+
+    def test_preboot_pid_reuse_can_restart_without_signalling_unrelated_process(self):
+        unrelated = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])
+        try:
+            pid_file = self.root / "friday.pid"
+            pid_file.write_text(str(unrelated.pid))
+            os.utime(pid_file, (1, 1))
+            self.call("restart")
+            self.assertIsNone(unrelated.poll())
+            self.assertNotEqual(int(pid_file.read_text()), unrelated.pid)
+            self.call("stop")
+            self.assertIsNone(unrelated.poll())
+        finally:
+            unrelated.terminate(); unrelated.wait(timeout=5)
+
+    def test_unknown_boot_time_cannot_ignore_foreign_pid_even_with_old_file(self):
+        unrelated = subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])
+        try:
+            pid_file = self.root / "friday.pid"
+            pid_file.write_text(str(unrelated.pid))
+            os.utime(pid_file, (1, 1))
+            with patch.object(lifecycle, "boot_time", return_value=None):
+                runner = lifecycle.Runner(json.loads(self.config.read_text()))
+            with self.assertRaisesRegex(lifecycle.LifecycleError, "pid_identity_mismatch"):
+                runner.stop_one(self.service)
             self.assertIsNone(unrelated.poll())
         finally:
             unrelated.terminate(); unrelated.wait(timeout=5)
@@ -280,6 +309,17 @@ class GestureReadinessTests(unittest.TestCase):
         snapshot["mode"] = "simulator"
         self.assertFalse(lifecycle.gesture_targets_ready(config,policy,snapshot,now))
         self.assertFalse(lifecycle.gesture_targets_ready(config,{},snapshot,now))
+
+
+class BootTimeTests(unittest.TestCase):
+    def test_kernel_boot_times_and_unavailable_probe(self):
+        with patch.object(lifecycle.sys, "platform", "linux"), patch.object(lifecycle.Path, "read_text", return_value="cpu 1 2 3\nbtime 12345\n"):
+            self.assertEqual(lifecycle.boot_time(), 12345)
+        result = subprocess.CompletedProcess([], 0, stdout="{ sec = 12345, usec = 250000 } synthetic")
+        with patch.object(lifecycle.sys, "platform", "darwin"), patch.object(lifecycle.subprocess, "run", return_value=result):
+            self.assertEqual(lifecycle.boot_time(), 12345.25)
+        with patch.object(lifecycle.sys, "platform", "darwin"), patch.object(lifecycle.subprocess, "run", side_effect=subprocess.TimeoutExpired("sysctl", 5)):
+            self.assertIsNone(lifecycle.boot_time())
 
 
 if __name__ == "__main__":
