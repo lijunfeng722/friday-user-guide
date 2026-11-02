@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise lifecycle failure cases with disposable processes, never hardware."""
+"""用临时进程验证服务启停，不访问真实硬件；下载站点使用本文件的同步副本。"""
 import contextlib
 from datetime import datetime, timedelta, timezone
 import fcntl
@@ -16,7 +16,11 @@ import time
 import unittest
 from unittest.mock import patch
 
-RUNNER = Path(__file__).resolve().parents[1] / "docs/assets/scripts/friday-services.py"
+ROOT = Path(__file__).resolve().parents[1]
+RUNNER = ROOT / "friday-services.py"
+# 同一套测试也验证用户手册中发布的平铺下载包。
+if not RUNNER.is_file():
+    RUNNER = ROOT / "docs/assets/scripts/friday-services.py"
 spec = importlib.util.spec_from_file_location("lifecycle", RUNNER)
 lifecycle = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(lifecycle)
@@ -108,7 +112,7 @@ class LifecycleTests(unittest.TestCase):
         return result
 
     def tearDown(self):
-        # Only disposable fixture PIDs are ever force-cleaned by this test harness.
+        # 此测试框架只强制清理归属已核对的临时测试进程。
         for filename in ("friday.pid", "child.pid"):
             path = self.root / filename
             if path.exists():
@@ -133,6 +137,22 @@ class LifecycleTests(unittest.TestCase):
         self.assertTrue((self.root / "child-cleanup").exists())
         self.call("stop")
 
+    def test_shell_entries_work_from_another_directory_and_only_preview(self):
+        """根目录与平铺下载包的入口均能定位同目录程序，并保留显式配置。"""
+        directory = self.root / "other directory"
+        directory.mkdir()
+        before = self.config.read_bytes()
+        environment = {**os.environ, "FRIDAY_PYTHON": sys.executable,
+                       "FRIDAY_SERVICE_CONFIG": str(self.config)}
+        for action, expected in [("start", ["would_start"]), ("stop", ["would_stop"]),
+                                 ("restart", ["would_stop", "would_start"])]:
+            with self.subTest(action=action):
+                result = subprocess.run(["sh", str(RUNNER.with_name(action + "-friday.sh")), "--dry-run"],
+                                        cwd=directory, env=environment, capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual([json.loads(line)["state"] for line in result.stdout.splitlines()], expected)
+                self.assertFalse((self.root / "friday.pid").exists())
+                self.assertEqual(self.config.read_bytes(), before)
     def test_start_client_error_can_wait_for_independent_readiness(self):
         """客户端失败后后台稍晚就绪，健康检查通过才继续，启动命令只执行一次。"""
         marker = self.root / "delayed-service"

@@ -6,14 +6,14 @@
 
 内容改动后运行 `python3 scripts/export_manual.py` 同步 USER_MANUAL.md，再运行 `.venv/bin/python scripts/check_docs.py`、`.venv/bin/mkdocs build --strict`、`.venv/bin/python scripts/check_docs.py --built site` 和 `python3 scripts/check_dev_policy.py check`。这些检查不需要启动真实家庭服务。
 
-启停工具变化时执行 `python3 scripts/test_services.py`、Shell 语法与 SHA256 清单检查，按实际影响同步元仓库的维护入口与验证范围。普通文档变更不重复执行硬件测试。
+启停工具源码及测试在元仓库根目录和 scripts/ 中维护；本站的 docs/assets/scripts/ 及 scripts/test_services.py 是同步副本。先修改元仓库，再用其 scripts/sync_service_tools.py 更新本站，执行 `python3 scripts/test_services.py`、三个 Shell 入口的语法与 SHA256 清单检查。普通文档变更不重复执行硬件测试。
 
 提交只包含当前任务文件，按已有任务范围推送和发布。发布时确认 Pages 状态与实际页面；服务启动和使用者实物确认分别记录。公共约定通过元仓库同步，保留以上专用要求。
 
 <!-- friday-dev-policy:start -->
 ## Friday 公共开发约定
 
-规范版本：2026-11-02.2
+规范版本：2026-11-02.3
 
 - 新增人工提交使用中文说明目的，推荐“功能：……”“修复：……”“文档：……”。保留英文技术名称；不为格式要求重写上游或已有历史。
 - 新增、修改的解释性注释和文档字符串使用中文。保留工具指令、协议字段、标准术语、第三方原文及用于反例的测试数据；不要求批量翻译旧注释。

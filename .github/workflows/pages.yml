@@ -24,6 +24,7 @@ jobs:
       - name: Check lifecycle scripts with disposable processes
         run: |
           PYTHONDONTWRITEBYTECODE=1 python scripts/test_services.py
+          sh -n docs/assets/scripts/start-friday.sh
           sh -n docs/assets/scripts/stop-friday.sh
           sh -n docs/assets/scripts/restart-friday.sh
           (cd docs/assets/scripts && sha256sum --check SHA256SUMS)

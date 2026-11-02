@@ -27,3 +27,5 @@ python3.12 -m venv .venv
 维护前阅读 [AGENTS.md](AGENTS.md)和[跨仓库开发规范](https://github.com/lijunfeng722/project-index/blob/main/docs/development.md)。新增人工提交和解释性注释使用中文，产品与部署变化按影响同步对应手册、技术说明及顶级索引。
 
 运行 `python3 scripts/check_dev_policy.py check` 校验随仓库提交的约定；PR 模板分别记录用户文档、技术文档和顶级索引的影响。用户操作页、截图和完整 Markdown 的检查沿用上方入口。
+
+日常启动、停止和重启工具的源码在[顶级元仓库根目录](https://github.com/lijunfeng722/project-index)维护，本站保留同内容下载与测试副本。更新工具时在元仓库运行 `python3 scripts/sync_service_tools.py --guide ../friday-user-guide`，再加 `--check` 核对；依赖安装器仍以 Friday 主仓源码为准。

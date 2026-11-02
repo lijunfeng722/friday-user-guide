@@ -20,7 +20,13 @@ Friday、HA、Miloco 等组件分别运行，也分别保存账号连接、家�
 
 ### 已有整套部署脚本：直接使用
 
-如果部署人员已经为你的电脑准备了脚本及 `services.local.json`，在这份交付目录中操作。需要停止时执行：
+如果部署人员已经为你的电脑准备了脚本及 `services.local.json`，在这份交付目录中操作。新版脚本包含独立的启动入口；需要启动尚未运行的服务时执行：
+
+```sh
+./start-friday.sh
+```
+
+已运行的服务通过就绪检查后会被复用。需要停止时执行：
 
 ```sh
 ./stop-friday.sh
@@ -42,19 +48,42 @@ macOS 交付包也可提供“优雅停止.command”“重新启动.command”�
 
 新版管理程序读取系统开机时间，跳过上次开机留下的进程编号记录；即使系统把这个编号分给了其他程序，也不会按旧记录停止它。同一次开机中出现进程身份不符，或无法确认开机时间时，仍保留原来的拒绝操作检查。
 
-如果旧版在电脑重启后报 `pid_identity_mismatch`，按下方下载与校验步骤更新三个脚本和 `SHA256SUMS`，保留自己的 `services.local.json`，再使用原入口。无需重新初始化配置，也不要照着旧编号手动结束其他程序。
+如果旧版在电脑重启后报 `pid_identity_mismatch`，按下方下载与校验步骤更新管理程序、Shell 入口和 `SHA256SUMS`，保留自己的 `services.local.json`，再使用原入口。无需重新初始化配置，也不要照着旧编号手动结束其他程序。
+
+### 从顶级元仓库直接使用
+
+日常启动、停止和重启工具的源码统一放在[顶级元仓库根目录](https://github.com/lijunfeng722/project-index)，本手册提供同步生成的下载副本。以下两种脚本来源任选一种即可。
+
+已克隆元仓库时直接进入现有目录；尚未克隆时执行：
+
+```sh
+git clone https://github.com/lijunfeng722/project-index.git "$HOME/friday-home/project-index"
+cd "$HOME/friday-home/project-index"
+```
+
+根目录应包含 `start-friday.sh`、`stop-friday.sh`、`restart-friday.sh`、`friday-services.py`、许可证和 `SHA256SUMS`。按下方 macOS / Linux 命令校验后，后续初始化和日常操作均可在这个根目录执行。
+
+已有服务清单时，可以指向原文件，继续保留账号、规则和服务顺序：
+
+```sh
+export FRIDAY_SERVICE_CONFIG="$HOME/friday-home/service-tools/services.local.json"
+export FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python"
+./start-friday.sh --dry-run
+```
+
+将清单位置改成自己的实际路径；此时不需要重新初始化。没有清单时，按下方任选一种初始化方式生成本机清单。
 
 ### 基础源码安装：先准备通用脚本
 
 适用于已按本手册安装好 Friday 的 macOS / Linux 用户。下载版默认管理基础 Web；初始化时可以加上**本教程创建的 HA 容器**。它不自动装配摄像头、ARL 或 Miloco；完整部署应使用上一节对应的专属配置。
 
-下载文件：[管理程序](../assets/scripts/friday-services.py)、[停止脚本](../assets/scripts/stop-friday.sh)、[重启脚本](../assets/scripts/restart-friday.sh)、[文件校验清单](../assets/scripts/SHA256SUMS)。也可在终端下载到自己的目录：
+如果仅需下载脚本，可使用本站副本：[管理程序](../assets/scripts/friday-services.py)、[启动脚本](../assets/scripts/start-friday.sh)、[停止脚本](../assets/scripts/stop-friday.sh)、[重启脚本](../assets/scripts/restart-friday.sh)、[许可证](../assets/scripts/FRIDAY-SCRIPT-LICENSE.txt)及[校验清单](../assets/scripts/SHA256SUMS)。也可在终端下载到自己的目录：
 
 ```sh
 mkdir -p "$HOME/friday-home/service-tools"
 cd "$HOME/friday-home/service-tools"
 friday_script_url="https://lijunfeng722.github.io/friday-user-guide/assets/scripts"
-for friday_script_file in friday-services.py stop-friday.sh restart-friday.sh SHA256SUMS; do
+for friday_script_file in friday-services.py start-friday.sh stop-friday.sh restart-friday.sh FRIDAY-SCRIPT-LICENSE.txt SHA256SUMS; do
   curl -fL "$friday_script_url/$friday_script_file" -o "$friday_script_file"
 done
 ```
@@ -71,10 +100,10 @@ Linux 执行：
 sha256sum -c SHA256SUMS
 ```
 
-**应看到：**三个脚本均为 `OK`。校验失败时先重新下载，不继续执行。然后赋予执行权限：
+**应看到：**四个程序文件和许可证均为 `OK`。校验失败时先重新下载，不继续执行。下载版赋予执行权限：
 
 ```sh
-chmod +x stop-friday.sh restart-friday.sh
+chmod +x start-friday.sh stop-friday.sh restart-friday.sh
 ```
 
 接下来**选择一种**初始化方式。此步只保存本机服务清单，不启动或停止服务；已有 `services.local.json` 时拒绝覆盖。
@@ -105,7 +134,7 @@ sudo -v
 
 **应看到：**`configuration / created_no_service_started`，本目录生成仅自己可读的 `services.local.json`。这份配置属于你的电脑，不上传公开仓库。初始化失败时，先确认 Friday 的 `.venv` 存在、Docker 服务端可用，以及自己的 HA 已经按前章启动。
 
-### 每天怎样停止和重新启动
+### 每天怎样启动、停止和重新启动
 
 在脚本目录执行。若使用 `--docker-sudo`，先运行 `sudo -v`；macOS 的 HA 位于 Colima 时，先确认专用实例运行、当前 Docker 连接仍指向该实例，必要时执行 `colima start --profile friday-home`。
 
@@ -114,6 +143,14 @@ sudo -v
 ```sh
 FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" ./restart-friday.sh --dry-run
 ```
+
+只需启动尚未运行的服务时：
+
+```sh
+FRIDAY_PYTHON="$HOME/friday-home/Friday/.venv/bin/python" ./start-friday.sh
+```
+
+启动会复用已就绪的服务；重新启动则会先正常停止，再启动。请按目的选择其中一个入口。
 
 需要停止时：
 

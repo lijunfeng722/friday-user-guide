@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Graceful lifecycle runner for an explicitly configured local Friday deployment.
+"""按本机服务清单正常启动、停止或重新启动 Friday。
 
-Python standard library only; macOS/Linux. No installation, process-name killing,
-device actions, data deletion, or automatic SIGKILL. Config stays on your computer.
+仅使用 Python 标准库，支持 macOS / Linux。配置保留在本机；不安装依赖、
+按进程名结束程序、操作设备、删除数据或自动发送 SIGKILL。
 """
 from __future__ import annotations
 
@@ -44,7 +44,7 @@ def save(path, value):
 
 
 def boot_time():
-    """Read the kernel's boot timestamp; an unknown result keeps PID checks strict."""
+    """读取内核开机时间；无法确认时继续严格检查进程身份。"""
     try:
         if sys.platform.startswith("linux"):
             for line in Path("/proc/stat").read_text().splitlines():
@@ -128,10 +128,10 @@ def port_open(endpoint):
 
 
 def gesture_targets_ready(config, policy, snapshot, now):
-    """Check the same canonical-state gate used before a gesture can be planned.
+    """复用手势规划前的设备状态检查。
 
-    Paused controls and installations without enabled bindings need no live target.
-    Inventory presence or HTTP reachability alone never qualifies an active rule.
+    互动暂停或没有启用的绑定时，无须等待实时目标。只有设备清单或 HTTP
+    可访问，不能证明启用规则的目标已就绪。
     """
     if not isinstance(config.get("enabled"), bool) or not isinstance(config.get("bindings"), list):
         return False
@@ -173,7 +173,7 @@ class Runner:
         self.children = []
 
     def env(self, service):
-        # Custom deployments can exclude ambient API/channel credentials.
+        # 专用部署可以排除环境中继承的 API 或通道凭据。
         allowed = service.get("inherit_env")
         result = dict(os.environ) if allowed is None else {k: v for k, v in os.environ.items() if k in allowed}
         result.update(self.config.get("env", {}))
@@ -185,7 +185,7 @@ class Runner:
             return subprocess.run(argv, cwd=service.get("cwd"), env=self.env(service),
                                   text=True, capture_output=True, timeout=timeout)
         except subprocess.TimeoutExpired:
-            # This cancels the CLI client, never sends SIGKILL to the service.
+            # 这里只取消命令行客户端，不向服务发送 SIGKILL。
             raise LifecycleError(service["id"] + ":command_timeout") from None
 
     def pending_file(self, service):
@@ -201,9 +201,9 @@ class Runner:
             raise LifecycleError(service["id"] + ":invalid_pid_file") from None
         if pid <= 1:
             raise LifecycleError(service["id"] + ":invalid_pid_file")
-        # A process cannot survive an OS reboot. An older PID file may now point
-        # to an unrelated process; leave it alone and use normal port/start gates.
-        # Same-boot mismatches and unknown boot times still fail closed below.
+        # 系统重启后旧进程已不存在，旧 PID 可能已被其他程序复用；
+        # 保留该程序，继续使用正常的端口与启动检查。
+        # 同次开机身份不符或开机时间未知时，后续仍拒绝执行。
         if self.booted_at is not None and path.stat().st_mtime < self.booted_at:
             return None
         entry = identity(pid)
@@ -295,8 +295,7 @@ class Runner:
             return
         emit(service["id"], "stopping")
         if service["kind"] == "process":
-            # A failed earlier stop retains the child identities, including
-            # guardians that outlive their original parent.
+            # 上次停止失败时保留子进程身份，包括在原父进程退出后仍运行的监护进程。
             root = self.owned(service)
             if root:
                 pending = self.pending_file(service)
@@ -352,8 +351,7 @@ class Runner:
             pid_file.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
             pid_file.write_text(str(child.pid))
             os.chmod(pid_file, 0o600)
-            # Some launchers exec/rename themselves before reaching the configured
-            # identity. Only the newly spawned PID is tolerated during this wait.
+            # 某些启动器会先替换或重命名自身；等待期间只允许刚创建的那个 PID。
             def started():
                 if child.poll() is not None:
                     raise LifecycleError(service["id"] + ":process_exited_check_private_log")
@@ -406,9 +404,8 @@ class Runner:
                 emit(service["id"], "would_keep" if action == "stop" and service.get("keep_running") else "would_" + ("start" if action == "restart" else action))
             return
         if action == "restart":
-            # Cold starts also need the explicitly managed container host before
-            # the HA status/stop request. Never mistake an offline daemon for a
-            # stopped container, or bypass a failed status check.
+            # 冷启动时也要先准备已明确登记的容器主机，再查询或停止 HA；
+            # 不把守护进程离线当作容器已停止，也不跳过失败的状态检查。
             for service in self.services:
                 if service.get("keep_running"):
                     self.start_one(service)
