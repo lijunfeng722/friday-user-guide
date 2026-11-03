@@ -96,7 +96,7 @@ cd "$HOME/friday-home/Friday"
 
 **应看到：**`installed: true`、`version: v0.5.0`，并提示需要 HA 重启和账号登录。工具校验官方固定提交 `75b3acb6325a3a8d295688b13904737d6738a6a5`；集成位于 `data/deployment/homeassistant/custom_components/xiaomi_home`。它是 HA 内部集成，不是另一个独立 Web 服务。
 
-已有集成时，脚本会拒绝覆盖；按[已有集成升级步骤](installation-maintenance.md#已有-xiaomi-home-怎样升级)维护。对其他方式安装的 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.5.0)
+已有集成时，脚本会拒绝覆盖；按[已有集成升级步骤](../maintenance/installation-maintenance.md#已有-xiaomi-home-怎样升级)维护。对其他方式安装的 HA，要将集成安装到该实例实际使用的 `/config/custom_components`，不能把本教程新目录当作原实例配置。[Xiaomi Home 官方安装说明](https://github.com/XiaoMi/ha_xiaomi_home/tree/v0.5.0)
 
 ## 4. 启动 HA 并检查页面
 

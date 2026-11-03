@@ -118,13 +118,9 @@
 
 ## Q28. 重启后需要重新登录和配置规则吗？
 
-通常已保存设置会保留。使用[停止与重启脚本](../getting-started/installation-maintenance.md#1-日常启动与停止)正常退出和重新启动，再核对来源、画面和开关。脚本不会删除账号连接和规则，也不会主动取消已有暂停设置；明确提示登录失效时再重新登录，迁移或清理私有数据后则需另行接入。
+通常不用。用原来的[启动或重启脚本](../getting-started/installation-maintenance.md#1-日常启动与停止)恢复后，看看自己的家庭、画面和手势开关即可。已保存的规则和暂停设置会保留；只有明确提示登录失效时才需要重新登录。
 
-电脑重新开机后，使用原启动入口恢复服务即可。旧版如果停在“进程身份不符”，可能是上次开机留下的编号已被系统复用；按[重新开机说明](../getting-started/installation-maintenance.md#电脑重新开机后)更新管理脚本并保留自己的配置，无需逐台重新授权。
-
-如果手势已有响应记录却操作未完成，检查绑定设备在 HA 中是否为“不可用”。小米集成可能尚未恢复设备连接；按[重启后的设备连接排查](../getting-started/installation-maintenance.md#重启后有手势记录设备却没动)处理，不需要重新添加同一条规则。
-
-仍在使用 Xiaomi Home v0.4.3 的部署，可按[已有集成升级步骤](../getting-started/installation-maintenance.md#已有-xiaomi-home-怎样升级)补上断网后的刷新重试修复。日常重启不需要重新安装集成，也不需要逐台设备重新授权。
+脚本报错或设备没响应时，先看[日常维护中的处理方法](../getting-started/installation-maintenance.md#3-遇到问题怎么办)，无需反复安装或重新添加规则。需要更新脚本或小米连接组件时，请安装人员按[维护参考](../maintenance/installation-maintenance.md)操作。
 
 ## Q29. 手势一定需要云端模型或语音吗？
 

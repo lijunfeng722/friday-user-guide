@@ -17,7 +17,7 @@
 | 操作灯、窗帘等 | 设备接入 → 首次配置控制范围 | 目标控件可用，现场确认动作 |
 | 使用摄像头手势 | 上述步骤 → 摄像头与识别准备 → 手势教程 | 画面与关键点可见，规则有响应且设备实际执行 |
 
-**安装路线：**[macOS 从零准备](installation-macos.md) · [Linux 从零准备](installation-linux.md) → [HA 与小米接入](installation-home-assistant.md) → [可选摄像头与识别](installation-camera.md) → [启动、备份与排障](installation-maintenance.md)。
+**安装路线：**[macOS 从零准备](installation-macos.md) · [Linux 从零准备](installation-linux.md) → [HA 与小米接入](installation-home-assistant.md) → [可选摄像头与识别](installation-camera.md) → [启动、停止与日常维护](installation-maintenance.md)。
 
 ```mermaid
 flowchart TB

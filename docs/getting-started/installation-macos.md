@@ -79,7 +79,7 @@ UV_PYTHON=3.12 ./scripts/install-home.sh
 
 **应看到：**依赖安装完成，doctor 返回状态信息，基础模式为 `simulator`。ARL、摄像头等可选能力未就绪，不阻止运行示例。`detached HEAD` 表示使用选定提交，不是安装失败。
 
-已有同名目录时不要重复 clone 或删除 `data/`，先看[维护章节](installation-maintenance.md)。
+已有同名目录时不要重复 clone 或删除 `data/`，先看[安装人员维护参考](../maintenance/installation-maintenance.md)。
 
 ## 5. 打开示例
 

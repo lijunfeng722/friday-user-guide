@@ -22,6 +22,10 @@ python3.12 -m venv .venv
 
 打开命令显示的本机地址。修改后运行 `.venv/bin/mkdocs build --strict` 和 `.venv/bin/python scripts/check_docs.py`，推送 main 后由 GitHub Actions 发布 Pages。
 
+## 安装人员参考
+
+脚本下载、首次配置、升级与备份的详细操作见[安装人员维护参考](docs/maintenance/installation-maintenance.md)。家庭使用者阅读[日常维护](docs/getting-started/installation-maintenance.md)即可；安装人员参考不并入完整单文件用户手册。
+
 ## 开发与协作
 
 维护前阅读 [AGENTS.md](AGENTS.md)和[跨仓库开发规范](https://github.com/lijunfeng722/project-index/blob/main/docs/development.md)。新增人工提交和解释性注释使用中文，产品与部署变化按影响同步对应手册、技术说明及顶级索引。

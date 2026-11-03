@@ -69,7 +69,7 @@ UV_PYTHON=3.12 ./scripts/install-home.sh
 ./bin/home doctor
 ```
 
-**应看到：**基础依赖安装成功，doctor 的基础模式为 `simulator`。选定提交产生的 `detached HEAD` 是版本定位提示。已有目录时先看[维护章节](installation-maintenance.md)，不覆盖原数据。
+**应看到：**基础依赖安装成功，doctor 的基础模式为 `simulator`。选定提交产生的 `detached HEAD` 是版本定位提示。已有目录时先看[安装人员维护参考](../maintenance/installation-maintenance.md)，不覆盖原数据。
 
 启动：
 

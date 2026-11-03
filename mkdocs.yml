@@ -66,11 +66,11 @@ nav:
           - Linux 从零准备: getting-started/installation-linux.md
           - HA 与小米接入: getting-started/installation-home-assistant.md
           - 摄像头与本地识别: getting-started/installation-camera.md
-          - 启动、备份与排障: getting-started/installation-maintenance.md
       - 第一次打开: getting-started/quick-start.md
       - 连接自己的家: getting-started/connect-home.md
       - 第一条手势控制: tutorials/first-gesture.md
   - 日常操作:
+      - 启动、停止与日常维护: getting-started/installation-maintenance.md
       - 查看与操作设备: guides/devices.md
       - 摄像头与识别: guides/cameras.md
       - 管理互动控制: guides/interactions.md
@@ -93,6 +93,8 @@ nav:
   - 遇到问题:
       - 按现象排查: troubleshooting/common-errors.md
       - 常见问题: troubleshooting/faq.md
+  - 安装人员参考:
+      - 脚本、升级与备份: maintenance/installation-maintenance.md
 
 exclude_docs: |
   GENERATION-REPORT.md

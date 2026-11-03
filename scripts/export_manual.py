@@ -32,7 +32,12 @@ def main():
             if prefix:
                 return f'![{label}]({destination.relative_to(ROOT).as_posix()})'
             if destination.suffix == '.md':
-                return f'[{label}](#{anchor(destination.relative_to(DOCS).as_posix())})'
+                topic = destination.relative_to(DOCS).as_posix()
+                if topic in ORDER:
+                    return f'[{label}](#{anchor(topic)})'
+                # 未编入用户手册的安装人员参考保留文件链接。
+                fragment = f'#{url.fragment}' if url.fragment else ''
+                return f'[{label}]({destination.relative_to(ROOT).as_posix()}{fragment})'
             return f'[{label}]({destination.relative_to(ROOT).as_posix()})'
         source = re.sub(r'(!?)\[([^\]]*)\]\(([^)]+)\)', link, source)
         lines = source.splitlines()
