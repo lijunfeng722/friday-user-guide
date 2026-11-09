@@ -46,13 +46,13 @@ macOS 交付包也可提供“优雅停止.command”“重新启动.command”�
 
 ### 从顶级元仓库直接使用
 
-日常启动、停止和重启工具的源码统一放在[顶级元仓库根目录](https://github.com/lijunfeng722/project-index)，本手册提供同步生成的下载副本。以下两种脚本来源任选一种即可。
+日常启动、停止和重启工具的源码统一放在[顶级元仓库根目录](https://github.com/lijunfeng722/friday-project-index)，本手册提供同步生成的下载副本。以下两种脚本来源任选一种即可。
 
 已克隆元仓库时直接进入现有目录；尚未克隆时执行：
 
 ```sh
-git clone https://github.com/lijunfeng722/project-index.git "$HOME/friday-home/project-index"
-cd "$HOME/friday-home/project-index"
+git clone https://github.com/lijunfeng722/friday-project-index.git "$HOME/friday-home/friday-project-index"
+cd "$HOME/friday-home/friday-project-index"
 ```
 
 根目录应包含 `start-friday.sh`、`stop-friday.sh`、`restart-friday.sh`、`friday-services.py`、许可证和 `SHA256SUMS`。按下方 macOS / Linux 命令校验后，后续初始化和日常操作均可在这个根目录执行。
