@@ -2,7 +2,7 @@
 
 > 面向家庭使用者；按新版界面编写。Friday 示例截图采集于 2026-10-31；ARL 原生开发版演示图保留 2026-10-30 的阶段含义。真实家庭验收资料保存在本机私有版。
 
-[在线手册](https://lijunfeng722.github.io/friday-user-guide/) · [项目索引](https://github.com/lijunfeng722/project-index)
+[在线手册](https://lijunfeng722.github.io/friday-user-guide/) · [项目索引](https://github.com/lijunfeng722/friday-project-index)
 
 ## 阅读目录
 
@@ -1590,7 +1590,7 @@ Miloco、HA 和 Friday 读取或展示的范围可能不同；一个设备还有
 
 账号接通先让设备可读取；控制范围还需要明确配置。规则保存后，还需要对应总开关、识别条件和设备连接都满足。它们分别显示，方便你判断卡在哪一步。
 
-进一步了解项目之间的仓库关系，可查看[项目索引元仓库](https://github.com/lijunfeng722/project-index)。
+进一步了解项目之间的仓库关系，可查看[项目索引元仓库](https://github.com/lijunfeng722/friday-project-index)。
 
 <a id="guide-explanation-arl"></a>
 
@@ -1616,7 +1616,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 后台可被读取，与模型来源、任务决策、应用会话及外部工具都准备好不同。Friday 的“连接”卡与“系统状态”也可能分别表达这些层次，按具体功能核对即可。
 
-**完成标准：**能分清服务状态、模型状态与可执行任务。不需要为了让本地手势工作，开放日历、消息、模型或其他不相关服务。仓库关系见[项目索引](https://github.com/lijunfeng722/project-index)。
+**完成标准：**能分清服务状态、模型状态与可执行任务。不需要为了让本地手势工作，开放日历、消息、模型或其他不相关服务。仓库关系见[项目索引](https://github.com/lijunfeng722/friday-project-index)。
 
 <a id="guide-releases-2026-10-31"></a>
 
@@ -1645,7 +1645,7 @@ ARL 为应用提供共享智能运行服务。日常家庭操作仍从 Friday �
 
 ### 维护与反馈
 
-本手册由独立文档仓库维护。产品行为参考 [Friday 源码](https://github.com/Geeprox/Friday)，相关依赖见[元仓库索引](https://github.com/lijunfeng722/project-index)。反馈时说明手册页、产品版本与实际可见行为。
+本手册由独立文档仓库维护。产品行为参考 [Friday 源码](https://github.com/Geeprox/Friday)，相关依赖见[元仓库索引](https://github.com/lijunfeng722/friday-project-index)。反馈时说明手册页、产品版本与实际可见行为。
 
 <a id="guide-troubleshooting-common-errors"></a>
 

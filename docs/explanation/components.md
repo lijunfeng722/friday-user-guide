@@ -29,4 +29,4 @@ Miloco、HA 和 Friday 读取或展示的范围可能不同；一个设备还有
 
 账号接通先让设备可读取；控制范围还需要明确配置。规则保存后，还需要对应总开关、识别条件和设备连接都满足。它们分别显示，方便你判断卡在哪一步。
 
-进一步了解项目之间的仓库关系，可查看[项目索引元仓库](https://github.com/lijunfeng722/project-index)。
+进一步了解项目之间的仓库关系，可查看[项目索引元仓库](https://github.com/lijunfeng722/friday-project-index)。
