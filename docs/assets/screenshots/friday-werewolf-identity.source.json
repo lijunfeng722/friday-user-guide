@@ -1,0 +1,56 @@
+{
+  "source_commit": "85239c5b8ebaa2824b7d12e7cc4d8f23237c8022",
+  "synthetic": true,
+  "source_files": [
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "d3232f112972f45d07b8e9ea24ca5fa7f8ae9e2dac38f9919db08407892ea972"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "3cf74f9e4b6655becc77de300739871965c4066afd91b6b3ca9a1f8e6e4101d2"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "a1b2af81cf5b37dce63ec56a8609df1538c858742d372065b5304319e96d5b5e"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "564c92896631f67059bf0dd5b291bf192703d739b9ff029071b0101970632f6e"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "53fef977789711607a66606a6fc06d6845d8e2030ca9a37d81351b5b9ec3fe3b"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "dd2bf998b33beedb18dc5ff74d19570558a1458a97ca4379de3fe25b28e44e57"
+    },
+    {
+      "path": "homeplane/werewolf_effects.py",
+      "sha256": "d03d3abd9e811300014e00ef30e7c519ff3dcab36a41f60f23960847765a9c0f"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "a67802713a9c1a7cb15a6e37fd8463bfbcfe62061e894cdbb7cdb53bf9c98d4f"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "friday-werewolf-identity-phone.jpg",
+      "sha256": "dc9a8b40d61b8f1b3f47fedfcc6e6c018cb1c234d60640033f2e9f4503ae1b0b",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      }
+    },
+    {
+      "path": "friday-werewolf-identity-tv.jpg",
+      "sha256": "fd0dff3fea32bae0f7189a286a562522fd4b5c7fe49310c15188729ae691fef6",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    }
+  ]
+}
