@@ -1,0 +1,104 @@
+{
+  "source_commit": "1f3bd26b3db6d594584a48550c377a824deab682",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-body-side-raise.jpg",
+      "sha256": "41b2ba49dde030e5863b8dc195473b1bc858c1db660ee8b900a06247ce667e8c",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-body-camp-lantern.jpg",
+      "sha256": "1c696af6c1027feec9cd15a8aca0ca351b984f3f56ae39b0eeda72abb49be347",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/game_assets.py",
+      "sha256": "9e65ea8d70019a9799a00b7b67c3a3fd36a91e24ba457fd549c073a38df33691"
+    },
+    {
+      "path": "homeplane/embodied/game_difficulty.py",
+      "sha256": "008bfea9b4da40c1e06d31973e6bd855643a183d1f0b318f7ecc17d9067e914d"
+    },
+    {
+      "path": "homeplane/embodied/game_presentation.py",
+      "sha256": "c1c082ddfe64f780e1b10bcfee7046dfa2067d45c51d8833e0688c86cd42c6c0"
+    },
+    {
+      "path": "homeplane/embodied/hiit.py",
+      "sha256": "15994eb885d9357c7d4776e5b83c765849a88f5e22ed9d0ea32fb554d8bd6ca6"
+    },
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "1d9bdc4ccda057678207a87c88db10bf1d9931e80406adb78b6d01b386f02520"
+    },
+    {
+      "path": "homeplane/embodied/quest.py",
+      "sha256": "37ea586b64117ad95c4b0608b4d2dd4cb1db087d52e6ba90bc9f11ab3529be01"
+    },
+    {
+      "path": "homeplane/embodied/ski_route.py",
+      "sha256": "ce9e6e24e4f66286e6be2bcaa6676064e7fd6c83a58d9e0da94b21479714475a"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/quest-lantern.webp",
+      "sha256": "08069e55ec432673bcf9c6e53e3f008162c1a6baa87626525ed2c2777d8f6137"
+    },
+    {
+      "path": "homeplane/embodied/static/game-scenes.js",
+      "sha256": "ee4cf829b81730e1d6249e0122ec661fb89a16a030660070acfb02ad8aa3f7e8"
+    },
+    {
+      "path": "homeplane/embodied/static/game-teaching.js",
+      "sha256": "34ce1df87e01c4a38c2711601daf8bb77d397d25f35794ee1953dc2bf8c21cfa"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "9a98ea6754eef19e616439c870476e2352bf73b31c86c19a6111e1c626fe15ce"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "3d50a0da98f8d883dcadd61456767f3d3befc9fabc5427d44d60dfcf898d13dd"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "d4decaf84d579c8cd4a88f76eed6f5d50a43cd6aeaf0bb19ea6e49350419b48f"
+    },
+    {
+      "path": "homeplane/embodied/static/ski-scene.js",
+      "sha256": "8386627b9873b32896cc8eb204dbc67a57554bf8b6eff7942c3a810c0a46832b"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "06ac3da4408ee15cd8a5dda2ab2f1bed761b96c71934a7f43e8a433c056758b4"
+    },
+    {
+      "path": "homeplane/static/body-motions.js",
+      "sha256": "e47885af344d957c2c7eb654f32adafc0d19a7ed0e2f6aed4803b6af5977d926"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body-renderer.js",
+      "sha256": "4cdd424aba27e31f19f43c9929dd38cd91c151bb3c45ab03cbe2cd974e3ae736"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body.gltf",
+      "sha256": "ca3aad40450568c9bf0781ec73c2bd3e625913f30b351808273446ef47f99997"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/targets/exercise-overhead_clap.png",
+      "sha256": "810ace5e89e85db9a3a9865f292102626a6f8c561308c30f1ae2f33030cba5c0"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/targets/exercise-side_raise.png",
+      "sha256": "97466f4b4992631b62631d1c5713adfc15ef326598b0dc4b20048ae50e99859b"
+    }
+  ]
+}
