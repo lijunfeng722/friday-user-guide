@@ -1,0 +1,50 @@
+{
+  "kind": "synthetic_browser_capture",
+  "captured_on": "2026-11-11",
+  "viewport": [
+    390,
+    844
+  ],
+  "source_repository": "https://github.com/Geeprox/Friday",
+  "source_files": [
+    {
+      "path": "homeplane/embodied/rapid_review.py",
+      "sha256": "f670a02b9f5100673d0bc49031bc591e915e96db58c9455656299f217a84af0e"
+    },
+    {
+      "path": "homeplane/embodied/temporal_review.py",
+      "sha256": "1bad737e0f282ffecdc27b37b66ba87cecdd595205f7a160165bc5f79818ac6a"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "1b5af8fe51cbd5b695112372fb3d6b0340c49150874260f659539a0317722607"
+    },
+    {
+      "path": "homeplane/embodied/safety_recording.py",
+      "sha256": "8aeb648d286d38198960be4241f8a65676941088bcf1a53ab797c45ad7b466dd"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "ac3886269b27096eaf0b0000d22d0f0e1989f03dad48b3cd8e947ea9f5fc8761"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "dbfaa44d7aa2dd791d9bcf7df9a121c9a7b7decdbe4c4a19179e4da4208122d9"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "77f336ce9395c2fd47f1a9b8e42ba54425c3c3dfc48a1f28c8e76ffad06fe0b0"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "tests/test_temporal_review.py",
+      "sha256": "613a76011c79343439bc3bc7647006168e2aa967f53499b1dae34c1b00cd67c1"
+    }
+  ],
+  "capture_sha256": "461173e22fad9b8f05b38b00af3447417b7e4e5d1adbfbbcba665ca61e134697",
+  "file_sha256": "461173e22fad9b8f05b38b00af3447417b7e4e5d1adbfbbcba665ca61e134697",
+  "description": "合成关节与画面进入 Friday 原留档接口，截图使用原提醒页面。"
+}
