@@ -1,0 +1,25 @@
+{
+  "source_commit": "3e75374c6c1b8ef1ede7473a6613fccc4c40183d",
+  "synthetic": true,
+  "source_files": {
+    "homeplane/static/index.html": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404",
+    "homeplane/static/games-library.js": "85e5154a623e8949a6d8a26569fb56c025e52422e625a2e6ebe774f228227ffe",
+    "homeplane/static/games-library.css": "d8f4ed8a267e5a29d6985f2d8f29f16a3082ad9e6dc803d04eb2400a072d08d3",
+    "homeplane/embodied/static/games.html": "3d50a0da98f8d883dcadd61456767f3d3befc9fabc5427d44d60dfcf898d13dd",
+    "homeplane/embodied/static/games.js": "3ecfc052357def1227265efecf8e9c0159b971ae13fa70eedb6be652349b8ce8",
+    "homeplane/embodied/api.py": "67330e613298a0307f6382c7de0f2fd7c8ce7ae1e8cb17d1ea7a690419d30b3c",
+    "homeplane/embodied/service.py": "bd542da2e165cc324a9230ab725b5a7debc3613a1199305816a85fcf316b5b03",
+    "homeplane/embodied/worker.py": "3c392cfac61b63b2485ad743db4c8734000d9d60c837c091f2a90bc952066607",
+    "homeplane/embodied/motion_games.py": "20ba6ec55f90c538d64c31c4eb6f56ad6ef45da9f13e7b42f9750618a6ad39ee"
+  },
+  "screenshots": [
+    {
+      "path": "friday-tennis-library-choice.jpg",
+      "sha256": "15915adcf798d65fd4dbe05590482afd0187bbe4b7a975c2e24a8588a6ac3e5e",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
