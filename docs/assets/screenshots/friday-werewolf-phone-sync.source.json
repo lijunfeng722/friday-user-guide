@@ -1,0 +1,20 @@
+{
+  "kind": "synthetic_browser_capture",
+  "captured_on": "2026-11-11",
+  "viewport": [
+    390,
+    844
+  ],
+  "source_repository": "https://github.com/Geeprox/Friday",
+  "source_files": {
+    "homeplane/werewolf.py": "e209e5a8ecb3d82a401219ce528d586ff7202b238863541754bb48730f728635",
+    "homeplane/werewolf_service.py": "c9a6092b091002f4d1dbe2779125beec38cfaf6a1f1dbbe3d802beceb91978d2",
+    "homeplane/static/werewolf-party.html": "7e870d45e412ed4ef50f7661e1282bc2157709aef767f306bbf4ad320847c051",
+    "homeplane/static/werewolf-party.css": "f7bc88bd920f93557ce5fdba4d77aaf2e1b3e09c854f7449caff7238cf8f1cef",
+    "homeplane/static/werewolf-party.js": "31d4ad52725c6cffe42e058c2042546d35dd1de8255ddfb65323dcf7e1241898",
+    "homeplane/static/games-art/werewolf.png": "65c686067b13e7ec6b8d9475c31da9ddeca5253cae95160a41404d49ae827c24"
+  },
+  "capture_sha256": "c916f6d633996148bfb4e3a0ca247ee11281d16f05938555b430b691f4aaa1b0",
+  "file_sha256": "c916f6d633996148bfb4e3a0ca247ee11281d16f05938555b430b691f4aaa1b0",
+  "description": "使用 Friday 原页面、回环地址与合成对局验证断线恢复。"
+}
