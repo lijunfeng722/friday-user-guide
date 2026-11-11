@@ -1,0 +1,14 @@
+{
+  "source_commit": "043f6b8cd15bda0f3ac937d513c2d575328aeaa5",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-camera-vision-recovery.jpg",
+      "sha256": "9816a20960e12a6ae0c82880e1cea8b90602cc8ccfb583873242b6699f22ed79",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
