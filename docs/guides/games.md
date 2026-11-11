@@ -32,6 +32,18 @@
 
 ![合成对局的手机端，选中 4 号并提交守护后显示回执](../assets/screenshots/friday-werewolf-phone.jpg)
 
+### 白天怎么安排发言？
+
+在主持端的“点名发言”中选择座位，再点“请发言”。开启镜头辅助并对应好座位后，举手会显示在座位和选择列表里。Friday 已开启语音主持时会读出座位号，电视标记发言座位，被点名的手机会提示“轮到你发言”。
+
+可以直接选择下一位，或者点“结束发言”继续讨论。平票时只会列出平票座位。镜头暂时看不到举手时，可以直接在列表里选座位。放逐投票仍在手机上提交。
+
+![示例对局的主持端，4 号发言中](../assets/screenshots/friday-werewolf-speaking-host.jpg)
+
+![示例对局的公屏，显示主持提示和当前发言座位](../assets/screenshots/friday-werewolf-speaking-tv.jpg)
+
+![示例对局中被点名玩家的手机提示](../assets/screenshots/friday-werewolf-speaking-phone.jpg)
+
 ### 发牌后有人的手机无法恢复怎么办？
 
 主持端可以在首夜开始前点“返回入座”。移除无法恢复的旧座位后，请该玩家重新扫码。大家重新准备、发牌并确认身份。

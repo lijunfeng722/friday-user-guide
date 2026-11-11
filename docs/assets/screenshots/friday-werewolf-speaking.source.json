@@ -1,0 +1,64 @@
+{
+  "source_commit": "f0b790335a59ac21bdc11d67d3c91c3dbc8b1572",
+  "synthetic": true,
+  "source_files": [
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "0594c741addd2eb15d6021a9a097c7b71a2b8e831c792d87ccefef010e0e6316"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "af5f8f15533e9bb3e1677a07aa67f7c8cbab98ba136d068f64dd0dc2c6ba08fd"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "0e687695a87088bfa98234f0f4e119642cb5087c2ad154f267302326a93dafb2"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "33e1f81c864ead1374acc0d37ee5adba73d31d80ef900089386e8b5b021e4594"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "6b0d9e520e1874953f24113ca115583f47077181b0f08428a142e30f72617e01"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "6e45e93cd65d6f067884e0f0ebc097ed9cf5c3dbf8696811712aaf3e6e7f8657"
+    },
+    {
+      "path": "homeplane/werewolf_effects.py",
+      "sha256": "d03d3abd9e811300014e00ef30e7c519ff3dcab36a41f60f23960847765a9c0f"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "19d0fe8d3b5ffddfb97646b449beeaac369b50d7e9cd8216ce26873a09e91353"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "friday-werewolf-speaking-host.jpg",
+      "sha256": "9ff8ec41afb4be75ef35cf47dbb9d2108933cb3034e40890690f5501cf81de16",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-werewolf-speaking-phone.jpg",
+      "sha256": "be470c24d4d008863144427238eb7ac33a70439315aafc7b9db7abd1dcd04e5e",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "friday-werewolf-speaking-tv.jpg",
+      "sha256": "d694d5f3a1b5d65f5a93944059cd5c88390902196c02d7325ebd7e2aa8ba5add",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    }
+  ]
+}
