@@ -1,0 +1,72 @@
+{
+  "source_commit": "be1ef216bd6b894e9195f9c361634b8053b841c4",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-ski-warmup.jpg",
+      "sha256": "8a57968e11ca0352d2e1da4ca33adbeaf49eb77b681c4db5cbdfb5c63d6c811f",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "96861d10bdadccf1df4d7fd27e3cb9be67b22c140fd7c182b2137c65a39a1fd5"
+    },
+    {
+      "path": "homeplane/embodied/ski_route.py",
+      "sha256": "0b2d3e419e00f192aca189cda3f3cc2d7a7e7fb7fddee919b6b4b767d6396766"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/winter-props.png",
+      "sha256": "73bba0b51c57e6470ea71bb87761a3d9b264a7f63844ea6468fb4f26fc6aebb0"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/winter-scene.png",
+      "sha256": "00cc2c43e17c27d2267b8a10a36c4b306fd8ae8a021ad3ef497909a09675c1a7"
+    },
+    {
+      "path": "homeplane/embodied/static/game-sound.js",
+      "sha256": "871387a849a5ab45170eb14ebf0fc1932434d517e5b042e0f57989bf60f20211"
+    },
+    {
+      "path": "homeplane/embodied/static/game-teaching.js",
+      "sha256": "17b0ab909eac667c22e1799dc2dae9ea43199a7db876448dd3aa953f3420a3d4"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "0d09504bf29767a0ce65d726c4553c3aa753d928d01d10513269606df48569d4"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "baafcd4b0559de28fd4207ca9a1791361ec1307680958d409b3e80e66fb2d064"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "138c6260f735a71682f83fe7bbcb1ba4d16acc7a84d05a03b7aedbca1cc15356"
+    },
+    {
+      "path": "homeplane/embodied/static/ski-scene.js",
+      "sha256": "8386627b9873b32896cc8eb204dbc67a57554bf8b6eff7942c3a810c0a46832b"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "4ae746883d2350dc5414ea3cce9fe82252477fc9e891665bf5cfa730898f5c59"
+    },
+    {
+      "path": "homeplane/static/body-motions.js",
+      "sha256": "fd4b0202a93d560c7de1e97a15a5707a8e6402a804003806a664bc2312a0c692"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body-renderer.js",
+      "sha256": "4cdd424aba27e31f19f43c9929dd38cd91c151bb3c45ab03cbe2cd974e3ae736"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body.gltf",
+      "sha256": "ca3aad40450568c9bf0781ec73c2bd3e625913f30b351808273446ef47f99997"
+    }
+  ]
+}
