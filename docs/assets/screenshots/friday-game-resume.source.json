@@ -1,0 +1,26 @@
+{
+  "kind": "synthetic_browser_capture",
+  "captured_on": "2026-11-11",
+  "viewport": [
+    375,
+    812
+  ],
+  "source_repository": "https://github.com/Geeprox/Friday",
+  "source_files": {
+    "homeplane/embodied/static/games.html": "272fe48cbaef656273d5e4d146e5542af92b9eaa1852ff2f4a2168d25b1086f6",
+    "homeplane/embodied/static/games.css": "d6cfa7d0f6d72abd764d3b78472afbb12a73714db8946a63a5201e46fab31674",
+    "homeplane/embodied/static/games.js": "7a293c476d1e5f0dd4b32f7cea441d998a50dbdc0b3efec087c69b37aba22e83",
+    "homeplane/embodied/static/game-scenes.js": "963de44045a3b0a6ef2224c5654d9788fb9e8e152b8cf1f17d77d7c68897e3a0",
+    "homeplane/embodied/static/ski-scene.js": "a18f85da604a38b71fabd1c944deb7ec82d251dda2d4c97ae114efefa31a0d28",
+    "homeplane/embodied/static/game-teaching.js": "a41b73ccf81f78580ff2748b54ab863bd8677be27ba7d9fc598767cf9b72e736",
+    "homeplane/static/body-motions.js": "0505fe339128452150a4a8e6aa35dcfb3bfc43e07e3b34fb41489dd6dea7b337",
+    "homeplane/embodied/motion_games.py": "901d3fbc3ad2995ef73754375c2fc4d29fcbebf672e70631391cf932a308c096",
+    "homeplane/embodied/game_presentation.py": "c1c082ddfe64f780e1b10bcfee7046dfa2067d45c51d8833e0688c86cd42c6c0",
+    "homeplane/embodied/quest.py": "0500681ee4a2f680119c1e52db31dcd467eb7a711cb4ee04aa9876c5fe3780c6",
+    "homeplane/embodied/worker.py": "9c0b435aa0191d8891db18d9a057cf9b8f7a3eb2e4f033c7e4322484ec09784a"
+  },
+  "capture_sha256": "6d3e4d27ac09340996b69f7e4e6a062ab04c4f21d9275912ac618429a4eb5ddf",
+  "file_sha256": "2cf5e6635f237336f6f7bcde5713b0816e6678089b0868d61c7b36a2e1d2ebba",
+  "description": "来源：Friday 原游戏页面与原规则的隔离合成关节演练；浏览器完整视口截图，日期 2026-11-11，尺寸 375×812。素材与页面源码：https://github.com/Geeprox/Friday/tree/codex/friday-progress-20261109/homeplane/embodied/static 。未启动真实摄像头、麦克风、模型、音频或家庭设备。",
+  "product_commit": "f6cbcec93711bc3a31975ca2546e4ea1abad190a"
+}
