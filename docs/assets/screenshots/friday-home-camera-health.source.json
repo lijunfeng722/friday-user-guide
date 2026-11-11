@@ -1,0 +1,14 @@
+{
+  "source_commit": "6cb631e3236284e047a0ca034abb1281896c97a5",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-home-camera-health.jpg",
+      "sha256": "be55fb895789e196e757b9df167acbc55f494fab779df7de4bd6c2b5c8e88ddf",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
