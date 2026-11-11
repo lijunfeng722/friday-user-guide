@@ -1,0 +1,64 @@
+{
+  "source_commit": "1456526695d6c800befb455247e97b2c836df6c7",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-werewolf-turn-tv.jpg",
+      "sha256": "52b239a7b82d6c7365b21253299446e974d29e28f85ec59b9550679c9f388f3a",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "path": "friday-werewolf-turn-phone.jpg",
+      "sha256": "23f25336290203f5b9fa23cf4fa2773a423c6b52bbbebcc0f45f3ac5733f18ca",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "85e5154a623e8949a6d8a26569fb56c025e52422e625a2e6ebe774f228227ffe"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "1d306996a1ae2f88793aba2ee41b19e19849125bc9a1018d9010f5c2397ea29e"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.html",
+      "sha256": "7e870d45e412ed4ef50f7661e1282bc2157709aef767f306bbf4ad320847c051"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "88bcb768c595d93b58c0dd6fb8bb24f92da162b847acc4804a9702b2d4baa0a9"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "4cf0c0e3dd4aeeb32a4bb9a89bab60c95d8a3d180d87f1a0ef768af967d35ec9"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "c1724fa5444741bbd2fa227bd5d039e08382c3a42a85b14e45d41f2296b288ab"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "364a3c6266dae5325f39f83be54daa29f3fb246ca77c4b4662262c323bde976e"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "b34b9715fea5930410d3bbc2834bbd8a9ff21a45ed4ed0f03b9ee7c4454b9261"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "c6904acc95adc205152012787b388f3a40cb5ac4e2571ee1a210321ed96757da"
+    }
+  ]
+}
