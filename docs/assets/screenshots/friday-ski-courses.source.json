@@ -1,0 +1,68 @@
+{
+  "source_commit": "2e1fac01904e3856ef471b501df630d636dfc649",
+  "synthetic": true,
+  "source_files": [
+    {
+      "path": "homeplane/embodied/api.py",
+      "sha256": "b6cf27322cd90075498985374e4e34a73e7bb6314500233ccb897a7d5d02adcf"
+    },
+    {
+      "path": "homeplane/embodied/catalog.py",
+      "sha256": "7552ece32b8bbd4df7ff1e5c72eedd60a8f2118fe1e72047ade99ecd102149b9"
+    },
+    {
+      "path": "homeplane/embodied/game_difficulty.py",
+      "sha256": "008bfea9b4da40c1e06d31973e6bd855643a183d1f0b318f7ecc17d9067e914d"
+    },
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "0b6d684e8dcca73119ec8c1a941a8bbc0c7ea3fe661cd7968516aad156d66ccb"
+    },
+    {
+      "path": "homeplane/embodied/service.py",
+      "sha256": "4d38f313225c267caaaf6b0eff0f2b5feed62116842f8f07b650a09848114a40"
+    },
+    {
+      "path": "homeplane/embodied/ski_route.py",
+      "sha256": "ce9e6e24e4f66286e6be2bcaa6676064e7fd6c83a58d9e0da94b21479714475a"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "104da7f2d759e7ec25a7cdb708b398e38df21dbe878d837257e8493f5baad2cc"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "69befa20bdfd2bb89b01cf1c29d2acc68f374d17bc525f08a33e647fc3d88f42"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "aa23deec5faf4201f27db0dcbd9333edcaa3902d8609625f8b0e186e50455e96"
+    },
+    {
+      "path": "homeplane/static/games-library.css",
+      "sha256": "dbd3c26e1f71ac09067522891f666d5cc83e5feb1654ef4def9bf4e0ba751cc7"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "0e3e0400125c3202662e8ced6640da46b6273b90ebb7fbaa07ea95ad50ce08f3"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "friday-ski-course-picker.jpg",
+      "sha256": "1e992405054597ed6a2a58ec6d53c11abc61f38a96eab7498d9ee30e56625999",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-ski-results.jpg",
+      "sha256": "364ca39d0a85da23957b159174a63f833e6847b8b859a99d2ff722b5ef5ed030",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      }
+    }
+  ]
+}
