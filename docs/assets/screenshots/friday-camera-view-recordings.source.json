@@ -13,14 +13,6 @@
   },
   "screenshots": [
     {
-      "path": "friday-camera-survey.jpg",
-      "sha256": "fd4ff9ee38b62df34c1e8ecc04de4f98e54d640badf722534e23ebd0ac0eee05",
-      "viewport": {
-        "width": 1440,
-        "height": 900
-      }
-    },
-    {
       "path": "friday-camera-recordings.jpg",
       "sha256": "6f8736a494b45cfb59c459498b3da0394687b64219c9c98236a9b6778a296063",
       "viewport": {
