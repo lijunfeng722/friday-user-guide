@@ -1,25 +1,72 @@
 {
-  "source_commit": "3e75374c6c1b8ef1ede7473a6613fccc4c40183d",
+  "source_commit": "a155595a7d251cf3cdee080bee8a8a49deec78b2",
   "synthetic": true,
-  "source_files": {
-    "homeplane/static/index.html": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404",
-    "homeplane/static/games-library.js": "85e5154a623e8949a6d8a26569fb56c025e52422e625a2e6ebe774f228227ffe",
-    "homeplane/static/games-library.css": "d8f4ed8a267e5a29d6985f2d8f29f16a3082ad9e6dc803d04eb2400a072d08d3",
-    "homeplane/embodied/static/games.html": "3d50a0da98f8d883dcadd61456767f3d3befc9fabc5427d44d60dfcf898d13dd",
-    "homeplane/embodied/static/games.js": "3ecfc052357def1227265efecf8e9c0159b971ae13fa70eedb6be652349b8ce8",
-    "homeplane/embodied/api.py": "67330e613298a0307f6382c7de0f2fd7c8ce7ae1e8cb17d1ea7a690419d30b3c",
-    "homeplane/embodied/service.py": "bd542da2e165cc324a9230ab725b5a7debc3613a1199305816a85fcf316b5b03",
-    "homeplane/embodied/worker.py": "3c392cfac61b63b2485ad743db4c8734000d9d60c837c091f2a90bc952066607",
-    "homeplane/embodied/motion_games.py": "20ba6ec55f90c538d64c31c4eb6f56ad6ef45da9f13e7b42f9750618a6ad39ee"
-  },
   "screenshots": [
     {
       "path": "friday-tennis-library-choice.jpg",
-      "sha256": "15915adcf798d65fd4dbe05590482afd0187bbe4b7a975c2e24a8588a6ac3e5e",
+      "sha256": "182f541f5301a52e112dafe8b00162200f9e6a92706e699cc74cd54b726fc6c2",
       "viewport": {
         "width": 1440,
         "height": 900
       }
+    },
+    {
+      "path": "friday-tennis-solo-court.jpg",
+      "sha256": "ed7a1319f3017ac927270984e34e738f972b0b1acbba5b02d5f8d37ae4b2ea36",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "35e86006d6978ddb4ef200091845157caeba486479259408469a6689ec3936a4"
+    },
+    {
+      "path": "homeplane/static/games-library.css",
+      "sha256": "86d18a6dceb8f31d822386d5fbbd4dbe22703ed90d761238f6ea02417d048dc4"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "3d50a0da98f8d883dcadd61456767f3d3befc9fabc5427d44d60dfcf898d13dd"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "8f5502a009fe09c71d443eeb01fa5c4333ada43e18b2847ea2b0b6514690af0c"
+    },
+    {
+      "path": "homeplane/embodied/api.py",
+      "sha256": "3240adce887facc255e560cd4cfc8e1470426db445f4d68e735876a1d8852b3f"
+    },
+    {
+      "path": "homeplane/embodied/service.py",
+      "sha256": "10f28e55a3769a57471de99c8da3e5473ed961eb5bd731a80ba971c17d9b6a6b"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "06ac3da4408ee15cd8a5dda2ab2f1bed761b96c71934a7f43e8a433c056758b4"
+    },
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "4f313d047ec8daf4d91d1b7b06006d02067e5c16a4d6ce77c22502c38eb6fc83"
+    },
+    {
+      "path": "homeplane/embodied/catalog.py",
+      "sha256": "c1a3c16bf54ed29c0f53b49e87390815cd16c4f0aa6b3c8fe7d1dc440aecf064"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "65fc459df90d18a6e949c27f12ca30f280928447c97e61ce4f519ad76907a705"
+    },
+    {
+      "path": "homeplane/embodied/static/game-scenes.js",
+      "sha256": "d283b046d0e6b414d1610b5dc61987cfd89a24612cdb0a4f3e9d32904eb34377"
     }
   ]
 }
