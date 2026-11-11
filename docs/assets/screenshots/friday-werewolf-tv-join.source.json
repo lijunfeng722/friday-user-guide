@@ -1,0 +1,14 @@
+{
+  "source_commit": "5da69f570060c18edbc33ed9a9d3c675502deed2",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-werewolf-tv-join.jpg",
+      "sha256": "2685e918d680904e41442ac88c469d2d306b9900adf29ca8f1a67a8561bc43ad",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ]
+}
