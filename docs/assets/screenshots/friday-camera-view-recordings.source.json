@@ -1,0 +1,32 @@
+{
+  "source_commit": "fe8af32eabee857a8af44c0418e89255da8c30d4",
+  "synthetic": true,
+  "source_files": {
+    "homeplane/static/index.html": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404",
+    "homeplane/static/app.js": "322889bf5bf751758d8fd42ef7cf7c902d751dc0e9c0d1394d27625bd9ec13e3",
+    "homeplane/static/home-experience.js": "ac94dbf953bc910fedc4217d16d2eb07f870f33216c9b295cd31459a73d97498",
+    "homeplane/static/home-experience.css": "dd0656c02c25c77e367243937a204518db7f5160aa22121591474f20daedd61f",
+    "homeplane/static/protected-recordings.js": "c462378112c838f07a217bc4ed916addb91d21ce7822aa1c8593552898b3e63c",
+    "homeplane/static/protected-recordings.css": "40cbda1e5780d42fb63ca170cfb41e1ab529c2fa5c58018de5c5716f13c215ae",
+    "homeplane/home_experience.py": "0aee012c8c71b9e131463ca69dd74e7040eb0b0d6e9f3379bdaf4877c4a51a9c",
+    "homeplane/recordings.py": "9afd20106fb5f2a0b575a522cdee7298a93571026e146525072d34d006687688"
+  },
+  "screenshots": [
+    {
+      "path": "friday-camera-survey.jpg",
+      "sha256": "fd4ff9ee38b62df34c1e8ecc04de4f98e54d640badf722534e23ebd0ac0eee05",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-camera-recordings.jpg",
+      "sha256": "6f8736a494b45cfb59c459498b3da0394687b64219c9c98236a9b6778a296063",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
