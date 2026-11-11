@@ -1,0 +1,60 @@
+{
+  "source_commit": "c34b8a560c814a53a7ded139613f5832a47c00f7",
+  "synthetic": true,
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "fd14477b435cb60bc5b6718cdd02c7379c06ec4915ba446436c02917288cffe5"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "cd20f57b618cb4af4d1b93bb111dccb20396e985b0906c60394df7f811f37adc"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "974aa588bcac7e1f6c7992b64e0072c9a8615245231e3c7501c7906542959060"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "267b150058bb13aed013cd1daffbc05a709ef68ebe095d8c5267c2e922cb25de"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "874ae96849f588b1dec706fd5fa41d9529f19e6f4e63a0d6d486d137e8d5750f"
+    },
+    {
+      "path": "homeplane/embodied/safety_recording.py",
+      "sha256": "5f268e5e1f4d8fe3e178eb7aa955cdd1a520ede7faabfd83baf1718df812cbb0"
+    },
+    {
+      "path": "homeplane/embodied/sound_review.py",
+      "sha256": "93bf01cf33a42cc15f4c2a89b3d9a8f919b719ab17a3f1692b7d74974a65e924"
+    },
+    {
+      "path": "homeplane/embodied/previews.py",
+      "sha256": "ae476adcc648f8e554bd52aec4880f6bcfbead33ff521d588e219a3f0caf8c14"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "06ac3da4408ee15cd8a5dda2ab2f1bed761b96c71934a7f43e8a433c056758b4"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "friday-sound-search-evidence.jpg",
+      "sha256": "e21e716ff501dfefca2953a31b7a1890387bfef6eecce0b9b713f9c9a8870342",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
