@@ -1,0 +1,21 @@
+{
+  "kind": "synthetic_browser_capture",
+  "captured_on": "2026-11-11",
+  "viewport": [
+    390,
+    780
+  ],
+  "source_repository": "https://github.com/Geeprox/Friday",
+  "source_files": {
+    "homeplane/static/werewolf-party.html": "7e870d45e412ed4ef50f7661e1282bc2157709aef767f306bbf4ad320847c051",
+    "homeplane/static/werewolf-party.css": "2f635c3ff769fd8de77ae54fb3734dad58fb8dd627f338da731fa0ceadcbf28d",
+    "homeplane/static/werewolf-party.js": "94e96120902c0dc919a46d615048f2930fb762b4239556bcb423ec2bb5e427b7",
+    "homeplane/static/games-art/werewolf.png": "65c686067b13e7ec6b8d9475c31da9ddeca5253cae95160a41404d49ae827c24",
+    "homeplane/werewolf.py": "e209e5a8ecb3d82a401219ce528d586ff7202b238863541754bb48730f728635",
+    "homeplane/werewolf_service.py": "9c844dc8734c856148100a953d8dfe21a0e3c5d4c9b00b87921ea7e7ecdedab1"
+  },
+  "capture_sha256": "5aee1690e2c0bc20ca3628af94ee46652855d43de2a5a16e3865f70525261efe",
+  "file_sha256": "5aee1690e2c0bc20ca3628af94ee46652855d43de2a5a16e3865f70525261efe",
+  "description": "使用 Friday 原页面和合成对局生成，未使用真实家庭画面、设备或对局。",
+  "product_commit": "cb6d228415928aacb37feab8d8e7d99edb613d76"
+}
