@@ -1,0 +1,52 @@
+{
+  "source_commit": "a30c4c18d577c88a6f088c2244e90d770f5d801d",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-beam-aim.jpg",
+      "sha256": "31bbfe1435c9d3bb8a757ff2f53c36d9ff8f254c11665cdbaa1cc2d237873dc0",
+      "viewport": {
+        "width": 1440,
+        "height": 852
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/beam_game.py",
+      "sha256": "8b2ccd2fb491f41f8ab8f736faefa9707a4433d8405898a9c00fbc22816125ca"
+    },
+    {
+      "path": "homeplane/embodied/static/beam-scene.js",
+      "sha256": "d21a0c38a6ee1af289be2aaed2373c0e9081facc0ce30f5cdd0747f43aadda72"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "52ff0fffe8bbee0d425f90e1eca49128ec0426d547ab8df118e025b7eea283d7"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "e9ec0c00caf20a1b0f7310f96707c5a8ef4c827ac655484aaf761a1d3af41631"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "22db72562f542e77bcee1e5fc0fcac30080a5dc6b5718d1085c1303424721ba3"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/beam-glade.webp",
+      "sha256": "7e4399ee70e6a8bd69b4409fdd5e77b310dd5f541b3d94e53b5a44523b94802d"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/beam-fluff.webp",
+      "sha256": "10dfe79fb36ff7dc13b12eef413b7c8cfaa230f5306e7c0239e4baabfeb1100c"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "d9d01be123d805839b9f0106ebae8727603c47e0d58f1363f516ee10c715983b"
+    },
+    {
+      "path": "homeplane/static/games-art/beam-pose.svg",
+      "sha256": "d026a185c762265c136573409d94784464b2bb76ec4bfb3349d9d47763fd9cdc"
+    }
+  ]
+}
