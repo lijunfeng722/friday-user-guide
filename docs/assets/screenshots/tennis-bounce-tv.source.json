@@ -1,0 +1,14 @@
+{
+  "source_commit": "cfaf951ac9ad9023d34f7063f6b83cdf6185da11",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "tennis-bounce-tv.jpg",
+      "sha256": "059514ca52af6adc39c67983f79407f03fbb0efb742f0ffeccb764d4c47a7ca5",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ]
+}
