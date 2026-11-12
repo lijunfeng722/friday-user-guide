@@ -1,0 +1,14 @@
+{
+  "source_commit": "b58c1523b7c6a1ef7f7cc45715a9badc99f08cce",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-camera-survey.jpg",
+      "sha256": "804ffac99aebd0917c72f9222b177be0923298b283d0f81792b9e88e6339d6a8",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
