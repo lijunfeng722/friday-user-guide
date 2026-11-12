@@ -1,0 +1,68 @@
+{
+  "source_commit": "6584a97fc6cfeb97b93a0484383f3406c5816960",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-sustained-cry-review.jpg",
+      "sha256": "7a0116ee7a3a82b73312966e361a5f41a2eb7aaff8c1fcf050a77b11c144e6a7",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "fixtures/homeplane/archive-simulated.mp4",
+      "sha256": "a1f318cbd2d02ce033bc05256938d48edf26cd440abd4df01bb6b2a57999f038"
+    },
+    {
+      "path": "homeplane/archive_index.py",
+      "sha256": "ee7a46f8fe0ab9ef47077efd090630eb9acbdde8db342622e6c112487b916407"
+    },
+    {
+      "path": "homeplane/embodied/camera_audio.py",
+      "sha256": "c5d2e48b1f39df4889e06472addc08d9adcb1d13098eb49abeab4539e2f9471f"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "5aa6c66b57349cc58eac20b5b1fa63f4707983192823026ad0953087aaa83cc7"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "d3d907b56b3508dcfd1bb06783c4a36f791cf8394c7c478ebf5be811bfe7ec00"
+    },
+    {
+      "path": "homeplane/embodied/safety_archive.py",
+      "sha256": "b7c4ab1d30a4a14f78a88187056ec4deed15999ac376b84a7f2920123f454b8d"
+    },
+    {
+      "path": "homeplane/embodied/sound_model.py",
+      "sha256": "d814021a6aa11cd5b1a7b1505ad8b396265a668a6e5f132326b9bdf03ccf13d6"
+    },
+    {
+      "path": "homeplane/embodied/sound_review.py",
+      "sha256": "a8c5a5ec23cfea224c438e1fd636ff71a9217f739eb2ebc8daca14c68628c22b"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "322889bf5bf751758d8fd42ef7cf7c902d751dc0e9c0d1394d27625bd9ec13e3"
+    },
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "bc3e2bf913553d4517b42e75c1040b281219f0720bfa1595042eec99b0ab5f54"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "eab704e68532dc9dcd9bd506225861a34b8bd91bcce0af12860380cef3a41986"
+    }
+  ]
+}
