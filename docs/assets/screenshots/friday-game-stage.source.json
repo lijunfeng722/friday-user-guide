@@ -1,0 +1,22 @@
+{
+  "source_commit": "e6ad78a07acadc3ab03e1fb940c6db2eb1ab2497",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-game-stage-desktop.jpg",
+      "sha256": "0bea1c3f1423b372150b98f7576f1cdcd8d6bbb969157b74522b58a4fefa158d",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-game-stage-landscape.jpg",
+      "sha256": "f9e183d1976fe587e6c3dc9e0cd73320f7cf63d50a0cea33b7aa811a1cfceb49",
+      "viewport": {
+        "width": 568,
+        "height": 320
+      }
+    }
+  ]
+}
