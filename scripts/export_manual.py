@@ -14,7 +14,7 @@ def anchor(name):
 
 def main():
     output = ['# Friday 用户使用文档',
-              '> 面向家庭使用者，按新版界面编写。Friday 主要示例截图采集于 2026-10-31，手势响应表格截图更新于 2026-11-12。ARL 原生开发版演示图保留 2026-10-30 的阶段含义。真实家庭验收资料保存在本机私有版。',
+              '> 面向家庭使用者，按新版界面编写。Friday 基础示例截图采集于 2026-10-31，智能服务设置于 2026-11-11 更新，手势、摄像头、自动化与游戏示例更新于 2026-11-12。ARL 原生开发版演示图保留 2026-10-30 的阶段含义。真实家庭验收资料保存在本机私有版。',
               '[在线手册](https://lijunfeng722.github.io/friday-user-guide/) · [项目索引](https://github.com/lijunfeng722/friday-project-index)',
               '## 阅读目录']
     for number, name in enumerate(ORDER, 1):

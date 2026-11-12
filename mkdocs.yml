@@ -82,6 +82,7 @@ nav:
       - 游戏库: guides/games.md
       - 家庭资料预览: guides/files.md
       - 文字规则练习: guides/dialogue.md
+      - 智能服务与每日上限: guides/intelligence.md
   - 查阅与理解:
       - 新版入口速查: reference/navigation.md
       - 页面状态: reference/status.md
