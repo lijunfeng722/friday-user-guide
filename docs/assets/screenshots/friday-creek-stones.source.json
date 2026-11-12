@@ -1,0 +1,65 @@
+{
+  "source_commit": "d1d2f60476e60bb2845571322971f24eeacee14e",
+  "synthetic": true,
+  "browser": "Chromium",
+  "screenshots": [
+    {
+      "path": "friday-creek-stones.jpg",
+      "sha256": "d08521b2e5269344fb9a319f8a3a5bd021b4387268823e20947fb316b3d65ec2",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/game_difficulty.py",
+      "sha256": "52b8df1183002b7bf89d687e4896b9d9436aa70b99d5f6d378c28b1d7058fb82"
+    },
+    {
+      "path": "homeplane/embodied/hiit.py",
+      "sha256": "31f00588d1235b228ebe87523575602105ae157bf1e1a4408e56ef108f5ec95e"
+    },
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "86a6be2acb65dcceec5bd016328afdde4594dbe7cad74f635fb33fd01dd3ff83"
+    },
+    {
+      "path": "homeplane/embodied/practice.py",
+      "sha256": "e8849b3ece8081312f9624679cf516e0f1bcf9af92a392f8822c8e55a12b063e"
+    },
+    {
+      "path": "homeplane/embodied/quest.py",
+      "sha256": "74423cc61de379bed3f649892a6eb82637d1bbc2d243ac60343419bcca029d5c"
+    },
+    {
+      "path": "homeplane/embodied/static/game-scenes.js",
+      "sha256": "4a74439dce7953309bbd47c77701519731b6d7e72821f5b42263f24476cb6534"
+    },
+    {
+      "path": "homeplane/embodied/static/game-teaching.js",
+      "sha256": "6d0eb871d0f98de8da3d92c33727dd23f6923121bc1f853f8492f34fefe8c502"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "4e39bbf7d54c7e216e142972bcc6a35a79e62f9825429d48a4b050f79443ce7f"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "72dca5971beef9fed0b95c8c5fcd7fdf5613a0a0ae400e2ead24a1e4b06882cf"
+    },
+    {
+      "path": "homeplane/static/body-motions.js",
+      "sha256": "b5fb7ebbb88f10310609ad13ef8d3bead55bba3c69862942fab1d931d3423e47"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "1cb6e89104731e7988da1f8761383f2257b1701dada7454fb071432929a4bc6d"
+    },
+    {
+      "path": "homeplane/static/motion-guide.js",
+      "sha256": "9d84e3499382f517f90fd3ca237149cc4b73f01dce8516f870a02b550e14863a"
+    }
+  ]
+}
