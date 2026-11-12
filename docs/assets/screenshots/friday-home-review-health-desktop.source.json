@@ -1,0 +1,14 @@
+{
+  "source_commit": "04aca9995b5c4341b8cb5e05739b0a61a1fa3fa9",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-home-review-health-desktop.jpg",
+      "sha256": "171058345264844a7b1ae237dd460e5be0dfccb2fcf18f6cb076dfc602f07df9",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
