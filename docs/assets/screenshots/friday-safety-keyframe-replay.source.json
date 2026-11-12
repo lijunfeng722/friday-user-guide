@@ -1,0 +1,41 @@
+{
+  "source_commit": "901fcede7fbb217d773550d08f80861181012c26",
+  "synthetic": true,
+  "browser": "Chrome 157.0.8103.51",
+  "screenshots": [
+    {
+      "path": "friday-safety-keyframe-replay.jpg",
+      "sha256": "780ceebc2a47189a759aeb4d2645c09c4e43c723cd8236be7975de1153fe6d52",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "988c77d84c122d2be101cec68ee0059480ced2146c71d182cdc79c8877127c63"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "df77c9723b25c264d0787a17db2eef95dcf051763cf8f3bc5a7611fa419ed71f"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "85a559f276ea9395f85469ad9f6cf2b9d952bd63a61b727de17caf9cbb21b7f5"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "3874691616a83d82b341207d310e7768bc15bb6d39d87620f438df2d4b73cfe0"
+    },
+    {
+      "path": "homeplane/embodied/safety_archive.py",
+      "sha256": "1fa45602c27e8bf8a49586a5b609642706ccd0cb427e794285515c8e05686ff6"
+    }
+  ]
+}
