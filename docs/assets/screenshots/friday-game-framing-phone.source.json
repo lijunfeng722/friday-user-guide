@@ -1,0 +1,15 @@
+{
+  "source_commit": "8db6263616d7e981b24799a699a6264f9eb3037e",
+  "synthetic": true,
+  "browser": "chromium 149.0.7827.55",
+  "screenshots": [
+    {
+      "path": "friday-game-framing-phone.jpg",
+      "sha256": "70d32b81d5a67b302d4e4626cfa905c242bd2b5c1f3a3dd893f8fe1bae35f484",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}
