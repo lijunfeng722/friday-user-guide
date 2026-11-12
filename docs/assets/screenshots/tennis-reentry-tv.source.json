@@ -1,0 +1,14 @@
+{
+  "source_commit": "45a5fb99f64e6bae9b17175b0eb6fc6d4094c8e0",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "tennis-reentry-tv.jpg",
+      "sha256": "69ce94c189d792e29374884d9a8ef19c5eb679d70d89f647b36fd89511f9a97b",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ]
+}
