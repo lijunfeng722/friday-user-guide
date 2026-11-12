@@ -1,0 +1,48 @@
+{
+  "source_commit": "36abc0ceaa1521c810e62165e6ecaca62e2f3a08",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-camera-scheduled-patrol.jpg",
+      "sha256": "31f8075b81ebef16279885dd29011727a370b1b69e742609acf841ba2a6ed2f7",
+      "image_size": {
+        "width": 846,
+        "height": 551
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "1c119796407094eab8286a5935701eb7e244771014fafff01a8508b090142ff9"
+    },
+    {
+      "path": "homeplane/embodied/camera_intent.py",
+      "sha256": "671b7dd455373b379726bf54b7385bddc32927be03219631a0e3f28c5b758973"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "0edf8c7b1d97156ae2272f66aa119711b4ba58a030190e11a46636b86cc273c3"
+    },
+    {
+      "path": "homeplane/embodied/previews.py",
+      "sha256": "dbdcc7a9309d6de194c0731ef5909460add21d3feffe32eb7bddc42cea50d19c"
+    },
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "57265ca43bed83be80f54d786fe02a3162335ef3a689204a210e0b68b364f0c1"
+    },
+    {
+      "path": "homeplane/static/home-experience.css",
+      "sha256": "41054d6448f9fe623b5cf65d77f8738e4c0da696b8394f9b92bb15e2ff30b071"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "5b2922b603146ff9b390bc575e636e1f90ac740aed7ec4f3aac62df1bef45781"
+    }
+  ]
+}
