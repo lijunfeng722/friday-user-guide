@@ -1,0 +1,100 @@
+{
+  "source_commit": "239d91dcbbf60a5c446186aa3968d5e2794eaf82",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-quest-route.jpg",
+      "sha256": "72cc2b8db7ac418db9545e15248a426e4054c79abe6987ad626fb76202793d1d",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-quest-result.jpg",
+      "sha256": "5954f1016dca375e1574aa552bd86edfc34566503eb01a0e14fb705af09f0688",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/api.py",
+      "sha256": "90a2f3c3de0e86797b4d0acd4856d92695103dbec93cec9b3fe7869d6a22489e"
+    },
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "e96de97f27718858b8be07022c36e8d7b7d2ef845c0d691fd6f04417ed345fa5"
+    },
+    {
+      "path": "homeplane/embodied/quest.py",
+      "sha256": "968813ff2ecafabaf9b890fb5df9bb8b519cd14f89877b63a10253bb8afaed50"
+    },
+    {
+      "path": "homeplane/embodied/service.py",
+      "sha256": "16436d81e74b350f7bf4c5ce3397707145d397983af518dbef9f4214bba21acc"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/quest-camp-scene.png",
+      "sha256": "e74e788f21f6cf86073f8b3ca4e9ae8bae722d832c0ec1c80877ccec1fc9692d"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/quest-props.png",
+      "sha256": "9ae5941d6cc82ef6e726d494cfd786a8abad0e3949670e762e7021cdc088c17a"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/quest-stream-scene.png",
+      "sha256": "8b8acf2a4abcf31746d6615f296773e65f43b970a0a8afad41a5b38d3d43a9ae"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/summer-scene.png",
+      "sha256": "37b327817aa118f18ab82064f9d4fb3ec53853261880a07d5ae4dfb9f240bafb"
+    },
+    {
+      "path": "homeplane/embodied/static/game-scenes.js",
+      "sha256": "d283b046d0e6b414d1610b5dc61987cfd89a24612cdb0a4f3e9d32904eb34377"
+    },
+    {
+      "path": "homeplane/embodied/static/game-teaching.js",
+      "sha256": "17b0ab909eac667c22e1799dc2dae9ea43199a7db876448dd3aa953f3420a3d4"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "85b2906ce24ea7836531f2662e91322d01b15d0cae0262b3edb9faa10d3b718b"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "baafcd4b0559de28fd4207ca9a1791361ec1307680958d409b3e80e66fb2d064"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "a3d074473c52d5b982fc858ca7655f054d546dcd1e70df6a138bc5340d3d3b3c"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "9d1178399e7405c5f59e392828acf22722a20db279e057ec2e3e162bef2a56c7"
+    },
+    {
+      "path": "homeplane/static/body-motions.js",
+      "sha256": "fd4b0202a93d560c7de1e97a15a5707a8e6402a804003806a664bc2312a0c692"
+    },
+    {
+      "path": "homeplane/static/games-library.css",
+      "sha256": "21465f7d05989420fee70cae06581a808a66c035d36fd47a9fc6cfa6bfb9bde1"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "7ae06c22ebd47482534383711208b7761c46d60a56ab2c7731251dfb1afc6568"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body-renderer.js",
+      "sha256": "4cdd424aba27e31f19f43c9929dd38cd91c151bb3c45ab03cbe2cd974e3ae736"
+    },
+    {
+      "path": "homeplane/static/motion-art/body/body.gltf",
+      "sha256": "ca3aad40450568c9bf0781ec73c2bd3e625913f30b351808273446ef47f99997"
+    }
+  ]
+}
