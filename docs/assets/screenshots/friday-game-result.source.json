@@ -1,0 +1,22 @@
+{
+  "source_commit": "e546651f2f419a7eb29f947b4991690afc8ec564",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-game-result-library.jpg",
+      "sha256": "a025dc8ab88cac5f5f295288eb3b9346a3a41a283edf53aa23775d754c9bb9b9",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-game-result-phone.jpg",
+      "sha256": "ef5a49647472eec9135fa1aaafcdb4f0b47474cddab2cc4d71510a7a4b24635d",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}
