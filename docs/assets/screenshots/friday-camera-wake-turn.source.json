@@ -1,0 +1,56 @@
+{
+  "source_commit": "5f39df2fd34d203b55e663f8bfbd7ecc7e17ce58",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-camera-wake-turn.jpg",
+      "sha256": "54251f8c04c1b24841d92884e40b6798aba76cda89b4d18404d5d93753abf97c",
+      "image_size": {
+        "width": 726,
+        "height": 482
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "8478a52bd1e72d1190455312b0cc9189e7c8b055555e8b45143489633081fd9e"
+    },
+    {
+      "path": "homeplane/embodied/camera_audio.py",
+      "sha256": "429cf134fa6a00f17d8e69f49da54504bf5dde4ba3c6c9552f9a3f1cde1be6e7"
+    },
+    {
+      "path": "homeplane/embodied/home_service.py",
+      "sha256": "a4c3c7a61ba49da54f389e39951673f7dd649c12432c37e46b08ea2746791f1d"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "17f54f5982b47046ce9f3e739f073c36ea8a0cf928cdf64087455ece176cae0f"
+    },
+    {
+      "path": "homeplane/embodied/previews.py",
+      "sha256": "8b22a1490298365584dd7120aa14a2822ef64ba582c64d4753ac2489db443778"
+    },
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "ffc632a435e0c0200b588fb61bd9857f0d77ae11e1cd58573579815ab18ae3a7"
+    },
+    {
+      "path": "homeplane/static/home-experience.css",
+      "sha256": "d83046757725c3be45fb62997b23f6d1ace5fc8b3d4c39f049970323b65239d3"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "5b2922b603146ff9b390bc575e636e1f90ac740aed7ec4f3aac62df1bef45781"
+    },
+    {
+      "path": "homeplane/static/icons.css",
+      "sha256": "18379b4e5826b28bfcf13f1a6e76912930ad84ad40b4109d9192568f82f57a62"
+    },
+    {
+      "path": "homeplane/static/style.css",
+      "sha256": "c68f155f030c9ff2b7608fb7c9f2510d2821b45532e1e6223613756ee7aed141"
+    }
+  ]
+}

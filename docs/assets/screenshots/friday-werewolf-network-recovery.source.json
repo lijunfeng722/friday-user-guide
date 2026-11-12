@@ -1,0 +1,65 @@
+{
+  "source_commit": "d87bc3959ead6f08fda6561769f7c77c6f82d043",
+  "synthetic": true,
+  "capture": "Chromium loopback fixture with the original host UI and host router",
+  "screenshots": [
+    {
+      "path": "friday-werewolf-network-recovery.jpg",
+      "sha256": "6a66be926b7a8026f1af205a121513f74d105c17e1422c9a93bf27e0b964a342",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/style.css",
+      "sha256": "c68f155f030c9ff2b7608fb7c9f2510d2821b45532e1e6223613756ee7aed141"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "5b2922b603146ff9b390bc575e636e1f90ac740aed7ec4f3aac62df1bef45781"
+    },
+    {
+      "path": "homeplane/static/icons.css",
+      "sha256": "18379b4e5826b28bfcf13f1a6e76912930ad84ad40b4109d9192568f82f57a62"
+    },
+    {
+      "path": "homeplane/static/games-library.css",
+      "sha256": "bb4f4ef81ffc03102e9290eedd86cef0059c0304e457fd30a29f9f3deddcb34e"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "226b865f46f86c14a48cee68ebaeb9c500b673e0d9879e78664d85c7d05ca76b"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "f8252072f56f378898905619672345dc84ba1d98dcc847175b41e7ca1bf356bf"
+    },
+    {
+      "path": "homeplane/static/werewolf-recap.js",
+      "sha256": "fa537f7d7d0d7951cf5add5b4d8990700d298ab41764faab03951e5f264ae3d6"
+    },
+    {
+      "path": "homeplane/static/werewolf-recap.css",
+      "sha256": "66a8577c1dde65fbc680b2f678afb3378d2fb54cc0b63e8ecf33d5aa344b1d33"
+    },
+    {
+      "path": "homeplane/static/werewolf-camera-view.js",
+      "sha256": "da159b2426581614c8917c7010bbffc3aaac4c5e93e3072edd5e17398bc9aabe"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "7a3e6adc7ff7cc1a953192324bc74eda3b23be83400bedeaae1fc0ca5abd436e"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "b7116d6a4f5a8af527380b47830f0f4082a85de548822afc446ee568638c6f4b"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "e3ad559bf9139896dc02102c2585930ebceed3c45cdecf9588e85811c2391650"
+    }
+  ]
+}
