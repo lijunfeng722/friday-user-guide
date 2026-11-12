@@ -1,0 +1,68 @@
+{
+  "source_commit": "0700e2ba14f10ebd07a35afc4bba5efd6bb8dcaa",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-automation-editor.jpg",
+      "sha256": "f7e2f1bb2c95cada84602e775144e8def1b327987660a6716531e367fc92a779",
+      "image_size": {
+        "width": 720,
+        "height": 838
+      }
+    },
+    {
+      "path": "friday-automation-rebuild.jpg",
+      "sha256": "b15d3e9003418210c7133f697462418f013d2bfabb27e93044a4ef31e5900f3c",
+      "image_size": {
+        "width": 920,
+        "height": 424
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "85a559f276ea9395f85469ad9f6cf2b9d952bd63a61b727de17caf9cbb21b7f5"
+    },
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "436bd6f957e4a6ab3e0f71763cbddc178aa953f9f9b81d1b109e4f26af4fe641"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "5b2922b603146ff9b390bc575e636e1f90ac740aed7ec4f3aac62df1bef45781"
+    },
+    {
+      "path": "homeplane/static/automations.js",
+      "sha256": "904bb258fe405f1535a1154b6c49695864cee3ba2e850b337276961317fea5e5"
+    },
+    {
+      "path": "homeplane/static/automations-catalog.js",
+      "sha256": "4aba58984f15e1871e2c6cea179ce411d4e9fe57337c7664165b277440cace93"
+    },
+    {
+      "path": "homeplane/static/automations-catalog.css",
+      "sha256": "79e55a52838840fbaeff7a8a1c3f0c4a6ed7dec559eddc2cf3d0e5613b9f3a5b"
+    },
+    {
+      "path": "homeplane/core_rules.py",
+      "sha256": "ef481ce579cd5c34c2aa8a5599a08a8d3a9711b4cd17de088c062f61f4d6c5d1"
+    },
+    {
+      "path": "homeplane/automation_catalog.py",
+      "sha256": "92ab209a96c3bdebd1290924ff52b9e0df38f85fc21320e8359586de6f4ee3a7"
+    },
+    {
+      "path": "homeplane/automation_actions.py",
+      "sha256": "20a6c8fed87cea55c805647048ab43b651ff0fb0ecdc6d2c4c3f86c37c1bfede"
+    },
+    {
+      "path": "homeplane/api.py",
+      "sha256": "e7b633a5fdac9087eab6d43978dd5fcbec44a5716723cd0d31883c3c8df8095c"
+    }
+  ]
+}

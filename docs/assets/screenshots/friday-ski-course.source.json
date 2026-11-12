@@ -1,0 +1,24 @@
+{
+  "source_commit": "d33970407b9e4314a48969b27512e8e9ddf8011e",
+  "synthetic": true,
+  "source_hashes": {
+    "homeplane/embodied/motion_games.py": "ec8b7a3308a1a53455c9ee116ff4af99c80ec1d3118b5f487b7238b714e7b1c6",
+    "homeplane/embodied/ski_route.py": "ce9e6e24e4f66286e6be2bcaa6676064e7fd6c83a58d9e0da94b21479714475a",
+    "homeplane/embodied/static/ski-scene.js": "8386627b9873b32896cc8eb204dbc67a57554bf8b6eff7942c3a810c0a46832b",
+    "homeplane/embodied/static/games.js": "3b188169ef048e8da1e5e6051f12a351e67d41e1cc56efb5c46b7094384edc86",
+    "homeplane/embodied/static/games.html": "3d50a0da98f8d883dcadd61456767f3d3befc9fabc5427d44d60dfcf898d13dd",
+    "homeplane/embodied/static/games.css": "f1d6fa3bc12616a82603c83db1b7102d3eedf6352b55e8ca3fb4af00f144eb32",
+    "homeplane/embodied/static/game-art/winter-props.png": "73bba0b51c57e6470ea71bb87761a3d9b264a7f63844ea6468fb4f26fc6aebb0",
+    "homeplane/embodied/static/game-art/winter-scene.png": "00cc2c43e17c27d2267b8a10a36c4b306fd8ae8a021ad3ef497909a09675c1a7"
+  },
+  "screenshots": [
+    {
+      "path": "friday-ski-course.jpg",
+      "sha256": "d8316a6c907500993b101e57daa982f950403499e0e29f90e4ce399f297dff1f",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "source_commit": "3170f1cac8351affdfd69297222073d6c9b5ca10",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-sound-search-evidence.jpg",
+      "sha256": "ec0f3dac6316f7438ba0ef49390cec5cb0dc7072d942be79d920e0f81e7f32c5",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "35ce4a7b2e820a8d3830642cc288284c484220f1f259dd16fcab8e6bce7e2256"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "bc3e2bf913553d4517b42e75c1040b281219f0720bfa1595042eec99b0ab5f54"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "322889bf5bf751758d8fd42ef7cf7c902d751dc0e9c0d1394d27625bd9ec13e3"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "5aa6c66b57349cc58eac20b5b1fa63f4707983192823026ad0953087aaa83cc7"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "d3d907b56b3508dcfd1bb06783c4a36f791cf8394c7c478ebf5be811bfe7ec00"
+    },
+    {
+      "path": "homeplane/embodied/safety_archive.py",
+      "sha256": "b7c4ab1d30a4a14f78a88187056ec4deed15999ac376b84a7f2920123f454b8d"
+    },
+    {
+      "path": "homeplane/archive_index.py",
+      "sha256": "ee7a46f8fe0ab9ef47077efd090630eb9acbdde8db342622e6c112487b916407"
+    },
+    {
+      "path": "fixtures/homeplane/archive-simulated.mp4",
+      "sha256": "a1f318cbd2d02ce033bc05256938d48edf26cd440abd4df01bb6b2a57999f038"
+    }
+  ]
+}

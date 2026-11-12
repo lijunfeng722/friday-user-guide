@@ -1,0 +1,60 @@
+{
+  "source_commit": "f86ce279c8c042ccf130ec5f3ba5e86a94129beb",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-sound-follow-evidence.jpg",
+      "sha256": "442397d89f7e157241ac10db9e7fb21f62eaa2fc3f2ee1bee5ba8632c3bf7e72",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "647ea8da22900a9ec721d94f84ddd7160f81f7d98fca2d06d42edfda29255b4e"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "df77c9723b25c264d0787a17db2eef95dcf051763cf8f3bc5a7611fa419ed71f"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "8a6c66f77965b2e3e162e3722ad61779ce475f8d1335297d17d52e2d31013e50"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "d034ec48b919bcfb24f619b9c0fa846f67d7f330a1263d9bf90e9dcb36736184"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "3874691616a83d82b341207d310e7768bc15bb6d39d87620f438df2d4b73cfe0"
+    },
+    {
+      "path": "homeplane/embodied/safety_archive.py",
+      "sha256": "f06e77cc8947db3ce2909b8b5e3525cb56a176e8cbf6f81d58ebbe8710fe5d93"
+    },
+    {
+      "path": "homeplane/embodied/sound_review.py",
+      "sha256": "665e8d10354014845715f8475f95c99c677e3095649197ab60b4f24e425d54d0"
+    },
+    {
+      "path": "homeplane/embodied/previews.py",
+      "sha256": "e55a3a409d4fa209ac027cff70f2142b61fe6eaee0e9063ff263bfc1fbc4995e"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "98c176c2b5cc811100e080cc9d68938d0c5342209325bdb997f558366c055beb"
+    }
+  ]
+}

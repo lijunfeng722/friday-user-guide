@@ -1,0 +1,68 @@
+{
+  "source_commit": "88d7341c43a2401291403706ceee43c53a017bb7",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-werewolf-recap.jpg",
+      "sha256": "93f4207b25a5473cbf68bd4692aeeb9d0de638cdc3082d576053555dadc0435a",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "1cb6e89104731e7988da1f8761383f2257b1701dada7454fb071432929a4bc6d"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "91a4604b2b36f021e489ca374a1bed9290716c327d24d84a6ab9940c016078db"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "3ec85a3505bf5ac4f825e14226165e75c91a7ab4f9fcb44f89f93162e2d20abb"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "2988235afc1560619636c6e6d0a8b65c896f125c6ddec6536e8fdd7125409548"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "d30af5100b3392a0b7518faaf33f20a2a0cc6ec5f590de9d39008f6dcb355504"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.html",
+      "sha256": "483736c11f65fb25a3bbea42cf743f122c0ae6153c0fff4d9657b3412d344cea"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "7a3e6adc7ff7cc1a953192324bc74eda3b23be83400bedeaae1fc0ca5abd436e"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "0b0f114879fdca9149e4f55cdc86ec2da18087fe270f2ea7f13cf9a6de99bec4"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "6d5109759a22843b642e6a2d653f5c5d716b791deca4b5e310d39a628d64c369"
+    },
+    {
+      "path": "homeplane/static/games-art/werewolf.png",
+      "sha256": "65c686067b13e7ec6b8d9475c31da9ddeca5253cae95160a41404d49ae827c24"
+    },
+    {
+      "path": "homeplane/static/werewolf-recap.js",
+      "sha256": "fa537f7d7d0d7951cf5add5b4d8990700d298ab41764faab03951e5f264ae3d6"
+    },
+    {
+      "path": "homeplane/static/werewolf-recap.css",
+      "sha256": "66a8577c1dde65fbc680b2f678afb3378d2fb54cc0b63e8ecf33d5aa344b1d33"
+    }
+  ]
+}

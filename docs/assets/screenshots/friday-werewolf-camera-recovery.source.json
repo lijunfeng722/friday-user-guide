@@ -1,0 +1,60 @@
+{
+  "source_commit": "eccf4dcefe21a96953813bc13f5a5851c71f47ea",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-werewolf-camera-recovery-host.jpg",
+      "sha256": "c9abee6846d52bd5935afcd10a4360542c50f0568407d98b6a53448c3d513c19",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "cc5531662b925ca846e9efb2c1029975e37716990f41d1c6cc7093d59247cd46"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "ccb7e25ae45161f54a813c97e8296b397e1f2f48a9544a7d4d5aebe0b84c514d"
+    },
+    {
+      "path": "homeplane/static/werewolf-camera-view.js",
+      "sha256": "da159b2426581614c8917c7010bbffc3aaac4c5e93e3072edd5e17398bc9aabe"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.html",
+      "sha256": "7e870d45e412ed4ef50f7661e1282bc2157709aef767f306bbf4ad320847c051"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "88bcb768c595d93b58c0dd6fb8bb24f92da162b847acc4804a9702b2d4baa0a9"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "4cf0c0e3dd4aeeb32a4bb9a89bab60c95d8a3d180d87f1a0ef768af967d35ec9"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "fb67a86bd325afa125400f49ffebdb4443afa86480fe92da4f1429d4f296e986"
+    },
+    {
+      "path": "homeplane/werewolf.py",
+      "sha256": "364a3c6266dae5325f39f83be54daa29f3fb246ca77c4b4662262c323bde976e"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "312e78d325396fc2b9eefd7a15a7d6e519c6cc53a87c834f5b8ff4c17af84873"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "d4bd303bf3fc2ab7e338a01d90ba201fff0d36be57a53a5c2d34fec0260c4ef2"
+    }
+  ]
+}

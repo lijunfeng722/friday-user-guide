@@ -1,0 +1,21 @@
+{
+  "source_commit": "4b6a7a651739072d0791eb9174026f93afc38709",
+  "synthetic": true,
+  "source_files": {
+    "homeplane/static/index.html": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404",
+    "homeplane/static/home-experience.js": "d1ac0bc72aef45be323e4d308040b99d7d1e96b3b80556e774bab8a66a0c39a5",
+    "homeplane/static/home-experience.css": "e011ad7780f2e4fce3b27954708058b9321845e1e63dcdb7783cd8dcc74939f2",
+    "homeplane/embodied/camera_director.py": "f5e51c5683e779f804522bbf86f8b23196a0f7cff3f452869acd97e69a9a013c",
+    "homeplane/embodied/camera_follow_picker.py": "3bba3acbec57c04d24c4f801f57ee450a1ee2733c08d3c46c6f032096a186d77"
+  },
+  "screenshots": [
+    {
+      "path": "friday-camera-follow-picker.jpg",
+      "sha256": "5e0c8826f99dd2aaa8768f464b161a2224f0ac5b56035d2d5bb2218d313f4b53",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
