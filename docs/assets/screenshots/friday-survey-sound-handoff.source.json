@@ -1,0 +1,44 @@
+{
+  "source_commit": "cf0ef2c6be421bc3656b29322172efdc01773180",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-survey-sound-handoff.jpg",
+      "sha256": "16c48af381c7defad912bbf8f2f935b2e4ca7072a84aafacc2c7d8fcf3895eae",
+      "image_size": {
+        "width": 628,
+        "height": 60
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "0fb8a5db7ae642a06c00e2eee10511c9164976f2d93b29db350be79a938bc57e"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "5b2922b603146ff9b390bc575e636e1f90ac740aed7ec4f3aac62df1bef45781"
+    },
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "2c6bb9faa10146161d2484350dae610cbe760741326b0adc9645bf248a30f142"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "c6e57c619d91fbbb3683b6baebad1a6a3401ea1716a7c609d2cf1e878713a226"
+    },
+    {
+      "path": "homeplane/embodied/previews.py",
+      "sha256": "f6a4af75e9202db46f532630d2850d9bbdad941a8ad5498b4704bae6f660668e"
+    },
+    {
+      "path": "homeplane/embodied/camera_intent.py",
+      "sha256": "3a59a8acb7f52ffb7c7e05a0c5317724404875f53fdc5f11cb570df7ec30c047"
+    }
+  ]
+}
