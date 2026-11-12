@@ -1,0 +1,61 @@
+{
+  "source_commit": "890b3618d44366a6390bb6b684bdc2ddb064e4a6",
+  "synthetic": true,
+  "browser": "Chromium 149.0.7827.55",
+  "screenshots": [
+    {
+      "path": "friday-werewolf-seat-recovery-host.jpg",
+      "sha256": "d078a24b6c231e705605e7050256d7b0f9b40ca21cbad28774c86cb50fd5d69b",
+      "viewport": {
+        "width": 1340,
+        "height": 880
+      }
+    },
+    {
+      "path": "friday-werewolf-seat-recovery-phone.jpg",
+      "sha256": "3aece4fc2a1f7baed80c9ebd3a1f6b9ef119e6e91eb1ddc6f80ed5cc739b1b3b",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "13fa34ad5d7c47c4dbadb9eabf1b3b91996d92c10dc37a10522eec17dcb59404"
+    },
+    {
+      "path": "homeplane/static/games-library.js",
+      "sha256": "2d36022194cae83b81200769a4954d8ca22514b4d987f81268d5ac9f9b077c74"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "7c1080382b282582d253a2dfd66d3b12711846a56900e2f9547dbc7c95c012d8"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "1151eaf8014fd76fbc97b8668b24d9e8f30c73acf256ddbc8c17e6d335a81167"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.html",
+      "sha256": "7e870d45e412ed4ef50f7661e1282bc2157709aef767f306bbf4ad320847c051"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.js",
+      "sha256": "9d173f4c9fd54593716d8c59322e070dee68470c23ce5dfc5eda44152f00516b"
+    },
+    {
+      "path": "homeplane/static/werewolf-party.css",
+      "sha256": "e3981764489cd11fd9ce168a4ff4557af1c4ac985653111c7d49210938376e99"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "9bea5be2c91e709f05b596b6d13ec7cd0cedba2477a2681963a0d17efed8495b"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "00a0cac31c4bceded31a219f8089859839c950f1917008574eb6fbf7811ba86c"
+    }
+  ]
+}
