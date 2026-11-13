@@ -1,0 +1,22 @@
+{
+  "source_commit": "ddebe3bcfa7a8375717bfdac2026448f892eb35a",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-camera-view-ended.jpg",
+      "sha256": "135611065a8deab6005a851e751919adf8536fd169d864a82442beb636475331",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    {
+      "path": "friday-people-live-view.jpg",
+      "sha256": "4a7edcf7b3c888cc88301fd03c39f6d3ceaa807ccd21c136d8e464a51eccf3b6",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  ]
+}
