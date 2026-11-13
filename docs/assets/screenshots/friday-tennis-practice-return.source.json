@@ -1,0 +1,14 @@
+{
+  "source_commit": "b33419be7f38a134046117ca7ae6577655235a25",
+  "synthetic": true,
+  "screenshots": [
+    {
+      "path": "friday-tennis-practice-return.jpg",
+      "sha256": "57131335c7b2d95dee931479b36fcd6f9997a662ebd62e034c5baf91645d527f",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}
