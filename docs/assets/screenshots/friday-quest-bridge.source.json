@@ -1,0 +1,38 @@
+{
+  "source_commit": "c9ca031581652bb89051286b4320675fe903c5c2",
+  "synthetic": true,
+  "fixture": "合成关节通过原 MotionGames、电视或本机 WebSocket 处理器，使用 Chrome 与 Playwright 渲染。",
+  "source_hashes": {
+    "homeplane/embodied/quest.py": "3d5f9cc1550f25e407374a54d8598136da586181ea38c82ce5e8700a309cc9e2",
+    "homeplane/embodied/motion_games.py": "b27eb90daa67b27bf1a0e6c4eb70beef95771ab8837e5fec6a09c00ae7bcfdf0",
+    "homeplane/embodied/static/game-scenes.js": "fee7e31e1ed3a4ef93716c0d5760f790a8e164785fcfc2e52c9b0cd52f2162dc",
+    "homeplane/embodied/static/game-teaching.js": "6d788edeacff5dd68d3079b30bfde428779e2f56c5a53c7dbad1c02441d2aa64",
+    "homeplane/embodied/static/games.html": "0866d1262688ce6ad28b800a64492740acd6a90c98cecef24648cc1b6c1a843c",
+    "homeplane/embodied/static/games.js": "d8910846507aa8d0164b957998720fad02c57a51d9381d5e68a00a5a7baf7d24",
+    "homeplane/embodied/static/games.css": "7fbe73c0d8a89151299c91606b13c5fdeea6a89a1106f9136569b9cb23f93b77",
+    "homeplane/embodied/static/game-art/quest-bridge-scene.webp": "42079edf2f401dd9cae3b3593301be07977e652b79a65593c7b68fa64737de96",
+    "homeplane/embodied/static/game-art/quest-props.png": "9ae5941d6cc82ef6e726d494cfd786a8abad0e3949670e762e7021cdc088c17a",
+    "homeplane/static/body-motions.js": "cf9ccdedde6955aacd24d1bb2003859f15876743fbce9811b1d59864cfa9b845",
+    "homeplane/static/motion-art/body/targets/exercise-balance.png": "c1ee438bd4f1b9f16daac38a0e4e9a7c2ffa101efc482c709051815a0e1d9278"
+  },
+  "screenshots": [
+    {
+      "path": "friday-quest-bridge-tv.jpg",
+      "sha256": "8f0ea0a99e285f429e729156a742e8ea610dfdd4cff0e7cac775b506e170c51a",
+      "scenario": "原电视舞台，抬起右脚并保持，第二块桥板就位",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "path": "friday-quest-bridge-phone.jpg",
+      "sha256": "43ab77697416e78c5b767dd57b9ac5a32a8d36063e5162bef7336c6a0ccc1592",
+      "scenario": "原舞台，减少动态效果，已装一块，等待抬右脚",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}
