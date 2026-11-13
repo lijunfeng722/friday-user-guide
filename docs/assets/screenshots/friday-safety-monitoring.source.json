@@ -1,11 +1,11 @@
 {
-  "source_commit": "06547c6a7fcc22eab398b147796ca58f4a6be7ca",
+  "source_commit": "17e3c06f736cfed9e62a91349e227d1e23cb88e4",
   "synthetic": true,
-  "browser": "Chrome 157",
+  "browser": "Chromium 149.0.7827.55",
   "screenshots": [
     {
       "path": "friday-safety-monitoring.jpg",
-      "sha256": "57da2828bd3e67b9e56caa78877eed9f1315a05135222870b910ac792bf50bd8",
+      "sha256": "c19eac4638ccf44a3534777d9ea927aefe0a497eca183796831acf77d5b56a97",
       "viewport": {
         "width": 1440,
         "height": 960
@@ -23,31 +23,31 @@
     },
     {
       "path": "homeplane/static/interface.css",
-      "sha256": "3d73666bd33032f1f2f5f340da45e09699a7f8caca57777b4fd4b3bbd79f9638"
+      "sha256": "4eb426117322a3b78450c5384b45666620673bf68223e2566e585c6d11c42326"
     },
     {
       "path": "homeplane/static/app.js",
       "sha256": "1a5bfcace39638cf7f809b59d9b87c48a6a3ee1a91ee899a0a2df5b7a6828b87"
     },
     {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "33f7334005f9641e221d6adf9a112ebd10773103ff3bdb2cac87291d0fa8cd2c"
+    },
+    {
       "path": "homeplane/static/safety.js",
-      "sha256": "a50d558ff6945929b724f8f5af36390abccd0054a376eee4631a12b48d30adf5"
+      "sha256": "ab4f90f47aea0d8adf8a07fe8f84148371adf6d15cbd1168e6b844741cac7ed7"
     },
     {
       "path": "homeplane/static/safety.css",
-      "sha256": "124f7eb539f8277bf65365851b1ff513ef6c5b80a00cb7fcbe1c7ca37c73be02"
-    },
-    {
-      "path": "homeplane/static/safety-event-labels.js",
-      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+      "sha256": "39b0b0b8fb9d7e3d184d32654b2ef15afd3dc8b466ca60e70954192618a3fab9"
     },
     {
       "path": "homeplane/embodied/safety.py",
-      "sha256": "13a144d6d743f661aa17be876d9f5d9f037b8774c1581ab625ed944a94be4897"
+      "sha256": "96151d2a26c145ee79410f6a90150396b7af572607425ed76d2b6048c33dc5ab"
     },
     {
       "path": "homeplane/embodied/safety_api.py",
-      "sha256": "99865a102d2839f7044f27b6daa62453068ed7fb477905caad05e21b52f0ec2f"
+      "sha256": "e04a9c94451e7003cc39dd5fb9d094f239077e46ce2168d869e1cf5ea73274e4"
     }
   ]
 }

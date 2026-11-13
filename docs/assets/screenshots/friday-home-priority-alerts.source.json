@@ -1,0 +1,57 @@
+{
+  "source_commit": "17e3c06f736cfed9e62a91349e227d1e23cb88e4",
+  "synthetic": true,
+  "browser": "Chromium 149.0.7827.55",
+  "screenshots": [
+    {
+      "path": "friday-home-priority-alerts.jpg",
+      "sha256": "a123b8a5c40543f6da41fdde11b59c77898c814a87f0e9992f21303c787ea66a",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/static/style.css",
+      "sha256": "c68f155f030c9ff2b7608fb7c9f2510d2821b45532e1e6223613756ee7aed141"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "4eb426117322a3b78450c5384b45666620673bf68223e2566e585c6d11c42326"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "1a5bfcace39638cf7f809b59d9b87c48a6a3ee1a91ee899a0a2df5b7a6828b87"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "33f7334005f9641e221d6adf9a112ebd10773103ff3bdb2cac87291d0fa8cd2c"
+    },
+    {
+      "path": "homeplane/static/home-status.js",
+      "sha256": "6a77f5e19f1407aab512e67d1257eec3a7f91e33cd54f63a70c4ce0a39bb1e5b"
+    },
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "57265ca43bed83be80f54d786fe02a3162335ef3a689204a210e0b68b364f0c1"
+    },
+    {
+      "path": "homeplane/static/home-experience.css",
+      "sha256": "41054d6448f9fe623b5cf65d77f8738e4c0da696b8394f9b92bb15e2ff30b071"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "96151d2a26c145ee79410f6a90150396b7af572607425ed76d2b6048c33dc5ab"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "e04a9c94451e7003cc39dd5fb9d094f239077e46ce2168d869e1cf5ea73274e4"
+    }
+  ]
+}
