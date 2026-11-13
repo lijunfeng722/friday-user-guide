@@ -1,0 +1,81 @@
+{
+  "source_commit": "2972c27783f611745425acd9e55793cca5c6fbe8",
+  "synthetic": true,
+  "capture": "Chromium loopback with original game routes and synthetic observations",
+  "screenshots": [
+    {
+      "path": "friday-motion-camera-handoff.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "1b66afc60c85def19ebb514855e2e25022fd43134e17c743a4a99202a1bb3e9a"
+    },
+    {
+      "path": "friday-werewolf-camera-handoff.jpg",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sha256": "e368120c8c8165ef9f8b4ba0851997119981c6fbc58a40bcaa4f74b64aa262be"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/motion_games.py",
+      "sha256": "c5f6fe7045503b6ab737a8b87d18a3ce5260a921ebd03181fc7cda42b3998d13"
+    },
+    {
+      "path": "homeplane/embodied/party_camera.py",
+      "sha256": "6780b694db9adc56d63687e625a5dd8380f3a4edc81a806af362b2c9fb9f660a"
+    },
+    {
+      "path": "homeplane/embodied/static/game-art/winter-scene.png",
+      "sha256": "00cc2c43e17c27d2267b8a10a36c4b306fd8ae8a021ad3ef497909a09675c1a7"
+    },
+    {
+      "path": "homeplane/embodied/static/games.css",
+      "sha256": "bd8a4159540e4e77aa0bd45a921503ce2c7da09492071d1abdee69383a486aad"
+    },
+    {
+      "path": "homeplane/embodied/static/games.html",
+      "sha256": "0866d1262688ce6ad28b800a64492740acd6a90c98cecef24648cc1b6c1a843c"
+    },
+    {
+      "path": "homeplane/embodied/static/games.js",
+      "sha256": "30e01b057cea245238261b4a5cc37d6bbd400c2b24d90f14b020b518f25451a8"
+    },
+    {
+      "path": "homeplane/embodied/static/ski-scene.js",
+      "sha256": "58104246a144163365e33d62c7a415717b091bb8d03954bf82a079252683078c"
+    },
+    {
+      "path": "homeplane/embodied/worker.py",
+      "sha256": "5af9f4bc8caa19768b7c0b9b5740fa25bc8bbcd961f438082a6d1250efc8bb92"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "3d73666bd33032f1f2f5f340da45e09699a7f8caca57777b4fd4b3bbd79f9638"
+    },
+    {
+      "path": "homeplane/static/werewolf-camera-view.js",
+      "sha256": "822d1a15ad4a650f8294d04fbdcd9974ba9a657b824bbcd4b7b3e372cf02cd6f"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.css",
+      "sha256": "3de65b4a1958b9d3ea5256511d287c3bf2cdcdf6f172b53ed68b8930c2151117"
+    },
+    {
+      "path": "homeplane/static/werewolf-host.js",
+      "sha256": "a7e3847cb731d9db321937a15dd5a3f9dd8f2ec33bc1df15f2a8f9fd222a03ea"
+    },
+    {
+      "path": "homeplane/werewolf_api.py",
+      "sha256": "80d875bee2cdc88b668e3fa52de2c947cec53ea9a88acfff2c3b3816dadb9372"
+    },
+    {
+      "path": "homeplane/werewolf_service.py",
+      "sha256": "37e6153658730859212abe792f09681b63fc8db2923f59af1f7a34cc3d8ab6ec"
+    }
+  ]
+}
