@@ -1,0 +1,53 @@
+{
+  "source_commit": "06547c6a7fcc22eab398b147796ca58f4a6be7ca",
+  "synthetic": true,
+  "browser": "Chrome 157",
+  "screenshots": [
+    {
+      "path": "friday-safety-monitoring.jpg",
+      "sha256": "57da2828bd3e67b9e56caa78877eed9f1315a05135222870b910ac792bf50bd8",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/static/index.html",
+      "sha256": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1"
+    },
+    {
+      "path": "homeplane/static/style.css",
+      "sha256": "c68f155f030c9ff2b7608fb7c9f2510d2821b45532e1e6223613756ee7aed141"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "3d73666bd33032f1f2f5f340da45e09699a7f8caca57777b4fd4b3bbd79f9638"
+    },
+    {
+      "path": "homeplane/static/app.js",
+      "sha256": "1a5bfcace39638cf7f809b59d9b87c48a6a3ee1a91ee899a0a2df5b7a6828b87"
+    },
+    {
+      "path": "homeplane/static/safety.js",
+      "sha256": "a50d558ff6945929b724f8f5af36390abccd0054a376eee4631a12b48d30adf5"
+    },
+    {
+      "path": "homeplane/static/safety.css",
+      "sha256": "124f7eb539f8277bf65365851b1ff513ef6c5b80a00cb7fcbe1c7ca37c73be02"
+    },
+    {
+      "path": "homeplane/static/safety-event-labels.js",
+      "sha256": "620100514b67774e723ec9a757b41a191c9f175260f6124d98d4301dfe3908c1"
+    },
+    {
+      "path": "homeplane/embodied/safety.py",
+      "sha256": "13a144d6d743f661aa17be876d9f5d9f037b8774c1581ab625ed944a94be4897"
+    },
+    {
+      "path": "homeplane/embodied/safety_api.py",
+      "sha256": "99865a102d2839f7044f27b6daa62453068ed7fb477905caad05e21b52f0ec2f"
+    }
+  ]
+}
