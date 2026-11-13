@@ -1,0 +1,25 @@
+{
+  "source_commit": "8a854b367235a2682fbb389fca8480a3d289a554",
+  "synthetic": true,
+  "source_hashes": {
+    "homeplane/static/index.html": "7aa714eeb3d24e15abcc5865c564a421898e544b2dc26f89fb5bbb43d5ceadb1",
+    "homeplane/static/app.js": "1a5bfcace39638cf7f809b59d9b87c48a6a3ee1a91ee899a0a2df5b7a6828b87",
+    "homeplane/static/home-experience.js": "57265ca43bed83be80f54d786fe02a3162335ef3a689204a210e0b68b364f0c1",
+    "homeplane/static/interactions.js": "f3b7b28d8141266a812dd9ae4c35f6dd86e033bca44118a414ce53700418607e",
+    "homeplane/static/interface.css": "3aac85c8a73c5fdcffaeeffee9fd8059b91d8aeedce8595702ba0842905804df",
+    "homeplane/embodied/api.py": "db531c7189a696e3b0da2c19c644eabbb18bdc86218596699771f7b6271dd36d",
+    "homeplane/embodied/service.py": "f9934c9e2be2cd088c6674b871a702fcebd2e607d8d0d3a63ace98f8a4d081dc",
+    "homeplane/embodied/worker.py": "9468d3490115a1e61564a732422fdae8e7f3e251a2a2f1a89119d90d4a79498f",
+    "homeplane/embodied/voice_feedback.py": "0c04449646f00cfe9776d9175abf5a42b0aa7383ca2af70de438c2bdaf449683"
+  },
+  "screenshots": [
+    {
+      "path": "friday-voice-receipts.jpg",
+      "sha256": "4f6c5be1cf03cd7b5778e45c6815c7c36308b14834e07a736f83e70c8de737a5",
+      "viewport": {
+        "width": 1280,
+        "height": 860
+      }
+    }
+  ]
+}
