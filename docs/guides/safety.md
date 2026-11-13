@@ -59,6 +59,12 @@ macOS 桌面版内置声音复核程序。摄像头接入后，在「家中提�
 
 ![原提醒内按时间查看异响时、环视和跟随的画面，合成示例](../assets/screenshots/friday-sound-follow-evidence.jpg)
 
+镜头会先确认画面里唯一的人，再开始跟随。其他人经过时，只要原目标仍清楚可辨，就会继续跟随。原目标被挡住或画面暂时不清晰时，镜头会先停住，重新确认后再转动。
+
+![两人同时出现在合成画面中，状态显示异响后跟随人物](../assets/screenshots/friday-sound-target-following.jpg)
+
+![原目标被遮挡，镜头显示正在确认原目标](../assets/screenshots/friday-sound-target-confirming.jpg)
+
 正在巡视的镜头符合环视条件时，会先完成当前视角的核对，再转入异响查看。镜头详情会保留本轮已经确认的视角数量。查看结束后显示「本轮因异响结束」。需要继续巡视时，点「巡视一轮」。环视中也可以点「停止巡视」，让镜头停在当前视角。
 
 ![示例镜头因异响结束本轮巡视，已确认视角数仍可查看](../assets/screenshots/friday-survey-sound-handoff.jpg)

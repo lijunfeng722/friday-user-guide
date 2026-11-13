@@ -1,0 +1,56 @@
+{
+  "source_commit": "2d25e6de98327e1dc2bf188c3af9bb2f601d7050",
+  "synthetic": true,
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "screenshots": [
+    {
+      "path": "friday-sound-target-following.jpg",
+      "sha256": "b532a6306446042edecb6dbaab3999f9be41166548d90fe67eb0857e14f3b424",
+      "image_size": {
+        "width": 586,
+        "height": 454
+      }
+    },
+    {
+      "path": "friday-sound-target-confirming.jpg",
+      "sha256": "f42270e118452f8dfa1a14ccb0986a12c1620c81ec64af099caafd3373c22216",
+      "image_size": {
+        "width": 586,
+        "height": 454
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "path": "homeplane/embodied/camera_director.py",
+      "sha256": "5877b4e2917af00f5c0b616bffd9f36084b0bb6b7cd6c17b28ef73871de76e9c"
+    },
+    {
+      "path": "homeplane/embodied/stable_tracks.py",
+      "sha256": "c8282f1f5a1ffa0f019ee88123c0859096588efa5a202642161b6636f983b507"
+    },
+    {
+      "path": "homeplane/static/home-experience.js",
+      "sha256": "57265ca43bed83be80f54d786fe02a3162335ef3a689204a210e0b68b364f0c1"
+    },
+    {
+      "path": "homeplane/static/home-experience.css",
+      "sha256": "41054d6448f9fe623b5cf65d77f8738e4c0da696b8394f9b92bb15e2ff30b071"
+    },
+    {
+      "path": "homeplane/static/interface.css",
+      "sha256": "3d73666bd33032f1f2f5f340da45e09699a7f8caca57777b4fd4b3bbd79f9638"
+    },
+    {
+      "path": "homeplane/static/style.css",
+      "sha256": "c68f155f030c9ff2b7608fb7c9f2510d2821b45532e1e6223613756ee7aed141"
+    },
+    {
+      "path": "homeplane/static/icons.css",
+      "sha256": "18379b4e5826b28bfcf13f1a6e76912930ad84ad40b4109d9192568f82f57a62"
+    }
+  ]
+}
