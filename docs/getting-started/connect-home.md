@@ -1,5 +1,15 @@
 # 连接自己的家
 
+## macOS 桌面使用米家直连
+
+打开「设置 → 家庭连接」。已有米家授权和同一家庭的米家中枢时，在「米家直连」查看哪些设备功能可以读取。已有 HA 连接的家庭先保持原连接，让 Friday 核对已有设备与手势绑定，再点「切换到米家直连」。
+
+切换后，Friday 按保存的来源启动，已登记的房间、设备和操作范围继续使用。若提示仍有自动化或手势绑定需迁移，可先在相应页面核对，再继续切换。需要回切时，展开「Home Assistant」，核对原授权后点「切换到 Home Assistant」。
+
+![示例家庭在设置中选择米家直连](../assets/screenshots/friday-mijia-direct.jpg)
+
+## 使用 Home Assistant
+
 把已经接入 Home Assistant 的家庭设备显示到 Friday。连接过程先读取房间和设备，不会替你执行开关动作。
 
 **开始前：**你已有可打开的 Home Assistant，并已在里面添加所需设备。没有服务时，先按[安装 HA 与小米接入](installation-home-assistant.md)准备；Mac 和 Linux 的容器环境分别在安装章节说明。
@@ -24,7 +34,7 @@
 
 打开“连接”，点击“查找并连接”。找到多个地址时选自己的 HA；未找到时点击“填写地址”，填写浏览器可以打开的完整 HA 地址。
 
-![新版家庭连接向导，摄像头明确标为可选](../assets/screenshots/friday-settings.jpg)
+![Home Assistant 连接向导示例](../assets/screenshots/friday-settings.jpg)
 
 ## 3. 完成登录，再读取家庭
 
