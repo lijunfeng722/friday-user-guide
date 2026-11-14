@@ -8,6 +8,8 @@
 
 ![示例家庭在设置中选择米家直连](../assets/screenshots/friday-mijia-direct.jpg)
 
+新加的开关、插座、灯或风扇可在「设备 → 米家待接入」直接确认开关权限。详见[直接接入米家设备](../guides/devices.md#直接接入米家设备)。
+
 ## 使用 Home Assistant
 
 把已经接入 Home Assistant 的家庭设备显示到 Friday。连接过程先读取房间和设备，不会替你执行开关动作。
