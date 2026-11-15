@@ -523,7 +523,7 @@ docker compose -f docker/compose.yaml exec runtime python /opt/container/entrypo
 
 这套镜像使用独立数据卷，不会自动导入原来 Mac 的家庭账号、规则或启动摄像头。首次启动会自动下载并校验固定版本摄像头 SDK，不需要手动处理 SDK 文件；模型仍需按组件准备；页面能打开不能代表真实设备已连接。Apple Silicon Mac 上的 amd64 镜像需要模拟运行，速度不能代表目标 Intel/AMD 电脑。
 
-停止测试容器使用 `docker compose -f docker/compose.yaml stop`，保留数据卷。原部署仍由原停止、启动脚本管理；恢复原部署前先停止测试容器，避免端口冲突。完整说明见 [CPU 容器部署入口](https://github.com/lijunfeng722/friday-project-index/blob/main/docs/linux-container.md)。此入口尚属未发布的候选代码。
+停止测试容器使用 `docker compose -f docker/compose.yaml stop`，保留数据卷。原部署仍由原停止、启动脚本管理；恢复原部署前先停止测试容器，避免端口冲突。完整说明见 [CPU 容器部署入口](https://github.com/lijunfeng722/friday-project-index/blob/main/docs/linux-container.md)。是否已有可下载镜像，以配套 Actions 的发布结果与 GHCR 页面为准。
 
 已有家庭配置可另行导入私有数据卷，并叠加 `docker/compose.household.yaml` 启动真实家庭模式。此操作需要先停止原 Friday、保留备份，再核对同一个 HA 实例、授权、摄像头暂停状态和设备范围；不是直接复制整个 Mac 安装目录。真实来源连接失败时，家庭模式会报错，不会偷偷显示模拟家庭。摄像头 SDK 由首次启动自动安装，模型仍需按固定来源准备。
 
@@ -550,7 +550,7 @@ Xiaomi 智能家庭屏 Mini 可以采用“播放文本”：Friday 在 Docker �
 
 安装人员可以先在独立模拟容器中检查候选镜像；检查使用临时端口和数据，结束后自动清理，不会重启你正在使用的家庭服务。GitHub 上的构建与发布也不会自动更新家中的 Docker。升级时仍需按维护步骤备份并明确选择版本。
 
-公开 CPU 镜像与当前本地家庭镜像的配套文件可能不同：条件性的小米摄像头 SDK 不随公开构建自动附带，接入这类摄像头需要另行确认许可和准备组件。CPU 模型、家庭账号及私有配置也不放入公开镜像。当前发布仍在集成验证阶段，不能把构建成功当作已经可以从 GHCR 下载。
+公开 CPU 镜像与当前本地家庭镜像的配套文件可能不同：小米摄像头 SDK 本体不随公开镜像附带，而是在首次启动时自动下载和校验，原许可及非商业用途说明保留。CPU 模型、家庭账号及私有配置也不放入公开镜像。安装人员应核对 GHCR 发布结果和镜像摘要，不能只凭本地构建成功就认定已发布。
 
 
 #### 首次启动自动准备摄像头组件
@@ -558,6 +558,11 @@ Xiaomi 智能家庭屏 Mini 可以采用“播放文本”：Friday 在 Docker �
 启动新容器后，先等待固定版本摄像头组件下载、校验和安装完成，再打开页面。首次需要联网，预留约十分钟；后续启动检查已保存的组件并直接复用，不需要重新下载。安装组件不会自动登录小米账号或开启摄像头，家庭配置和设备授权仍需单独完成。
 
 如果下载中断，容器会报告失败；网络恢复后重启该容器即可重试。如果提示文件校验失败，请交给安装人员核对，不要跳过校验，也不要删除家庭数据卷。原许可证和非商业用途说明会随安装保留；自动安装不扩大原许可证的使用范围。GitHub 构建或本地生成候选镜像不会自动替换你正在运行的家庭服务。
+
+
+#### 下载已发布镜像
+
+安装人员可以使用 [CPU 容器部署入口](https://github.com/lijunfeng722/friday-project-index/blob/main/docs/linux-container.md#使用已发布镜像)选择 GHCR 镜像，不必在本机编译。正式地址为 `ghcr.io/geeprox/friday-cpu`；只有发布工作流成功后，对应版本才能下载。请记录镜像摘要以便回退，升级前保留家庭数据备份；不要删除数据卷来更新镜像。首次启动自动准备 SDK，不会自动导入账号或放开设备控制权限。
 
 <a id="guide-getting-started-installation-home-assistant"></a>
 
