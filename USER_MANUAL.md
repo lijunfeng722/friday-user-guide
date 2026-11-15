@@ -512,7 +512,7 @@ KTV 中仍按原流程选择本地音频、准备伴奏再播放。Linux 自动�
 
 ```sh
 python3 scripts/build_linux_container.py
-docker compose -f docker/compose.yaml up -d --wait --wait-timeout 180
+docker compose -f docker/compose.yaml up -d --wait --wait-timeout 660
 ```
 
 打开 `http://127.0.0.1:8740` 查看明确标注的模拟页面。ARL 本机设置链接用下列命令取得，它含有临时令牌，不要分享：
@@ -521,11 +521,11 @@ docker compose -f docker/compose.yaml up -d --wait --wait-timeout 180
 docker compose -f docker/compose.yaml exec runtime python /opt/container/entrypoint.py settings-url
 ```
 
-这套镜像使用独立数据卷，不会自动导入原来 Mac 的家庭账号、规则或启动摄像头。模型与 SDK 仍需按组件另行准备；页面能打开不能代表真实设备已连接。Apple Silicon Mac 上的 amd64 镜像需要模拟运行，速度不能代表目标 Intel/AMD 电脑。
+这套镜像使用独立数据卷，不会自动导入原来 Mac 的家庭账号、规则或启动摄像头。首次启动会自动下载并校验固定版本摄像头 SDK，不需要手动处理 SDK 文件；模型仍需按组件准备；页面能打开不能代表真实设备已连接。Apple Silicon Mac 上的 amd64 镜像需要模拟运行，速度不能代表目标 Intel/AMD 电脑。
 
 停止测试容器使用 `docker compose -f docker/compose.yaml stop`，保留数据卷。原部署仍由原停止、启动脚本管理；恢复原部署前先停止测试容器，避免端口冲突。完整说明见 [CPU 容器部署入口](https://github.com/lijunfeng722/friday-project-index/blob/main/docs/linux-container.md)。此入口尚属未发布的候选代码。
 
-已有家庭配置可另行导入私有数据卷，并叠加 `docker/compose.household.yaml` 启动真实家庭模式。此操作需要先停止原 Friday、保留备份，再核对同一个 HA 实例、授权、摄像头暂停状态和设备范围；不是直接复制整个 Mac 安装目录。真实来源连接失败时，家庭模式会报错，不会偷偷显示模拟家庭。摄像头 SDK 与模型仍需按固定来源准备。
+已有家庭配置可另行导入私有数据卷，并叠加 `docker/compose.household.yaml` 启动真实家庭模式。此操作需要先停止原 Friday、保留备份，再核对同一个 HA 实例、授权、摄像头暂停状态和设备范围；不是直接复制整个 Mac 安装目录。真实来源连接失败时，家庭模式会报错，不会偷偷显示模拟家庭。摄像头 SDK 由首次启动自动安装，模型仍需按固定来源准备。
 
 当前实测已通过真实 HA 接入、浏览器麦克风到 Docker CPU 的中文识别，以及公开音乐片段的人声分离，使用者确认识别正确、分离效果可用。摄像头视频已通过宿主的受限网络转发进入 Linux 容器并完成解码；转发器只使用普通网络接口，不运行 Mac 视觉或摄像头 SDK。实际云台转动已通过画面位移验证，使用者确认人体左右跟随正常、停下后稳定。随后摄像头麦克风的实际语音也在 Docker CPU 完成识别，使用者确认正确；家庭屏文本播报经试听确认内容清楚。宠物跟踪尚未验收。不要因网页健康或模型已安装就认为这些功能已经可用。
 
@@ -551,6 +551,13 @@ Xiaomi 智能家庭屏 Mini 可以采用“播放文本”：Friday 在 Docker �
 安装人员可以先在独立模拟容器中检查候选镜像；检查使用临时端口和数据，结束后自动清理，不会重启你正在使用的家庭服务。GitHub 上的构建与发布也不会自动更新家中的 Docker。升级时仍需按维护步骤备份并明确选择版本。
 
 公开 CPU 镜像与当前本地家庭镜像的配套文件可能不同：条件性的小米摄像头 SDK 不随公开构建自动附带，接入这类摄像头需要另行确认许可和准备组件。CPU 模型、家庭账号及私有配置也不放入公开镜像。当前发布仍在集成验证阶段，不能把构建成功当作已经可以从 GHCR 下载。
+
+
+#### 首次启动自动准备摄像头组件
+
+启动新容器后，先等待固定版本摄像头组件下载、校验和安装完成，再打开页面。首次需要联网，预留约十分钟；后续启动检查已保存的组件并直接复用，不需要重新下载。安装组件不会自动登录小米账号或开启摄像头，家庭配置和设备授权仍需单独完成。
+
+如果下载中断，容器会报告失败；网络恢复后重启该容器即可重试。如果提示文件校验失败，请交给安装人员核对，不要跳过校验，也不要删除家庭数据卷。原许可证和非商业用途说明会随安装保留；自动安装不扩大原许可证的使用范围。GitHub 构建或本地生成候选镜像不会自动替换你正在运行的家庭服务。
 
 <a id="guide-getting-started-installation-home-assistant"></a>
 
