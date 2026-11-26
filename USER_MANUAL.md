@@ -866,11 +866,11 @@ openclaw gateway status
 
 ### 3. 安装固定版本 Miloco
 
-先阅读[固定版本平台选择入口](https://github.com/XiaoMi/xiaomi-miloco/blob/v2026.10.16/scripts/install-guide.md)，确认选择 OpenClaw 路线。下载该版本官方安装器：
+先阅读[固定版本平台选择入口](https://github.com/XiaoMi/xiaomi-miloco/blob/v2026.10.16/scripts/install-guide.md)，确认选择 OpenClaw 路线。下载该版本官方安装器，在 Friday 源码根目录通过 Friday 安装入口执行它。Linux 需要运行 systemd 用户服务：
 
 ```sh
 curl -fLsS https://github.com/XiaoMi/xiaomi-miloco/releases/download/v2026.10.16/install.sh -o /tmp/friday-install-miloco.sh
-bash /tmp/friday-install-miloco.sh --agent-prepare
+./scripts/install-miloco.sh /tmp/friday-install-miloco.sh --agent-prepare
 ```
 
 **应看到：**环境准备、核心包和服务状态结果，或明确的失败步骤。安装器可能准备自己的 Python 和依赖，这不需要把 Friday 的 Python 3.12 替换掉。系统出现本地网络权限提示时，按自己要使用的本地设备功能选择。
@@ -880,7 +880,7 @@ bash /tmp/friday-install-miloco.sh --agent-prepare
 账号绑定后，按同版本平台指南完成剩余安装：
 
 ```sh
-bash /tmp/friday-install-miloco.sh --agent-finish
+./scripts/install-miloco.sh /tmp/friday-install-miloco.sh --agent-finish
 openclaw gateway restart
 miloco-cli service status
 miloco-cli device list
@@ -973,6 +973,14 @@ xcrun --find clang
 按[第一条手势控制](#guide-tutorials-first-gesture)完成现场验证。“电视未连接”不妨碍电脑预览；语音、云台、电视、人脸登记和房间标定按自己的需求分别准备。
 
 **完成标准：**安装、登录、画面、识别、规则响应与物理效果分别有依据。Linux 完成 Miloco 接入后仍不因此具备当前 Apple Vision 手势链路。
+
+#### 摄像头授权自动恢复
+
+首次通过本章安装入口安装后，Mac 或 Linux 会自动维护授权恢复组件。以后使用 Miloco 页面的“一键升级”或命令行升级，通常两分钟内即可自动补回兼容组件。已有部署可在 Friday 源码根目录一次性运行 `python3 integrations/miloco_recovery/lifecycle.py enable`。
+
+关掉 Codex 或浏览器，Miloco 仍会在后台续期和重试。电脑需要开机，Miloco 服务需要保持运行。新摄像头沿用所属账号的授权。
+
+临时断网后可等待自动重试。出现「Miloco 摄像头需要重新登录」时，打开自己的 Miloco 页面，使用原米家账号重新绑定，把授权码只填回 Miloco。Mac 可在系统设置中允许本机通知，Linux 桌面使用系统通知。无桌面 Linux 可以配置 Home Assistant 的持久通知；也可以远程打开 Miloco 页面查看账号状态。具体安装和提醒配置见 [Friday 部署说明](https://github.com/Geeprox/Friday/blob/main/docs/deployment.md)。
 
 <a id="guide-getting-started-installation-maintenance"></a>
 
